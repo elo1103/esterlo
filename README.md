@@ -1,63 +1,63 @@
-# 個人作品集網站
+# Personal Portfolio Website
 
-這是一個現代化、響應式的個人作品集網站，適合設計師、開發者或創意專業人士使用。網站採用純HTML、CSS和JavaScript開發，易於自訂和擴展。
+This is a modern, responsive personal portfolio website suitable for designers, developers, and creative professionals. The website is built with pure HTML, CSS, and JavaScript, making it easy to customize and extend.
 
-## 🌟 特色功能
+## Key Features
 
-- **響應式設計** - 完美支援桌面、平板和手機設備
-- **現代化UI** - 簡潔美觀的設計風格
-- **平滑動畫** - 流暢的滾動和互動效果
-- **作品集展示** - 可篩選的作品展示區域
-- **聯絡表單** - 內建聯絡表單功能
-- **SEO友好** - 優化的HTML結構
-- **易於自訂** - 清晰的代碼結構，方便修改
+- **Responsive Design** - Perfect support for desktop, tablet, and mobile devices
+- **Modern UI** - Clean and beautiful design style
+- **Smooth Animations** - Fluid scrolling and interactive effects
+- **Portfolio Showcase** - Filterable portfolio display area
+- **Contact Form** - Built-in contact form functionality
+- **SEO Friendly** - Optimized HTML structure
+- **Easy Customization** - Clear code structure for easy modifications
 
-## 📁 文件結構
+## File Structure
 
 ```
 WEB/
-├── index.html          # 主頁面
-├── styles.css          # 樣式文件
-├── script.js           # JavaScript功能
-└── README.md           # 說明文件
+├── index.html          # Main page
+├── styles.css          # Stylesheet
+├── script.js           # JavaScript functionality
+└── README.md           # Documentation
 ```
 
-## 🚀 快速開始
+## Quick Start
 
-1. **下載文件**
-   - 將所有文件下載到同一個資料夾中
+1. **Download Files**
+   - Download all files to the same folder
 
-2. **開啟網站**
-   - 雙擊 `index.html` 文件
-   - 或使用瀏覽器開啟 `index.html`
+2. **Open Website**
+   - Double-click the `index.html` file
+   - Or open `index.html` with your browser
 
-3. **自訂內容**
-   - 編輯 `index.html` 修改文字內容
-   - 編輯 `styles.css` 調整顏色和樣式
-   - 編輯 `script.js` 添加新功能
+3. **Customize Content**
+   - Edit `index.html` to modify text content
+   - Edit `styles.css` to adjust colors and styles
+   - Edit `script.js` to add new functionality
 
-## 🎨 自訂指南
+## Customization Guide
 
-### 修改個人資訊
+### Modify Personal Information
 
-在 `index.html` 中找到以下部分並替換：
+Find the following sections in `index.html` and replace them:
 
 ```html
-<!-- 替換你的名字 -->
-<h1 class="hero-title">你好，我是 <span class="highlight">你的名字</span></h1>
+<!-- Replace your name -->
+<h1 class="hero-title">Hello, I'm <span class="highlight">Your Name</span></h1>
 
-<!-- 替換職業描述 -->
-<p class="hero-subtitle">創意設計師 / 網頁開發者 / 品牌顧問</p>
+<!-- Replace profession description -->
+<p class="hero-subtitle">Creative Designer / Web Developer / Brand Consultant</p>
 
-<!-- 替換聯絡資訊 -->
+<!-- Replace contact information -->
 <span>your.email@example.com</span>
-<span>+886 912 345 678</span>
-<span>台北市，台灣</span>
+<span>+1 234 567 8900</span>
+<span>Your City, Country</span>
 ```
 
-### 修改作品集
+### Modify Portfolio
 
-在 `index.html` 中找到 `.portfolio-grid` 部分，複製並修改作品項目：
+Find the `.portfolio-grid` section in `index.html`, copy and modify portfolio items:
 
 ```html
 <div class="portfolio-item" data-category="web">
@@ -65,136 +65,136 @@ WEB/
         <i class="fas fa-laptop-code"></i>
     </div>
     <div class="portfolio-content">
-        <h3>你的作品標題</h3>
-        <p>作品描述</p>
+        <h3>Your Project Title</h3>
+        <p>Project description</p>
         <div class="portfolio-tags">
-            <span class="tag">標籤1</span>
-            <span class="tag">標籤2</span>
+            <span class="tag">Tag 1</span>
+            <span class="tag">Tag 2</span>
         </div>
     </div>
 </div>
 ```
 
-### 修改顏色主題
+### Modify Color Theme
 
-在 `styles.css` 中修改CSS變數：
+Modify CSS variables in `styles.css`:
 
 ```css
-/* 主要顏色 */
+/* Main colors */
 --primary-color: #3498db;
 --secondary-color: #f39c12;
 --accent-color: #2c3e50;
 ```
 
-### 添加你的照片
+### Add Your Photo
 
-1. 將照片命名為 `profile.jpg` 並放在同一資料夾
-2. 在 `index.html` 中替換：
+1. Name your photo `profile.jpg` and place it in the same folder
+2. Replace in `index.html`:
 
 ```html
 <div class="profile-image">
-    <img src="profile.jpg" alt="你的照片" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+    <img src="profile.jpg" alt="Your Photo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
 </div>
 ```
 
-## 📱 響應式設計
+## Responsive Design
 
-網站已針對以下設備優化：
-- **桌面** (1200px+)
-- **平板** (768px - 1199px)
-- **手機** (320px - 767px)
+The website is optimized for the following devices:
+- **Desktop** (1200px+)
+- **Tablet** (768px - 1199px)
+- **Mobile** (320px - 767px)
 
-## 🔧 技術規格
+## Technical Specifications
 
-- **HTML5** - 語義化標記
-- **CSS3** - Flexbox, Grid, 動畫
-- **JavaScript ES6+** - 現代JavaScript功能
-- **Font Awesome** - 圖標庫
-- **Google Fonts** - 中文字體
+- **HTML5** - Semantic markup
+- **CSS3** - Flexbox, Grid, animations
+- **JavaScript ES6+** - Modern JavaScript features
+- **Font Awesome** - Icon library
+- **Google Fonts** - Web fonts
 
-## 🌐 部署到網路
+## Web Deployment
 
-### 方法1：GitHub Pages（免費）
+### Method 1: GitHub Pages (Free)
 
-1. 在GitHub建立新儲存庫
-2. 上傳所有文件
-3. 在設定中啟用GitHub Pages
-4. 你的網站將在 `https://你的用戶名.github.io/儲存庫名稱` 上線
+1. Create a new repository on GitHub
+2. Upload all files
+3. Enable GitHub Pages in settings
+4. Your website will be live at `https://yourusername.github.io/repository-name`
 
-### 方法2：Netlify（免費）
+### Method 2: Netlify (Free)
 
-1. 前往 [netlify.com](https://netlify.com)
-2. 拖拽整個資料夾到部署區域
-3. 獲得免費的網址
+1. Go to [netlify.com](https://netlify.com)
+2. Drag and drop the entire folder to the deployment area
+3. Get a free URL
 
-### 方法3：Vercel（免費）
+### Method 3: Vercel (Free)
 
-1. 前往 [vercel.com](https://vercel.com)
-2. 連接GitHub儲存庫
-3. 自動部署
+1. Go to [vercel.com](https://vercel.com)
+2. Connect your GitHub repository
+3. Automatic deployment
 
-## 📈 SEO優化建議
+## SEO Optimization Tips
 
-1. **修改頁面標題和描述**
+1. **Modify page title and description**
 ```html
-<title>你的名字 - 個人作品集</title>
-<meta name="description" content="你的職業和專長描述">
+<title>Your Name - Personal Portfolio</title>
+<meta name="description" content="Your profession and expertise description">
 ```
 
-2. **添加Open Graph標籤**
+2. **Add Open Graph tags**
 ```html
-<meta property="og:title" content="你的名字 - 個人作品集">
-<meta property="og:description" content="你的職業和專長描述">
-<meta property="og:image" content="你的照片網址">
+<meta property="og:title" content="Your Name - Personal Portfolio">
+<meta property="og:description" content="Your profession and expertise description">
+<meta property="og:image" content="your-photo-url">
 ```
 
-3. **添加Google Analytics**
-在 `</head>` 前添加：
+3. **Add Google Analytics**
+Add before `</head>`:
 ```html
 <!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=你的追蹤ID"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_TRACKING_ID"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', '你的追蹤ID');
+  gtag('config', 'YOUR_TRACKING_ID');
 </script>
 ```
 
-## 🚀 未來擴展建議
+## Future Expansion Suggestions
 
-當你準備將個人網站轉為公司網站時，可以考慮：
+When you're ready to transform your personal website into a company website, consider:
 
-1. **添加更多頁面**
-   - 服務頁面
-   - 團隊介紹
-   - 案例研究
-   - 部落格
+1. **Add More Pages**
+   - Services page
+   - Team introduction
+   - Case studies
+   - Blog
 
-2. **整合後端功能**
-   - 聯絡表單處理
-   - 內容管理系統
-   - 用戶管理
+2. **Integrate Backend Features**
+   - Contact form processing
+   - Content management system
+   - User management
 
-3. **添加新功能**
-   - 多語言支援
-   - 線上預約系統
-   - 客戶登入區域
+3. **Add New Features**
+   - Multi-language support
+   - Online booking system
+   - Client login area
 
-## 📞 支援
+## Support
 
-如果你在使用過程中遇到問題，可以：
+If you encounter any issues while using this website, you can:
 
-1. 檢查瀏覽器控制台是否有錯誤訊息
-2. 確認所有文件都在同一資料夾中
-3. 嘗試使用不同的瀏覽器
+1. Check the browser console for error messages
+2. Ensure all files are in the same folder
+3. Try using a different browser
 
-## 📄 授權
+## License
 
-此專案採用 MIT 授權，你可以自由使用、修改和分發。
+This project is licensed under the MIT License. You are free to use, modify, and distribute it.
 
 ---
 
-**祝你使用愉快！** 🎉
+**Enjoy using it!**
 
-如果這個網站對你有幫助，歡迎分享給其他需要的朋友。
+If this website is helpful to you, feel free to share it with other friends who might need it.
