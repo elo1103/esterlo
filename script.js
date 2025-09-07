@@ -716,4 +716,97 @@ document.addEventListener('DOMContentLoaded', function() {
         
         document.body.removeChild(textArea);
     }
+
+    // ========================================
+    // Cookie 同意橫幅功能
+    // ========================================
+    
+    // 初始化 Cookie 同意橫幅
+    function initCookieBanner() {
+        const cookieBanner = document.getElementById('cookieBanner');
+        const acceptBtn = document.getElementById('cookieAccept');
+        const declineBtn = document.getElementById('cookieDecline');
+        
+        if (!cookieBanner || !acceptBtn || !declineBtn) return;
+        
+        // 檢查是否已經有同意記錄
+        if (window.cookieConsent && window.cookieConsent.hasConsent() !== null) {
+            // 已經有記錄，不顯示橫幅
+            return;
+        }
+        
+        // 顯示橫幅
+        setTimeout(() => {
+            cookieBanner.style.display = 'block';
+            // 觸發動畫
+            requestAnimationFrame(() => {
+                cookieBanner.classList.add('show');
+            });
+        }, 1000); // 延遲 1 秒顯示，讓頁面先載入
+        
+        // 接受按鈕事件
+        acceptBtn.addEventListener('click', function() {
+            if (window.cookieConsent) {
+                window.cookieConsent.setConsent(true);
+            }
+            hideCookieBanner();
+            showNotification('Cookie preferences saved', 'success');
+        });
+        
+        // 拒絕按鈕事件
+        declineBtn.addEventListener('click', function() {
+            if (window.cookieConsent) {
+                window.cookieConsent.setConsent(false);
+            }
+            hideCookieBanner();
+            showNotification('Cookie preferences saved', 'info');
+        });
+    }
+    
+    // 隱藏 Cookie 橫幅
+    function hideCookieBanner() {
+        const cookieBanner = document.getElementById('cookieBanner');
+        if (cookieBanner) {
+            cookieBanner.classList.remove('show');
+            setTimeout(() => {
+                cookieBanner.style.display = 'none';
+            }, 400); // 等待動畫完成
+        }
+    }
+    
+    // 語言切換時更新 Cookie 橫幅文字
+    function updateCookieBannerLanguage() {
+        const savedLang = localStorage.getItem('selectedLanguage') || 'en';
+        const allLangElements = document.querySelectorAll('#cookieBanner [data-lang]');
+        
+        allLangElements.forEach(element => {
+            if (element.getAttribute('data-lang') === savedLang) {
+                element.style.setProperty('display', 'block', 'important');
+                element.style.setProperty('visibility', 'visible', 'important');
+            } else {
+                element.style.setProperty('display', 'none', 'important');
+                element.style.setProperty('visibility', 'hidden', 'important');
+            }
+        });
+    }
+    
+    // 初始化 Cookie 橫幅
+    initCookieBanner();
+    
+    // 在語言切換時更新 Cookie 橫幅
+    const originalLanguageSwitch = languageBtns.forEach;
+    if (languageBtns.length > 0) {
+        languageBtns.forEach(btn => {
+            const originalClick = btn.onclick;
+            btn.addEventListener('click', function(e) {
+                // 先執行原有的語言切換邏輯
+                setTimeout(() => {
+                    updateCookieBannerLanguage();
+                }, 100);
+            });
+        });
+    }
+    
+    // 頁面載入時立即更新 Cookie 橫幅語言
+    updateCookieBannerLanguage();
 });
