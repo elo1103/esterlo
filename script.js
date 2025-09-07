@@ -458,8 +458,44 @@ document.addEventListener('DOMContentLoaded', function() {
     // Blog 分類篩選功能
     const categoryBtns = document.querySelectorAll('.category-btn');
     const blogPosts = document.querySelectorAll('.blog-post');
+    const sortBtns = document.querySelectorAll('.sort-btn');
 
     if (categoryBtns.length > 0 && blogPosts.length > 0) {
+        // 排序功能
+        function sortPosts(sortType) {
+            const visiblePosts = Array.from(blogPosts).filter(post => 
+                post.style.display !== 'none'
+            );
+            
+            visiblePosts.sort((a, b) => {
+                const dateA = new Date(a.getAttribute('data-date'));
+                const dateB = new Date(b.getAttribute('data-date'));
+                
+                if (sortType === 'newest') {
+                    return dateB - dateA; // 新到舊
+                } else {
+                    return dateA - dateB; // 舊到新
+                }
+            });
+            
+            // 重新排列 DOM 元素
+            const blogGrid = document.querySelector('.blog-grid');
+            visiblePosts.forEach(post => {
+                blogGrid.appendChild(post);
+            });
+        }
+        
+        // 排序按鈕事件
+        sortBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                sortBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const sortType = this.getAttribute('data-sort');
+                sortPosts(sortType);
+            });
+        });
+        
         // 檢查 URL 參數並自動選擇分類
         const urlParams = new URLSearchParams(window.location.search);
         const categoryParam = urlParams.get('category');
@@ -483,6 +519,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         post.style.display = 'none';
                     }
                 });
+                
+                // 應用當前排序
+                const activeSortBtn = document.querySelector('.sort-btn.active');
+                if (activeSortBtn) {
+                    const sortType = activeSortBtn.getAttribute('data-sort');
+                    sortPosts(sortType);
+                }
             }
         }
 
@@ -505,6 +548,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         post.style.display = 'none';
                     }
                 });
+                
+                // 應用當前排序
+                const activeSortBtn = document.querySelector('.sort-btn.active');
+                if (activeSortBtn) {
+                    const sortType = activeSortBtn.getAttribute('data-sort');
+                    sortPosts(sortType);
+                }
             });
         });
     }

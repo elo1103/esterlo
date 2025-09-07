@@ -847,8 +847,53 @@ body {
     display: flex;
     justify-content: center;
     gap: var(--spacing-sm);
-    margin-bottom: var(--spacing-3xl);
+    margin-bottom: var(--spacing-lg);
     flex-wrap: wrap;
+}
+
+/* Blog 排序控制 */
+.blog-sort {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.sort-label {
+    font-weight: 500;
+    color: var(--text-primary);
+    font-size: 14px;
+}
+
+.sort-options {
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+.sort-btn {
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    font-family: var(--font-text);
+}
+
+.sort-btn:hover {
+    background: var(--background-primary);
+    color: var(--text-primary);
+    border-color: var(--primary-color);
+}
+
+.sort-btn.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
 }
 
 .category-btn {

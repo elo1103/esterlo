@@ -97,9 +97,27 @@
                     </button>
                 </div>
             
+            <!-- Sort Controls -->
+            <div class="blog-sort">
+                <div class="sort-label">
+                    <span data-lang="en">Sort by:</span>
+                    <span data-lang="zh" style="display: none;">排序方式：</span>
+                </div>
+                <div class="sort-options">
+                    <button class="sort-btn active" data-sort="newest">
+                        <span data-lang="en">Newest First</span>
+                        <span data-lang="zh" style="display: none;">最新文章</span>
+                    </button>
+                    <button class="sort-btn" data-sort="oldest">
+                        <span data-lang="en">Oldest First</span>
+                        <span data-lang="zh" style="display: none;">最早文章</span>
+                    </button>
+                </div>
+            </div>
+            
             <div class="blog-grid">
                 <!-- Blog Post 1 -->
-                <article class="blog-post" data-category="my-notes">
+                <article class="blog-post" data-category="my-notes" data-date="2025-06-21">
                     <div class="blog-post-image">
                         <img src="asset/industrial-revolution.jpg" alt="Industrial Revolution Stages" class="blog-post-img">
                     </div>
@@ -123,7 +141,7 @@
                 </article>
 
                 <!-- Blog Post 2 -->
-                <article class="blog-post" data-category="ai-automation advanced-manufacturing">
+                <article class="blog-post" data-category="ai-automation advanced-manufacturing" data-date="2025-07-11">
                     <div class="blog-post-image">
                         <img src="asset/factory-automation-1.JPG" alt="Factory Automation and CNC Workflow" class="blog-post-img article-2-img">
                     </div>
@@ -156,7 +174,7 @@
     <footer class="footer">
         <div class="container">
             <p data-lang="en">&copy; 2024 Ester Hong-Fen Lo. All rights reserved.</p>
-            <p data-lang="zh" style="display: none;">&copy; 2024 Ester Hong-Fen Lo. 版權所有。</p>
+            <p data-lang="zh" style="display: none;">&copy; 2024 Ester Hong-Fen Lo. All rights reserved.</p>
         </div>
     </footer>
 
