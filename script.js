@@ -485,6 +485,12 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
         
+        // 頁面載入時自動執行最新文章排序
+        const defaultSortBtn = document.querySelector('.sort-btn[data-sort="newest"]');
+        if (defaultSortBtn) {
+            sortPosts('newest');
+        }
+
         // 排序按鈕事件
         sortBtns.forEach(btn => {
             btn.addEventListener('click', function() {
