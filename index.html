@@ -15,6 +15,9 @@
             hasConsent: function() {
                 return localStorage.getItem('cookieConsent') === 'accepted';
             },
+            hasDecision: function() {
+                return localStorage.getItem('cookieConsent') !== null;
+            },
             setConsent: function(accepted) {
                 localStorage.setItem('cookieConsent', accepted ? 'accepted' : 'declined');
                 if (accepted) {

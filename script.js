@@ -729,8 +729,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (!cookieBanner || !acceptBtn || !declineBtn) return;
         
-        // 檢查是否已經有同意記錄
-        if (window.cookieConsent && window.cookieConsent.hasConsent() !== null) {
+        // 檢查是否已經有決定記錄
+        if (window.cookieConsent && window.cookieConsent.hasDecision()) {
             // 已經有記錄，不顯示橫幅
             return;
         }
