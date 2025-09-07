@@ -69,7 +69,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // 獲取連結地址並跳轉
                 const href = readMoreLink.getAttribute('href');
-                console.log('跳轉到:', href); // 調試用
                 
                 // 使用 window.location 跳轉
                 if (href) {
@@ -104,30 +103,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // 導航欄滾動效果
-    let lastScrollTop = 0;
-    window.addEventListener('scroll', function() {
-        const navbar = document.querySelector('.navbar');
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        if (scrollTop > 100) {
-            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-            navbar.style.backdropFilter = 'blur(20px)';
-            navbar.style.borderBottom = '1px solid var(--border-color)';
-        } else {
-            navbar.style.background = 'rgba(255, 255, 255, 0.8)';
-            navbar.style.backdropFilter = 'blur(20px)';
-            navbar.style.borderBottom = '1px solid var(--border-color)';
-        }
-
-        // 隱藏/顯示導航欄（向下滾動隱藏，向上滾動顯示）
-        if (scrollTop > lastScrollTop && scrollTop > 200) {
-            navbar.style.transform = 'translateY(-100%)';
-        } else {
-            navbar.style.transform = 'translateY(0)';
-        }
-        lastScrollTop = scrollTop;
-    });
 
     // 初始化 EmailJS
     (function() {
@@ -531,6 +506,107 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
             });
+        });
+    }
+
+    
+    // 載入時立即設置語言選擇 - 防止閃爍
+    const savedLang = localStorage.getItem('selectedLanguage') || 'en';
+    
+    // 立即設置語言按鈕狀態
+    const languageBtns = document.querySelectorAll('.language-btn');
+    languageBtns.forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('data-lang') === savedLang) {
+            btn.classList.add('active');
+        }
+    });
+    
+    // 立即設置內容顯示 - 使用更強制的方式
+    const allLangElements = document.querySelectorAll('[data-lang]:not(.language-btn)');
+    allLangElements.forEach(element => {
+        if (element.getAttribute('data-lang') === savedLang) {
+            element.style.setProperty('display', 'block', 'important');
+            element.style.setProperty('visibility', 'visible', 'important');
+        } else {
+            element.style.setProperty('display', 'none', 'important');
+            element.style.setProperty('visibility', 'hidden', 'important');
+        }
+    });
+    
+    // 立即設置 placeholder 文字
+    const elementsWithPlaceholder = document.querySelectorAll('[data-placeholder-en][data-placeholder-zh]');
+    elementsWithPlaceholder.forEach(element => {
+        if (savedLang === 'zh') {
+            element.placeholder = element.getAttribute('data-placeholder-zh');
+        } else {
+            element.placeholder = element.getAttribute('data-placeholder-en');
+        }
+    });
+
+    // 語言切換功能
+    let isLanguageSwitching = false; // 防止重複切換
+    
+    languageBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault(); // 防止任何可能的預設行為
+            e.stopPropagation(); // 防止事件冒泡
+            
+            if (isLanguageSwitching) return; // 如果正在切換，直接返回
+            isLanguageSwitching = true;
+            
+            const selectedLang = this.getAttribute('data-lang');
+            
+            // 更新按鈕狀態
+            languageBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            
+            // 切換內容顯示（排除語言切換按鈕）
+            const allLangElements = document.querySelectorAll('[data-lang]:not(.language-btn)');
+            allLangElements.forEach(element => {
+                if (element.getAttribute('data-lang') === selectedLang) {
+                    element.style.setProperty('display', 'block', 'important');
+                    element.style.setProperty('visibility', 'visible', 'important');
+                } else {
+                    element.style.setProperty('display', 'none', 'important');
+                    element.style.setProperty('visibility', 'hidden', 'important');
+                }
+            });
+            
+            // 切換 placeholder 文字
+            const elementsWithPlaceholder = document.querySelectorAll('[data-placeholder-en][data-placeholder-zh]');
+            elementsWithPlaceholder.forEach(element => {
+                if (selectedLang === 'zh') {
+                    element.placeholder = element.getAttribute('data-placeholder-zh');
+                } else {
+                    element.placeholder = element.getAttribute('data-placeholder-en');
+                }
+            });
+            
+            // 保存語言選擇到 localStorage
+            localStorage.setItem('selectedLanguage', selectedLang);
+            
+            // 重置切換狀態
+            setTimeout(() => {
+                isLanguageSwitching = false;
+            }, 100);
+        });
+    });
+
+    // 滾動時增強 Header 效果 - 確保 Header 始終可見
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+        // 確保 navbar 始終可見
+        navbar.style.transform = 'translateY(0) !important';
+        navbar.style.display = 'block !important';
+        navbar.style.visibility = 'visible !important';
+        
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
         });
     }
 

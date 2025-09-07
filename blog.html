@@ -17,21 +17,41 @@
             </div>
             <ul class="nav-menu">
                 <li class="nav-item">
-                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="index.html" class="nav-link">
+                        <span data-lang="en">Home</span>
+                        <span data-lang="zh" style="display: none;">首頁</span>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a href="index.html#about" class="nav-link">About</a>
+                    <a href="index.html#about" class="nav-link">
+                        <span data-lang="en">About</span>
+                        <span data-lang="zh" style="display: none;">關於</span>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a href="index.html#portfolio" class="nav-link">Work</a>
+                    <a href="index.html#portfolio" class="nav-link">
+                        <span data-lang="en">Work</span>
+                        <span data-lang="zh" style="display: none;">作品</span>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a href="blog.html" class="nav-link active">Blog</a>
+                    <a href="blog.html" class="nav-link active">
+                        <span data-lang="en">Blog</span>
+                        <span data-lang="zh" style="display: none;">文章</span>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a href="index.html#contact" class="nav-link">Contact</a>
+                    <a href="index.html#contact" class="nav-link">
+                        <span data-lang="en">Contact</span>
+                        <span data-lang="zh" style="display: none;">聯絡</span>
+                    </a>
                 </li>
             </ul>
+            <div class="language-switcher">
+                <button class="language-btn active" data-lang="en">EN</button>
+                <span class="language-separator">|</span>
+                <button class="language-btn" data-lang="zh">中文</button>
+            </div>
             <div class="hamburger">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -44,7 +64,8 @@
     <section class="blog-hero">
         <div class="container">
             <div class="blog-hero-content">
-                <p class="blog-hero-subtitle">Thoughts on design, technology, and innovation</p>
+                <p class="blog-hero-subtitle" data-lang="en">Thoughts on design, technology, and innovation</p>
+                <p class="blog-hero-subtitle" data-lang="zh" style="display: none;">關於設計、技術與創新思考</p>
             </div>
         </div>
     </section>
@@ -54,11 +75,26 @@
         <div class="container">
             <!-- Category Filter -->
                 <div class="blog-categories">
-                    <button class="category-btn active" data-category="all">All</button>
-                    <button class="category-btn" data-category="ai-automation">AI & Automation</button>
-                    <button class="category-btn" data-category="advanced-manufacturing">Advanced Manufacturing</button>
-                    <button class="category-btn" data-category="computational-design">Computational Design</button>
-                    <button class="category-btn" data-category="my-notes">My Notes</button>
+                    <button class="category-btn active" data-category="all">
+                        <span data-lang="en">All</span>
+                        <span data-lang="zh" style="display: none;">全部</span>
+                    </button>
+                    <button class="category-btn" data-category="ai-automation">
+                        <span data-lang="en">AI & Automation</span>
+                        <span data-lang="zh" style="display: none;">AI 與自動化</span>
+                    </button>
+                    <button class="category-btn" data-category="advanced-manufacturing">
+                        <span data-lang="en">Advanced Manufacturing</span>
+                        <span data-lang="zh" style="display: none;">先進製造</span>
+                    </button>
+                <button class="category-btn" data-category="computational-design">
+                    <span data-lang="en">Computational Design</span>
+                    <span data-lang="zh" style="display: none;">參數化設計</span>
+                </button>
+                    <button class="category-btn" data-category="my-notes">
+                        <span data-lang="en">My Notes</span>
+                        <span data-lang="zh" style="display: none;">我的筆記</span>
+                    </button>
                 </div>
             
             <div class="blog-grid">
@@ -76,9 +112,13 @@
                             Reflections on working at the intersection of digital manufacturing and architectural design, and how AI is reshaping what's possible in creative workflows.
                         </p>
                         <div class="blog-post-categories">
-                            <span class="blog-category-tag">My Notes</span>
+                            <span class="blog-category-tag" data-lang="en">My Notes</span>
+                            <span class="blog-category-tag" data-lang="zh" style="display: none;">我的筆記</span>
                         </div>
-                        <a href="blog/articles/article-1.html" class="blog-post-link">Read More</a>
+                        <a href="blog/articles/article-1.html" class="blog-post-link">
+                            <span data-lang="en">Read More</span>
+                            <span data-lang="zh" style="display: none;">閱讀更多</span>
+                        </a>
                     </div>
                 </article>
 
@@ -96,10 +136,15 @@
                             How automation transformed a complex CNC workflow from a three-person, two-month process into a single engineer's two-week task.
                         </p>
                         <div class="blog-post-categories">
-                            <span class="blog-category-tag">AI & Automation</span>
-                            <span class="blog-category-tag">Advanced Manufacturing</span>
+                            <span class="blog-category-tag" data-lang="en">AI & Automation</span>
+                            <span class="blog-category-tag" data-lang="zh" style="display: none;">AI 與自動化</span>
+                            <span class="blog-category-tag" data-lang="en">Advanced Manufacturing</span>
+                            <span class="blog-category-tag" data-lang="zh" style="display: none;">先進製造</span>
                         </div>
-                        <a href="blog/articles/article-2.html" class="blog-post-link">Read More</a>
+                        <a href="blog/articles/article-2.html" class="blog-post-link">
+                            <span data-lang="en">Read More</span>
+                            <span data-lang="zh" style="display: none;">閱讀更多</span>
+                        </a>
                     </div>
                 </article>
 
@@ -110,7 +155,8 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Ester Hong-Fen Lo. All rights reserved.</p>
+            <p data-lang="en">&copy; 2024 Ester Hong-Fen Lo. All rights reserved.</p>
+            <p data-lang="zh" style="display: none;">&copy; 2024 Ester Hong-Fen Lo. 版權所有。</p>
         </div>
     </footer>
 

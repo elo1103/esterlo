@@ -1,4 +1,11 @@
 /* Apple風格設計系統 */
+
+/* 語言切換 - 防止閃爍 */
+/* 預設隱藏中文內容，但允許 JavaScript 完全控制 */
+[data-lang="zh"] {
+    display: none;
+}
+
 :root {
     /* Apple色彩系統 */
     --primary-color: #007AFF;
@@ -73,16 +80,26 @@ body {
 
 /* 導航欄 */
 .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border-color);
-    z-index: 1000;
-    transition: all 0.3s ease;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    z-index: 1000 !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1) !important;
+    transform: translateY(0) !important;
+    display: block !important;
+    visibility: visible !important;
+}
+
+/* 滾動時的陰影效果 */
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
 }
 
 .nav-container {
@@ -643,6 +660,10 @@ body {
     .nav-menu.active {
         left: 0;
     }
+    
+    .language-switcher {
+        margin-left: var(--spacing-md);
+    }
 
     .hero-title {
         font-size: 40px;
@@ -1036,6 +1057,47 @@ body {
     width: 100%;
 }
 
+/* 語言切換按鈕 */
+.language-switcher {
+    display: flex !important;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-left: var(--spacing-lg);
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.language-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-family: var(--font-text);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    transition: all 0.3s ease;
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.language-btn:hover {
+    color: var(--text-primary);
+    background: var(--background-secondary);
+}
+
+.language-btn.active {
+    color: var(--primary-color);
+    background: rgba(0, 122, 255, 0.1);
+}
+
+.language-separator {
+    color: var(--text-tertiary);
+    font-size: 14px;
+}
+
 /* 響應式設計 - Blog */
 @media (max-width: 768px) {
     .blog-hero-title {
@@ -1058,6 +1120,16 @@ body {
     .blog-post-excerpt {
         font-size: 15px;
     }
+    
+    /* 語言切換按鈕響應式 */
+    .language-switcher {
+        margin-left: var(--spacing-md);
+    }
+    
+    .language-btn {
+        font-size: 12px;
+        padding: 4px 8px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1075,6 +1147,11 @@ body {
     
     .blog-post-content {
         padding: var(--spacing-lg);
+    }
+    
+    .language-btn {
+        font-size: 11px;
+        padding: 3px 6px;
     }
 }
 
