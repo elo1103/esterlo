@@ -121,6 +121,10 @@ body {
     letter-spacing: -0.5px;
 }
 
+.logo-mobile {
+    display: none;
+}
+
 .nav-menu {
     display: flex;
     list-style: none;
@@ -660,9 +664,22 @@ body {
     .nav-menu.active {
         left: 0;
     }
-    
+
+    .nav-logo a {
+        font-size: 18px;
+    }
+
+    .logo-full {
+        display: none;
+    }
+
+    .logo-mobile {
+        display: inline;
+    }
+
     .language-switcher {
-        margin-left: var(--spacing-md);
+        margin-left: var(--spacing-sm);
+        gap: var(--spacing-xs);
     }
 
     .hero-title {
@@ -729,6 +746,20 @@ body {
 @media (max-width: 480px) {
     .container {
         padding: 0 var(--spacing-md);
+    }
+
+    .nav-logo a {
+        font-size: 16px;
+    }
+
+    .language-switcher {
+        margin-left: var(--spacing-xs);
+        gap: 2px;
+    }
+
+    .language-btn {
+        font-size: 12px;
+        padding: 2px 4px;
     }
 
     .hero-title {
