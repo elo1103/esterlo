@@ -68,6 +68,11 @@ document.addEventListener('DOMContentLoaded', function() {
         lastScrollTop = scrollTop;
     });
 
+    // 初始化 EmailJS
+    (function() {
+        emailjs.init("i8l8teYmnKVHOV7gd"); // 您的 EmailJS Public Key
+    })();
+
     // 聯絡表單處理
     const contactForm = document.querySelector('.contact-form');
     if (contactForm) {
@@ -87,21 +92,42 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            // 這裡可以添加實際的表單提交邏輯
-            showNotification('Thank you for your message! I will get back to you soon.', 'success');
-            
-            // 清空表單
-            this.reset();
+            // 顯示發送中狀態
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+
+            // 使用 EmailJS 發送郵件
+            const templateParams = {
+                from_name: name,
+                from_email: email,
+                subject: subject,
+                message: message,
+                to_email: 'esterlohongfen@gmail.com' // 您的郵箱
+            };
+
+            emailjs.send('service_cljtjhb', 'template_ung9m7l', templateParams)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    showNotification('Thank you for your message! I will get back to you soon.', 'success');
+                    contactForm.reset();
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    showNotification('Sorry, there was an error sending your message. Please try again.', 'error');
+                })
+                .finally(function() {
+                    // 恢復按鈕狀態
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                });
         });
     }
 
     // 作品集項目點擊效果
     const portfolioItems = document.querySelectorAll('.portfolio-item');
     portfolioItems.forEach(item => {
-        item.addEventListener('click', function() {
-            const title = this.querySelector('h3').textContent;
-            showNotification(`Clicked on work: ${title}`, 'info');
-        });
+        // 移除點擊訊息，讓自定義的 onclick 處理點擊事件
     });
 
     // 滾動時顯示動畫
@@ -299,4 +325,55 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 初始化預載入
     preloadImages();
+
+    // 郵箱複製功能
+    const emailCopy = document.querySelector('.email-copy');
+    if (emailCopy) {
+        emailCopy.addEventListener('click', function() {
+            const email = this.getAttribute('data-email');
+            
+            // 使用 Clipboard API 複製郵箱
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(email).then(function() {
+                    showNotification('Email copied to clipboard!', 'success');
+                }).catch(function(err) {
+                    console.error('Failed to copy: ', err);
+                    fallbackCopyTextToClipboard(email);
+                });
+            } else {
+                // 降級方案：使用舊的複製方法
+                fallbackCopyTextToClipboard(email);
+            }
+        });
+    }
+
+    // 降級複製方案
+    function fallbackCopyTextToClipboard(text) {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        
+        // 避免滾動到底部
+        textArea.style.top = "0";
+        textArea.style.left = "0";
+        textArea.style.position = "fixed";
+        textArea.style.opacity = "0";
+        
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        
+        try {
+            const successful = document.execCommand('copy');
+            if (successful) {
+                showNotification('Email copied to clipboard!', 'success');
+            } else {
+                showNotification('Failed to copy email', 'error');
+            }
+        } catch (err) {
+            console.error('Fallback: Oops, unable to copy', err);
+            showNotification('Failed to copy email', 'error');
+        }
+        
+        document.body.removeChild(textArea);
+    }
 });
