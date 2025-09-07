@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
+    const blogPostLinks = document.querySelectorAll('.blog-post-link');
 
     // 手機版選單切換
     hamburger.addEventListener('click', function() {
@@ -26,20 +27,80 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Blog 文章連結處理 - 確保正常跳轉
+    blogPostLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            // 不阻止默認行為，讓連結正常跳轉
+            // 關閉手機版選單
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+    });
+
+    // Back to Blog 連結處理
+    const backToBlogLinks = document.querySelectorAll('.back-to-blog');
+    backToBlogLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            // 不阻止默認行為，讓連結正常跳轉
+            // 關閉手機版選單
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+    });
+
+    // Blog 文章卡片點擊處理 - 整個卡片都可以點擊跳轉
+    const blogPostCards = document.querySelectorAll('.blog-post');
+    blogPostCards.forEach(post => {
+        post.addEventListener('click', function(e) {
+            // 如果點擊的是連結或按鈕，不處理
+            if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || e.target.closest('a') || e.target.closest('button')) {
+                return;
+            }
+            
+            // 找到文章中的 Read More 連結
+            const readMoreLink = this.querySelector('.blog-post-link');
+            if (readMoreLink) {
+                // 關閉手機版選單
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                
+                // 獲取連結地址並跳轉
+                const href = readMoreLink.getAttribute('href');
+                console.log('跳轉到:', href); // 調試用
+                
+                // 使用 window.location 跳轉
+                if (href) {
+                    window.location.href = href;
+                }
+            }
+        });
+        
+        // 添加懸停效果提示
+        post.style.cursor = 'pointer';
+    });
+
     // 平滑滾動到對應區域
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            e.preventDefault();
             const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
             
-            if (targetSection) {
-                const offsetTop = targetSection.offsetTop - 60; // 考慮固定導航欄高度
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
+            // 只對同頁面的錨點連結進行平滑滾動（以 # 開頭且不包含文件路徑）
+            if (targetId.startsWith('#') && !targetId.includes('.')) {
+                e.preventDefault();
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    const offsetTop = targetSection.offsetTop - 60; // 考慮固定導航欄高度
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
             }
+            // 對於跨頁面連結（包含 .html 或 .htm），讓瀏覽器正常處理
         });
     });
 
@@ -121,6 +182,99 @@ document.addEventListener('DOMContentLoaded', function() {
                     submitBtn.textContent = originalText;
                     submitBtn.disabled = false;
                 });
+        });
+    }
+
+    // 留言表單處理
+    const commentForm = document.getElementById('commentForm');
+    if (commentForm) {
+        commentForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = commentForm.querySelector('.comment-submit-btn');
+            const btnText = submitBtn.querySelector('.btn-text');
+            const btnLoading = submitBtn.querySelector('.btn-loading');
+            
+            // 顯示載入狀態
+            submitBtn.disabled = true;
+            btnText.style.display = 'none';
+            btnLoading.style.display = 'flex';
+            
+            try {
+                // 收集表單數據
+                const formData = new FormData(commentForm);
+                const templateParams = {
+                    from_name: formData.get('name'),
+                    from_email: formData.get('email'),
+                    message: formData.get('message'),
+                    article_title: document.querySelector('.article-title')?.textContent || 'Blog Article',
+                    article_url: window.location.href,
+                    to_email: 'esterlohongfen@gmail.com'
+                };
+                
+                // 發送留言
+                await emailjs.send('service_cljtjhb', 'template_ung9m7l', templateParams);
+                
+                // 成功提示
+                showNotification('Thank you for your comment! I\'ll get back to you soon.', 'success');
+                
+                // 清空表單
+                commentForm.reset();
+                
+            } catch (error) {
+                console.error('Error sending comment:', error);
+                showNotification('Sorry, there was an error sending your comment. Please try again.', 'error');
+            } finally {
+                // 恢復按鈕狀態
+                submitBtn.disabled = false;
+                btnText.style.display = 'block';
+                btnLoading.style.display = 'none';
+            }
+        });
+    }
+
+    // 按讚功能
+    const likeBtn = document.getElementById('likeBtn');
+    if (likeBtn) {
+        const articleId = likeBtn.getAttribute('data-article');
+        const likeCount = likeBtn.querySelector('.like-count');
+        const likeIcon = likeBtn.querySelector('i');
+        
+        // 從 localStorage 載入按讚狀態
+        const likedArticles = JSON.parse(localStorage.getItem('likedArticles') || '{}');
+        const likeCounts = JSON.parse(localStorage.getItem('likeCounts') || '{}');
+        
+        // 初始化按讚狀態
+        if (likedArticles[articleId]) {
+            likeBtn.classList.add('liked');
+            likeIcon.className = 'fas fa-heart';
+        }
+        
+        // 初始化按讚數量
+        likeCount.textContent = likeCounts[articleId] || 0;
+        
+        // 按讚按鈕點擊事件
+        likeBtn.addEventListener('click', function() {
+            if (likedArticles[articleId]) {
+                // 取消按讚
+                likedArticles[articleId] = false;
+                likeCounts[articleId] = Math.max(0, (likeCounts[articleId] || 0) - 1);
+                likeBtn.classList.remove('liked');
+                likeIcon.className = 'far fa-heart';
+            } else {
+                // 按讚
+                likedArticles[articleId] = true;
+                likeCounts[articleId] = (likeCounts[articleId] || 0) + 1;
+                likeBtn.classList.add('liked');
+                likeIcon.className = 'fas fa-heart';
+            }
+            
+            // 更新顯示
+            likeCount.textContent = likeCounts[articleId];
+            
+            // 儲存到 localStorage
+            localStorage.setItem('likedArticles', JSON.stringify(likedArticles));
+            localStorage.setItem('likeCounts', JSON.stringify(likeCounts));
         });
     }
 
@@ -213,7 +367,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // 通知系統
-    function showNotification(message, type = 'info') {
+    window.showNotification = function(message, type = 'info') {
         // 移除現有通知
         const existingNotification = document.querySelector('.notification');
         if (existingNotification) {
@@ -266,7 +420,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }, 300);
         }, 3000);
-    }
+    };
 
     // 頁面載入完成後的初始化
     window.addEventListener('load', function() {
@@ -325,6 +479,60 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 初始化預載入
     preloadImages();
+
+    // Blog 分類篩選功能
+    const categoryBtns = document.querySelectorAll('.category-btn');
+    const blogPosts = document.querySelectorAll('.blog-post');
+
+    if (categoryBtns.length > 0 && blogPosts.length > 0) {
+        // 檢查 URL 參數並自動選擇分類
+        const urlParams = new URLSearchParams(window.location.search);
+        const categoryParam = urlParams.get('category');
+        
+        if (categoryParam) {
+            // 找到對應的分類按鈕並點擊
+            const targetBtn = document.querySelector(`[data-category="${categoryParam}"]`);
+            if (targetBtn) {
+                // 直接執行分類篩選邏輯，而不是點擊按鈕
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                targetBtn.classList.add('active');
+                
+                // 篩選文章
+                blogPosts.forEach(post => {
+                    const postCategories = post.getAttribute('data-category');
+                    
+                    if (categoryParam === 'all' || postCategories.includes(categoryParam)) {
+                        post.style.display = 'block';
+                        post.style.animation = 'fadeInUp 0.6s ease forwards';
+                    } else {
+                        post.style.display = 'none';
+                    }
+                });
+            }
+        }
+
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const category = this.getAttribute('data-category');
+                
+                // 更新按鈕狀態
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                // 篩選文章
+                blogPosts.forEach(post => {
+                    const postCategories = post.getAttribute('data-category');
+                    
+                    if (category === 'all' || postCategories.includes(category)) {
+                        post.style.display = 'block';
+                        post.style.animation = 'fadeInUp 0.6s ease forwards';
+                    } else {
+                        post.style.display = 'none';
+                    }
+                });
+            });
+        });
+    }
 
     // 郵箱複製功能
     const emailCopy = document.querySelector('.email-copy');

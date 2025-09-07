@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article 2 - Ester Lo</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- 導航欄 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="../../index.html">Ester Lo - Creative Technologist</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="../../index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../../index.html#about" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../../index.html#portfolio" class="nav-link">Work</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../../blog.html" class="nav-link">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../../index.html#contact" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Content -->
+    <section class="article-content">
+        <div class="container">
+            <!-- Back to Blog -->
+            <div class="article-nav">
+                <a href="../../blog.html" class="back-to-blog">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Blog
+                </a>
+            </div>
+
+            <!-- Article Header -->
+            <header class="article-header">
+                <div class="article-meta">
+                    <a href="../../blog.html?category=ai-automation" class="article-category">AI & Automation</a>
+                    <a href="../../blog.html?category=advanced-manufacturing" class="article-category">Advanced Manufacturing</a>
+                    <span class="article-date">July 11, 2025</span>
+                </div>
+                <h1 class="article-title">When Three People's Work for Two Months Shrinks into Two Weeks</h1>
+                <p class="article-excerpt">
+                    How automation transformed a complex CNC workflow from a three-person, two-month process into a single engineer's two-week task.
+                </p>
+            </header>
+
+            <!-- Article Body -->
+            <div class="article-body">
+                <div class="article-image-container">
+                    <img src="../../asset/factory-automation-1.JPG" alt="Factory Automation and CNC Workflow" class="article-image">
+                </div>
+                
+                <p>After graduating from the University of Michigan, I stepped into the world of digital manufacturing. My first job in Wisconsin, and later work in New York, showed me what happens when traditional craft meets new technology. Digital tools opened up fresh possibilities - but they also revealed something else: even in "digital" companies, the screens in front of us were still filled with repetitive work.</p>
+                
+                <p>I remember my first CNC project clearly. The workflow shocked me. Import the model. Manually set parameters for each surface. Run a simulation. Check for errors. Export the file. If the geometry was simple, it was manageable. But with complex architectural components, every change in design meant the engineer had to start all over again.</p>
+                
+                <p>At one point I asked myself: if the logic of these steps is so similar, why can't they be automated?</p>
+                
+                <div class="article-image-container">
+                    <img src="../../asset/factory-automation-2.JPG" alt="PowerMill API Automation" class="article-image">
+                </div>
+                
+                <p>That question led me to Powermill's API. I started experimenting with code, trying to take over the repetitive parts. Eventually, I built a small tool: it imported the 3D model, generated toolpaths based on geometry, ran the simulation, and exported the final file - all automatically. The result: a workflow that used to take three engineers two months could now be done by one engineer in two weeks.</p>
+                
+                <p>It was a revelation. Not just because of the time saved, but because it freed engineers to focus on what actually mattered: quality, coordination, innovation.</p>
+                
+                <p>Since then, I've come to see how hidden rework slows down so many companies. From CNC machining to office tasks, repetitive processes are everywhere. And they're worth rethinking. This is the direction I focus on now - using AI and automation to free people from tedious work, so they can spend their time where it truly creates value.</p>
+            </div>
+
+            <!-- Article Footer -->
+            <footer class="article-footer">
+                <div class="article-tags">
+                    <a href="../../blog.html?category=ai-automation" class="tag">AI & Automation</a>
+                    <a href="../../blog.html?category=advanced-manufacturing" class="tag">Advanced Manufacturing</a>
+                    <a href="../../blog.html?category=computational-design" class="tag">Computational Design</a>
+                    <a href="../../blog.html?category=my-notes" class="tag">My Notes</a>
+                </div>
+                <div class="article-actions">
+                    <div class="like-section">
+                        <button class="like-btn" id="likeBtn" data-article="article-2">
+                            <i class="far fa-heart"></i>
+                            <span class="like-count">0</span>
+                        </button>
+                    </div>
+                    <div class="article-share">
+                        <span>Share this article:</span>
+                        <a href="#" class="share-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="share-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="share-link"><i class="fas fa-link"></i></a>
+                    </div>
+                </div>
+            </footer>
+
+            <!-- Comments Section -->
+            <section class="comments-section">
+                <div class="comments-header">
+                    <h3>Leave a Comment</h3>
+                    <p>Share your thoughts and join the discussion</p>
+                </div>
+                
+                <form class="comment-form" id="commentForm">
+                    <div class="form-group">
+                        <label for="commenterName">Name *</label>
+                        <input type="text" id="commenterName" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="commenterEmail">Email *</label>
+                        <input type="email" id="commenterEmail" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="commentMessage">Comment *</label>
+                        <textarea id="commentMessage" name="message" rows="5" required placeholder="Share your thoughts about this article..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="comment-submit-btn">
+                        <span class="btn-text">Post Comment</span>
+                        <span class="btn-loading" style="display: none;">
+                            <i class="fas fa-spinner fa-spin"></i> Sending...
+                        </span>
+                    </button>
+                </form>
+                
+                <div class="comment-notice">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Your comment will be sent directly to the author. Thank you for your feedback!</span>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Ester Hong-Fen Lo. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../script.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</body>
+</html>

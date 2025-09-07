@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article 1 - Ester Lo</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- 導航欄 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="../../index.html">Ester Lo - Creative Technologist</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="../../index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../../index.html#about" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../../index.html#portfolio" class="nav-link">Work</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../../blog.html" class="nav-link">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../../index.html#contact" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Content -->
+    <section class="article-content">
+        <div class="container">
+            <!-- Back to Blog -->
+            <div class="article-nav">
+                <a href="../../blog.html" class="back-to-blog">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Blog
+                </a>
+            </div>
+
+            <!-- Article Header -->
+            <header class="article-header">
+                <div class="article-meta">
+                    <a href="../../blog.html?category=my-notes" class="article-category">My Notes</a>
+                    <span class="article-date">June 21, 2025</span>
+                </div>
+                <h1 class="article-title">Notes on My Journey Across Design, Manufacturing, and AI</h1>
+                <p class="article-excerpt">
+                    Reflections on working at the intersection of digital manufacturing and architectural design, and how AI is reshaping what's possible in creative workflows.
+                </p>
+            </header>
+
+            <!-- Article Body -->
+            <div class="article-body">
+                <div class="article-image-container">
+                    <img src="../../asset/industrial-revolution.jpg" alt="Industrial Revolution Stages" class="article-image">
+                </div>
+                
+                <p>Over the past few years, I've been working where digital manufacturing meets architectural design. My path has taken me through projects with robotic arms, CNC machining, 3D printing, factory automation, and parametric design. These experiences gave me a perspective that feels unique: I understand the needs of designers, I see the challenges on the factory floor, and I imagine how technology might change what connects the two.</p>
+                
+                <p>AI has recently added another layer to this. It's not just a new tool - it feels more like a shift in what's possible. I often ask myself: if AI could handle the repetitive, mechanical parts of our workflows, how much more space would it create for creativity and decision-making?</p>
+                
+                <p>This blog is where I'll keep track of my experiments and reflections:</p>
+                
+                <ul>
+                    <li>Examples of automation I've observed in industry</li>
+                    <li>AI workflows I'm trying out</li>
+                    <li>Cultural differences I've noticed while working in the U.S.</li>
+                </ul>
+                
+                <p>These won't be final answers - more like snapshots of an open process. Writing here is simply part of how I think.</p>
+                
+                <p>If you come from an architecture background and are curious about venturing into other fields, maybe you'll find something useful here. Even small sparks can open up new possibilities.</p>
+            </div>
+
+            <!-- Article Footer -->
+            <footer class="article-footer">
+                <div class="article-tags">
+                    <a href="../../blog.html?category=ai-automation" class="tag">AI & Automation</a>
+                    <a href="../../blog.html?category=advanced-manufacturing" class="tag">Advanced Manufacturing</a>
+                    <a href="../../blog.html?category=computational-design" class="tag">Computational Design</a>
+                    <a href="../../blog.html?category=my-notes" class="tag">My Notes</a>
+                </div>
+                <div class="article-actions">
+                    <div class="like-section">
+                        <button class="like-btn" id="likeBtn" data-article="article-1">
+                            <i class="far fa-heart"></i>
+                            <span class="like-count">0</span>
+                        </button>
+                    </div>
+                    <div class="article-share">
+                        <span>Share this article:</span>
+                        <a href="#" class="share-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="share-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="share-link"><i class="fas fa-link"></i></a>
+                    </div>
+                </div>
+            </footer>
+
+            <!-- Comments Section -->
+            <section class="comments-section">
+                <div class="comments-header">
+                    <h3>Leave a Comment</h3>
+                    <p>Share your thoughts and join the discussion</p>
+                </div>
+                
+                <form class="comment-form" id="commentForm">
+                    <div class="form-group">
+                        <label for="commenterName">Name *</label>
+                        <input type="text" id="commenterName" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="commenterEmail">Email *</label>
+                        <input type="email" id="commenterEmail" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="commentMessage">Comment *</label>
+                        <textarea id="commentMessage" name="message" rows="5" required placeholder="Share your thoughts about this article..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="comment-submit-btn">
+                        <span class="btn-text">Post Comment</span>
+                        <span class="btn-loading" style="display: none;">
+                            <i class="fas fa-spinner fa-spin"></i> Sending...
+                        </span>
+                    </button>
+                </form>
+                
+                <div class="comment-notice">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Your comment will be sent directly to the author. Thank you for your feedback!</span>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Ester Hong-Fen Lo. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../script.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</body>
+</html>
