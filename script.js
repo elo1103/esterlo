@@ -256,7 +256,16 @@ document.addEventListener('DOMContentLoaded', function() {
     // 作品集項目點擊效果
     const portfolioItems = document.querySelectorAll('.portfolio-item');
     portfolioItems.forEach(item => {
-        // 移除點擊訊息，讓自定義的 onclick 處理點擊事件
+        item.addEventListener('click', function() {
+            const action = this.getAttribute('data-action');
+            const url = this.getAttribute('data-url');
+            
+            if (action === 'coming-soon') {
+                showNotification('Coming Soon! This page is currently in development.', 'info');
+            } else if (action === 'external-link' && url) {
+                window.open(url, '_blank');
+            }
+        });
     });
 
     // 滾動時顯示動畫
