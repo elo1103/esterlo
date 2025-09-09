@@ -1011,6 +1011,7 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     justify-content: center;
+    align-items: stretch;
 }
 
 .blog-post {
@@ -1020,6 +1021,8 @@ body {
     box-shadow: var(--shadow-sm);
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
 }
 
 .blog-post:hover {
@@ -1055,6 +1058,9 @@ body {
 
 .blog-post-content {
     padding: var(--spacing-xl);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 .blog-post-meta {
@@ -1136,6 +1142,7 @@ body {
     color: var(--primary-color);
     text-decoration: none;
     transition: color 0.2s ease;
+    margin-top: auto;
 }
 
 .blog-post-link:hover {
