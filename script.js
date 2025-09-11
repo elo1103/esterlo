@@ -350,6 +350,23 @@ document.addEventListener('DOMContentLoaded', function() {
         this.style.background = 'var(--primary-color)';
     });
 
+    // Coming Soon 通知函數
+    window.showComingSoonNotification = function() {
+        // 檢查當前語言 - 查看哪個語言按鈕是 active 的
+        const activeLangBtn = document.querySelector('.language-btn.active');
+        const currentLang = activeLangBtn ? activeLangBtn.getAttribute('data-lang') : 'en';
+        
+        let message;
+        
+        if (currentLang === 'zh') {
+            message = '建置中！此頁面即將完成。';
+        } else {
+            message = 'Coming Soon! This page is currently in development.';
+        }
+        
+        showNotification(message, 'info');
+    };
+
     // 通知系統
     window.showNotification = function(message, type = 'info') {
         // 移除現有通知
