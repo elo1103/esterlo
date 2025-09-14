@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Ester Lo</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Analytics - 條件載入 -->
+    <script>
+        // Cookie 同意管理
+        window.cookieConsent = {
+            hasConsent: function() {
+                return localStorage.getItem('cookieConsent') === 'accepted';
+            },
+            hasDecision: function() {
+                return localStorage.getItem('cookieConsent') !== null;
+            },
+            setConsent: function(accepted) {
+                localStorage.setItem('cookieConsent', accepted ? 'accepted' : 'declined');
+                if (accepted) {
+                    this.loadGA4();
+                }
+            },
+            loadGA4: function() {
+                if (window.gtag) return; // 避免重複載入
+                
+                // 載入 GA4 腳本
+                const script = document.createElement('script');
+                script.async = true;
+                script.src = 'https://www.googletagmanager.com/gtag/js?id=G-VB5KXFH98R';
+                document.head.appendChild(script);
+                
+                // 初始化 GA4
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                window.gtag = gtag;
+                gtag('js', new Date());
+                gtag('config', 'G-VB5KXFH98R', {
+                    anonymize_ip: true,
+                    cookie_flags: 'SameSite=None;Secure'
+                });
+            }
+        };
+        
+        // 如果已經有同意記錄，立即載入 GA4
+        if (window.cookieConsent.hasConsent()) {
+            window.cookieConsent.loadGA4();
+        }
+    </script>
+</head>
+<body>
+    <!-- 導航欄 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">
+                    <span class="logo-full">Ester Lo - Creative Technologist</span>
+                    <span class="logo-mobile">Ester Lo</span>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html#home" class="nav-link">
+                        <span data-lang="en">Home</span>
+                        <span data-lang="zh" style="display: none;">首頁</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#about" class="nav-link">
+                        <span data-lang="en">About</span>
+                        <span data-lang="zh" style="display: none;">關於</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#portfolio" class="nav-link">
+                        <span data-lang="en">Work</span>
+                        <span data-lang="zh" style="display: none;">作品</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="blog.html" class="nav-link">
+                        <span data-lang="en">Blog</span>
+                        <span data-lang="zh" style="display: none;">文章</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#contact" class="nav-link">
+                        <span data-lang="en">Contact</span>
+                        <span data-lang="zh" style="display: none;">聯絡</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="nav-right">
+                <div class="language-switcher">
+                    <button class="language-btn active" data-lang="en">EN</button>
+                    <span class="language-separator">|</span>
+                    <button class="language-btn" data-lang="zh">中文</button>
+                </div>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Projects Hero Section -->
+    <section class="projects-hero">
+        <div class="container">
+            <div class="projects-hero-content">
+                <h1 class="projects-hero-title" data-lang="en">Advanced Manufacturing Projects</h1>
+                <h1 class="projects-hero-title" data-lang="zh" style="display: none;">先進製造專案</h1>
+                <p class="projects-hero-subtitle" data-lang="en">
+                    Through digital technology, I transform ideas and materials into unique design expressions, achieving geometric shapes and innovations that traditional craftsmanship could not reach while embracing the core spirit of craftsmanship.
+                </p>
+                <p class="projects-hero-subtitle" data-lang="zh" style="display: none;">
+                    透過數位科技，我將想法與材料轉化為獨特的設計表達，實現傳統工藝無法達到的幾何形狀與創新，同時擁抱工藝的核心精神。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Grid Section -->
+    <section class="projects-content">
+        <div class="container">
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-item" onclick="window.location.href='project/project-1.html'">
+                    <div class="project-image">
+                        <img src="asset/projects/concrete-printed-house-main.png" alt="Skylight House" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="project-content">
+                        <h3 data-lang="en">Skylight House</h3>
+                        <h3 data-lang="zh" style="display: none;">院之家</h3>
+                        <p data-lang="en">Skylight House integrates innovative 3D concrete printing, traditional wooden structures, and metal cladding, using contemporary technology to express the deep cultural heritage of traditional architecture.</p>
+                        <p data-lang="zh" style="display: none;">院之家的設計概念源自創新的水泥３Ｄ列印工法、傳統木構造和金屬包板的交融，以當代科技呈現傳統建築中的深厚文化底蘊。</p>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-item" onclick="window.location.href='project/project-2.html'">
+                    <div class="project-image">
+                        <img src="asset/projects/precise-imprecision-main.jpg" alt="Precise Imprecision" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="project-content">
+                        <h3 data-lang="en">Precise Imprecision</h3>
+                        <h3 data-lang="zh" style="display: none;">精確的不精確</h3>
+                        <p data-lang="en">Precise Imprecision is an architectural experiment that blends technological and material innovation, highlighting the balance between robotic precision and the unpredictability of natural forms through flexible formwork.</p>
+                        <p data-lang="zh" style="display: none;">精確的不精確是一個結合科技與材料創新的建築實驗，通過機械手臂和彈性模板技術，展現出製作的精確性與自然形態的不確定性。</p>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-item" onclick="window.location.href='project/project-3.html'">
+                    <div class="project-image">
+                        <img src="asset/projects/concrete-printing.jpg" alt="Weaving Stone" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="project-content">
+                        <h3 data-lang="en">Weaving Stone</h3>
+                        <h3 data-lang="zh" style="display: none;">岩織</h3>
+                        <p data-lang="en">Weaving Stone is a series that combines traditional Japanese weaving techniques with advanced 3D concrete printing technology.</p>
+                        <p data-lang="zh" style="display: none;">岩織是一個結合日本傳統織物工藝與先進３Ｄ水泥列印技術的系列。</p>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-item" onclick="window.location.href='project/project-4.html'">
+                    <div class="project-image">
+                        <img src="asset/projects/cycle-craft-main.jpg" alt="Cycle-Craft" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="project-content">
+                        <h3 data-lang="en">Cycle-Craft</h3>
+                        <h3 data-lang="zh" style="display: none;">循環築</h3>
+                        <p data-lang="en">Cycle-craft draws inspiration from the widespread issue of plastic waste in modern society, prompting a rethinking of people's mistrust of recycled and ocean plastic materials.</p>
+                        <p data-lang="zh" style="display: none;">循環築的靈感來自於當今社會對塑膠資源的浪費現象，這使我們開始反思人們對回收材料與海洋塑料的不信任。</p>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="project-item" onclick="window.location.href='project/project-5.html'">
+                    <div class="project-image">
+                        <img src="asset/projects/space-weaving-main.jpg" alt="Space Weaving" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="project-content">
+                        <h3 data-lang="en">Space Weaving</h3>
+                        <h3 data-lang="zh" style="display: none;">空間築</h3>
+                        <p data-lang="en">Space Weaving employs advanced robotic 3D printing technology to create intricate three-dimensional grid structures, exploring geometric aesthetics that traditional craftsmanship cannot achieve.</p>
+                        <p data-lang="zh" style="display: none;">空間築引用了機械手臂的高端３Ｄ列印技術，創造出精細的立體網格結構，探索了傳統工藝無法實現的幾何美感。</p>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="project-item" onclick="window.location.href='project/project-6.html'">
+                    <div class="project-image">
+                        <img src="asset/projects/time-imprint-main.jpg" alt="Time Imprint" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="project-content">
+                        <h3 data-lang="en">Time Imprint</h3>
+                        <h3 data-lang="zh" style="display: none;">時紋</h3>
+                        <p data-lang="en">Time Imprint captures the fleeting ripples formed by raindrops, translating them onto wood. The concentric ripple patterns on the surface symbolize the eternity of time and space.</p>
+                        <p data-lang="zh" style="display: none;">時紋捕捉了下雨時的水波紋瞬間，轉譯到木頭之上。作品表面的環狀水波紋象徵了時間與空間的永恆。</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="container">
+            <div class="gallery-header">
+                <h2 class="gallery-title" data-lang="en">Gallery</h2>
+                <h2 class="gallery-title" data-lang="zh" style="display: none;">Gallery</h2>
+            </div>
+            <div class="gallery-container">
+                <div class="gallery-track" id="galleryTrack">
+                    <div class="gallery-slide">
+                        <div class="gallery-image">
+                            <img src="asset/robotic-cnc-machining.jpg" alt="Robotic CNC Machining">
+                        </div>
+                        <div class="gallery-content">
+                            <h3 data-lang="en">Robotic CNC Machining</h3>
+                            <h3 data-lang="zh" style="display: none;">機械手臂 CNC 加工</h3>
+                            <p data-lang="en">Large-scale subtractive manufacturing with robot</p>
+                            <p data-lang="zh" style="display: none;">機械手臂減材製造</p>
+                        </div>
+                    </div>
+                    <div class="gallery-slide">
+                        <div class="gallery-image">
+                            <img src="asset/robotic-3d-printing.jpg" alt="Robotic 3D Printing">
+                        </div>
+                        <div class="gallery-content">
+                            <h3 data-lang="en">Robotic 3D Printing</h3>
+                            <h3 data-lang="zh" style="display: none;">機械手臂 3D 列印</h3>
+                            <p data-lang="en">Large-scale additive manufacturing with robot</p>
+                            <p data-lang="zh" style="display: none;">機械手臂增材製造</p>
+                        </div>
+                    </div>
+                    <div class="gallery-slide">
+                        <div class="gallery-image">
+                            <img src="asset/digital-fabrication.jpg" alt="Digital Fabrication">
+                        </div>
+                        <div class="gallery-content">
+                            <h3 data-lang="en">Digital Fabrication</h3>
+                            <h3 data-lang="zh" style="display: none;">數位製造</h3>
+                            <p data-lang="en">Computational design meets material</p>
+                            <p data-lang="zh" style="display: none;">參數化設計與材料的結合</p>
+                        </div>
+                    </div>
+                    <div class="gallery-slide">
+                        <div class="gallery-image">
+                            <img src="asset/advanced-materials.jpg" alt="Advanced Materials">
+                        </div>
+                        <div class="gallery-content">
+                            <h3 data-lang="en">Advanced Materials</h3>
+                            <h3 data-lang="zh" style="display: none;">先進材料</h3>
+                            <p data-lang="en">Exploring new material possibilities through technology</p>
+                            <p data-lang="zh" style="display: none;">透過科技探索材料的新可能性</p>
+                        </div>
+                    </div>
+                    <div class="gallery-slide">
+                        <div class="gallery-image">
+                            <img src="asset/parametric-design.jpg" alt="Parametric Design">
+                        </div>
+                        <div class="gallery-content">
+                            <h3 data-lang="en">Parametric Design</h3>
+                            <h3 data-lang="zh" style="display: none;">參數化設計</h3>
+                            <p data-lang="en">Algorithm-driven design processes and optimization</p>
+                            <p data-lang="zh" style="display: none;">演算法驅動的設計流程與優化</p>
+                        </div>
+                    </div>
+                    <div class="gallery-slide">
+                        <div class="gallery-image">
+                            <img src="asset/manufacturing-automation.jpg" alt="Manufacturing Automation">
+                        </div>
+                        <div class="gallery-content">
+                            <h3 data-lang="en">Manufacturing Automation</h3>
+                            <h3 data-lang="zh" style="display: none;">製造自動化</h3>
+                            <p data-lang="en">Intelligent systems for streamlined production</p>
+                            <p data-lang="zh" style="display: none;">智能系統實現高效生產</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-controls">
+                    <button class="gallery-btn gallery-prev" id="galleryPrev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="gallery-btn gallery-next" id="galleryNext">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="gallery-indicators">
+                    <span class="gallery-dot active" data-slide="0"></span>
+                    <span class="gallery-dot" data-slide="1"></span>
+                    <span class="gallery-dot" data-slide="2"></span>
+                    <span class="gallery-dot" data-slide="3"></span>
+                    <span class="gallery-dot" data-slide="4"></span>
+                    <span class="gallery-dot" data-slide="5"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p data-lang="en">&copy; 2024 Ester Hong-Fen Lo. All rights reserved.</p>
+            <p data-lang="zh" style="display: none;">&copy; 2024 Ester Hong-Fen Lo. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Cookie 同意橫幅 -->
+    <div id="cookieBanner" class="cookie-banner" style="display: none;">
+        <div class="cookie-banner-content">
+            <div class="cookie-banner-text">
+                <h3 class="cookie-banner-title" data-lang="en">We use cookies</h3>
+                <h3 class="cookie-banner-title" data-lang="zh" style="display: none;">我們使用 cookies</h3>
+                <p class="cookie-banner-description" data-lang="en">
+                    We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.
+                </p>
+                <p class="cookie-banner-description" data-lang="zh" style="display: none;">
+                    我們使用 cookies 來改善您的瀏覽體驗、提供個人化內容並分析我們的流量。點擊「接受全部」即表示您同意我們使用 cookies。
+                </p>
+            </div>
+            <div class="cookie-banner-actions">
+                <button class="cookie-btn cookie-btn-secondary" id="cookieDecline">
+                    <span data-lang="en">Decline</span>
+                    <span data-lang="zh" style="display: none;">拒絕</span>
+                </button>
+                <button class="cookie-btn cookie-btn-primary" id="cookieAccept">
+                    <span data-lang="en">Accept All</span>
+                    <span data-lang="zh" style="display: none;">接受全部</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</body>
+</html>

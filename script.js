@@ -1,3 +1,85 @@
+// Image Modal Functions
+let currentImageIndex = 0;
+let imageList = [];
+
+function openImageModal(src, alt) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    const modalCaption = document.getElementById('modalCaption');
+    
+    // 收集所有可點擊的圖片
+    const clickableImages = document.querySelectorAll('.clickable-image');
+    imageList = Array.from(clickableImages).map(img => ({
+        src: img.src,
+        alt: img.alt
+    }));
+    
+    // 找到當前圖片的索引
+    currentImageIndex = imageList.findIndex(img => img.src === src);
+    
+    modal.style.display = 'block';
+    modalImg.src = src;
+    modalCaption.textContent = alt;
+    
+    // 防止背景滾動
+    document.body.style.overflow = 'hidden';
+    
+    // 更新箭頭狀態
+    updateNavigationButtons();
+}
+
+function closeImageModal() {
+    const modal = document.getElementById('imageModal');
+    modal.style.display = 'none';
+    
+    // 恢復背景滾動
+    document.body.style.overflow = 'auto';
+}
+
+function showPreviousImage() {
+    currentImageIndex = currentImageIndex > 0 ? currentImageIndex - 1 : imageList.length - 1;
+    updateModalImage();
+    updateNavigationButtons();
+}
+
+function showNextImage() {
+    currentImageIndex = currentImageIndex < imageList.length - 1 ? currentImageIndex + 1 : 0;
+    updateModalImage();
+    updateNavigationButtons();
+}
+
+function updateModalImage() {
+    const modalImg = document.getElementById('modalImage');
+    const modalCaption = document.getElementById('modalCaption');
+    
+    if (imageList[currentImageIndex]) {
+        modalImg.src = imageList[currentImageIndex].src;
+        modalCaption.textContent = imageList[currentImageIndex].alt;
+    }
+}
+
+function updateNavigationButtons() {
+    const prevBtn = document.querySelector('.image-modal-prev');
+    const nextBtn = document.querySelector('.image-modal-next');
+    
+    if (prevBtn && nextBtn) {
+        // 循環模式下按鈕永遠不會被禁用
+        prevBtn.disabled = false;
+        nextBtn.disabled = false;
+    }
+}
+
+// 按 ESC 鍵關閉模態框，左右箭頭鍵切換圖片
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeImageModal();
+    } else if (event.key === 'ArrowLeft') {
+        showPreviousImage();
+    } else if (event.key === 'ArrowRight') {
+        showNextImage();
+    }
+});
+
 // Apple風格網站互動功能
 document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.querySelector('.hamburger');
@@ -819,20 +901,103 @@ document.addEventListener('DOMContentLoaded', function() {
     // 初始化 Cookie 橫幅
     initCookieBanner();
     
-    // 在語言切換時更新 Cookie 橫幅
-    const originalLanguageSwitch = languageBtns.forEach;
-    if (languageBtns.length > 0) {
-        languageBtns.forEach(btn => {
-            const originalClick = btn.onclick;
-            btn.addEventListener('click', function(e) {
-                // 先執行原有的語言切換邏輯
-                setTimeout(() => {
-                    updateCookieBannerLanguage();
-                }, 100);
-            });
-        });
-    }
+    // 在語言切換時更新 Cookie 橫幅 - 整合到主要語言切換功能中
+    // 這個功能已經整合到上面的主要語言切換功能中
     
     // 頁面載入時立即更新 Cookie 橫幅語言
     updateCookieBannerLanguage();
+    
+    // Gallery 滑動功能
+    initGalleryCarousel();
 });
+
+// Gallery 滑動功能
+function initGalleryCarousel() {
+    const track = document.getElementById('galleryTrack');
+    const prevBtn = document.getElementById('galleryPrev');
+    const nextBtn = document.getElementById('galleryNext');
+    const dots = document.querySelectorAll('.gallery-dot');
+    
+    if (!track || !prevBtn || !nextBtn) return;
+    
+    let currentSlide = 0;
+    const totalSlides = track.children.length;
+    const slideWidth = 350; // 與 CSS 中的 flex: 0 0 350px 對應
+    const gap = 32; // 與 CSS 中的 gap: var(--spacing-xl) 對應
+    
+    function updateSlide() {
+        const translateX = -(currentSlide * (slideWidth + gap));
+        track.style.transform = `translateX(${translateX}px)`;
+        
+        // 更新指示器
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentSlide);
+        });
+    }
+    
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateSlide();
+    }
+    
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        updateSlide();
+    }
+    
+    function goToSlide(slideIndex) {
+        currentSlide = slideIndex;
+        updateSlide();
+    }
+    
+    // 事件監聽器
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+    
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => goToSlide(index));
+    });
+    
+    // 鍵盤導航
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            prevSlide();
+        } else if (e.key === 'ArrowRight') {
+            nextSlide();
+        }
+    });
+    
+    // 觸控滑動支援
+    let startX = 0;
+    let isDragging = false;
+    
+    track.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+    });
+    
+    track.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+    });
+    
+    track.addEventListener('touchend', (e) => {
+        if (!isDragging) return;
+        
+        const endX = e.changedTouches[0].clientX;
+        const diffX = startX - endX;
+        
+        if (Math.abs(diffX) > 50) { // 最小滑動距離
+            if (diffX > 0) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
+        }
+        
+        isDragging = false;
+    });
+    
+    // 自動播放（可選）
+    // setInterval(nextSlide, 5000);
+}

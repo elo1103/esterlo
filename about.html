@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Ester Lo</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Analytics - 條件載入 -->
+    <script>
+        // Cookie 同意管理
+        window.cookieConsent = {
+            hasConsent: function() {
+                return localStorage.getItem('cookieConsent') === 'accepted';
+            },
+            hasDecision: function() {
+                return localStorage.getItem('cookieConsent') !== null;
+            },
+            setConsent: function(accepted) {
+                localStorage.setItem('cookieConsent', accepted ? 'accepted' : 'declined');
+                if (accepted) {
+                    this.loadGA4();
+                }
+            },
+            loadGA4: function() {
+                if (window.gtag) return; // 避免重複載入
+                
+                // 載入 GA4 腳本
+                const script = document.createElement('script');
+                script.async = true;
+                script.src = 'https://www.googletagmanager.com/gtag/js?id=G-VB5KXFH98R';
+                document.head.appendChild(script);
+                
+                // 初始化 GA4
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                window.gtag = gtag;
+                gtag('js', new Date());
+                gtag('config', 'G-VB5KXFH98R', {
+                    anonymize_ip: true,
+                    cookie_flags: 'SameSite=None;Secure'
+                });
+            }
+        };
+        
+        // 如果已經有同意記錄，立即載入 GA4
+        if (window.cookieConsent.hasConsent()) {
+            window.cookieConsent.loadGA4();
+        }
+    </script>
+</head>
+<body>
+    <!-- 導航欄 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">
+                    <span class="logo-full">Ester Lo - Creative Technologist</span>
+                    <span class="logo-mobile">Ester Lo</span>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html#home" class="nav-link">
+                        <span data-lang="en">Home</span>
+                        <span data-lang="zh" style="display: none;">首頁</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#about" class="nav-link active">
+                        <span data-lang="en">About</span>
+                        <span data-lang="zh" style="display: none;">關於</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#portfolio" class="nav-link">
+                        <span data-lang="en">Work</span>
+                        <span data-lang="zh" style="display: none;">作品</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="blog.html" class="nav-link">
+                        <span data-lang="en">Blog</span>
+                        <span data-lang="zh" style="display: none;">文章</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#contact" class="nav-link">
+                        <span data-lang="en">Contact</span>
+                        <span data-lang="zh" style="display: none;">聯絡</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="nav-right">
+                <div class="language-switcher">
+                    <button class="language-btn active" data-lang="en">EN</button>
+                    <span class="language-separator">|</span>
+                    <button class="language-btn" data-lang="zh">中文</button>
+                </div>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Content -->
+    <section class="about-page">
+        <div class="container">
+            <!-- Back to Home -->
+            <div class="about-nav">
+                <a href="index.html" class="back-to-home">
+                    <i class="fas fa-arrow-left"></i>
+                    <span data-lang="en">Back to Home</span>
+                    <span data-lang="zh" style="display: none;">返回首頁</span>
+                </a>
+            </div>
+
+            <!-- About Header -->
+            <header class="about-header">
+                <h1 class="about-title" data-lang="en">About Ester</h1>
+                <h1 class="about-title" data-lang="zh" style="display: none;">關於羅洪芬</h1>
+            </header>
+
+            <!-- About Body -->
+            <div class="about-body">
+                <div data-lang="en">
+                    <p class="about-intro">Ester Lo (Hong-Fen Lo) is a designer and engineer who seamlessly integrates design, art, and technology. With a master's degree in digital manufacturing from the University of Michigan, she has acquired extensive industry experience and academic collaborations at U.S.-based digital manufacturing companies, Quarra Stone and Eventscape. Ester specializes in leveraging cutting-edge digital technologies and innovative materials while preserving the essence of traditional craftsmanship to create groundbreaking design possibilities. Her work explores the powerful fusion of technology and design, continuously driving her creative journey. Currently, Ester is focused on product development, research, and offering personalized design solutions to clients seeking refined, unique designs for their living spaces.</p>
+                    
+                    <div class="about-section">
+                        <h2>EXPERIENCE</h2>
+                        <div class="experience-item">
+                            <h3>Eventscape, Advanced Manufacturing Design Engineer</h3>
+                            <p>New York, USA, 2022 - 2024</p>
+                        </div>
+                        <div class="experience-item">
+                            <h3>Quarra Stone Company, QLab Design Engineer</h3>
+                            <p>Madison, USA, 2019 - 2022</p>
+                        </div>
+                        <div class="experience-item">
+                            <h3>Oravi Design Studio, Junior Designer</h3>
+                            <p>Taipei, Taiwan, 2018</p>
+                        </div>
+                        <div class="experience-item">
+                            <h3>Feng-Chia University, Design Researcher</h3>
+                            <p>Taichung, Taiwan, 2016 - 2018</p>
+                        </div>
+                    </div>
+
+                    <div class="about-section">
+                        <h2>EDUCATION</h2>
+                        <div class="education-item">
+                            <h3>University of Michigan - Master of Science in Architecture, Digital and Material Technologies</h3>
+                            <p>Ann Arbor, USA, 2018 - 2019</p>
+                        </div>
+                        <div class="education-item">
+                            <h3>Feng-Chia University, Bachelor of Architecture</h3>
+                            <p>Taichung, Taiwan, 2011 - 2016</p>
+                        </div>
+                    </div>
+
+                    <div class="about-section">
+                        <h2>PUBLICATION</h2>
+                        <div class="publication-item">
+                            <p>Ester Hong-Fen Lo, Leon Yi-Liang Ko, "Precise Imprecision: flexible construction with robotics," Springer - Construction Robotics (Journal, 2020)</p>
+                        </div>
+                        <div class="publication-item">
+                            <p>Ester Hong-Fen Lo, Leon Yi-Liang Ko, "Precise Imprecision: flexible construction with robotics," ACADIA 2019: Ubiquity and Autonomy: Paper Proceedings of the 39th annual conference of the Association for Computer Aided Design in Architecture, ACADIA. (Austin, TX: ACADIA, 2019)</p>
+                        </div>
+                    </div>
+
+                    <div class="about-section">
+                        <h2>WORKSHOP</h2>
+                        <div class="workshop-item">
+                            <p>Towards a Low Carbon Additive Manufacturing, hosted by Sika, DART Lab, XTreeE and ACADIA. (New Jersey, USA, 2023)</p>
+                        </div>
+                        <div class="workshop-item">
+                            <p>Women in Fabrication - Concrete Printing, hosted by AIA New York, Sika and Eventscape. (New York, USA, 2023)</p>
+                        </div>
+                        <div class="workshop-item">
+                            <p>Accumulated Light: experiments in aggregation and reflection, hosted by Catie Newell, Ester Lo, Feng-Chia University and ROSO. (Taichung, Taiwan, 2024)</p>
+                        </div>
+                    </div>
+
+                    <div class="about-section">
+                        <h2>TALKS</h2>
+                        <div class="talk-item">
+                            <p>Princeton Advanced Manufacturing Symposium, session 3 flash talks speaker. (New Jersey, USA, 2024)</p>
+                        </div>
+                        <div class="talk-item">
+                            <p>From Imagination to Fabrication: How technology and material can promote our thinking, Feng Chia University. (Taichung, Taiwan, 2022)</p>
+                        </div>
+                        <div class="talk-item">
+                            <p>From Imagination to Fabrication: How technology and material can promote our thinking, National Cheng Kung University. (Tainan, Taiwan, 2022)</p>
+                        </div>
+                        <div class="talk-item">
+                            <p>Ester Hong-Fen Lo, Leon Yi-Liang Ko, "Precise Imprecision: flexible construction with robotics," ACADIA 2019: Ubiquity and Autonomy, Austin, TX</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div data-lang="zh" style="display: none;">
+                    <p class="about-intro">羅洪芬 (Ester Lo) 是一位專注於將設計藝術與科技結合的設計師與工程師。她擁有密西根大學數位製造碩士學位，並在美國數位製造公司Quarra Stone和Eventscape累積了豐富的產業經驗及產學合作。羅洪芬專精於使用數位科技與創新材料，結合傳統工藝的核心精神，實現前所未見的設計可能性。她在過去的工作中深刻體會到科技與設計的融合如何創造出更多的設計潛力，這也成為她不斷探索的方向。她目前致力於個人產品的研發，並為追求精緻生活與獨特設計的客戶提供個性化設計及解決方案。</p>
+                    
+                    <div class="about-section">
+                        <h2>工作經歷</h2>
+                        <div class="experience-item">
+                            <h3>Eventscape，先進製造設計工程師</h3>
+                            <p>美國紐約，2022 - 2024</p>
+                        </div>
+                        <div class="experience-item">
+                            <h3>Quarra Stone Company，QLab 設計工程師</h3>
+                            <p>美國麥迪遜，2019 - 2022</p>
+                        </div>
+                        <div class="experience-item">
+                            <h3>Oravi Design Studio，初級設計師</h3>
+                            <p>台灣台北，2018</p>
+                        </div>
+                        <div class="experience-item">
+                            <h3>逢甲大學，設計研究員</h3>
+                            <p>台灣台中，2016 - 2018</p>
+                        </div>
+                    </div>
+
+                    <div class="about-section">
+                        <h2>學歷</h2>
+                        <div class="education-item">
+                            <h3>密西根大學，建築科學碩士，數位與材料技術專業</h3>
+                            <p>美國安娜堡，2018 - 2019</p>
+                        </div>
+                        <div class="education-item">
+                            <h3>逢甲大學，建築學學士</h3>
+                            <p>台灣台中，2011 - 2016</p>
+                        </div>
+                    </div>
+
+                    <div class="about-section">
+                        <h2>出版物</h2>
+                        <div class="publication-item">
+                            <p>羅洪芬，柯宜良，《精確的不精確：利用機器人進行柔性建造》，Springer - Construction Robotics (期刊，2020)</p>
+                        </div>
+                        <div class="publication-item">
+                            <p>羅洪芬，柯宜良，《精確的不精確：利用機器人進行柔性建造》，ACADIA 2019：Ubiquity and Autonomy：第39屆電腦輔助建築設計學會年會論文集。（美國奧斯汀：ACADIA，2019）</p>
+                        </div>
+                    </div>
+
+                    <div class="about-section">
+                        <h2>工作坊</h2>
+                        <div class="workshop-item">
+                            <p>Towards a Low Carbon Additive Manufacturing，Sika、DART Lab、XTreeE 和 ACADIA 主辦。（美國紐澤西，2023）</p>
+                        </div>
+                        <div class="workshop-item">
+                            <p>Women in Fabrication - Concrete Printing，AIA New York、Sika 和 Eventscape 主辦。（美國紐約，2023）</p>
+                        </div>
+                        <div class="workshop-item">
+                            <p>Accumulated Light: experiments in aggregation and reflection，由 Catie Newell、羅洪芬、逢甲大學與 ROSO 主辦。（台灣台中，2024）</p>
+                        </div>
+                    </div>
+
+                    <div class="about-section">
+                        <h2>演講</h2>
+                        <div class="talk-item">
+                            <p>普林斯頓先進製造研討會，第三場快閃演講嘉賓，普林斯頓大學。（美國紐澤西，2024）</p>
+                        </div>
+                        <div class="talk-item">
+                            <p>從想像到製造：科技與材料如何促進我們的思維，逢甲大學。（台灣台中，2022）</p>
+                        </div>
+                        <div class="talk-item">
+                            <p>從想像到製造：科技與材料如何促進我們的思維，成功大學。（台灣台南，2022）</p>
+                        </div>
+                        <div class="talk-item">
+                            <p>羅洪芬，柯逸良，《精確的不精確：利用機器人進行柔性建造》，ACADIA 2019：Ubiquity and Autonomy，美國奧斯汀</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Social Links -->
+                <div class="about-social">
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/ester-hong-fen-lo-415263180/" class="social-link" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p data-lang="en">&copy; 2024 Ester Hong-Fen Lo. All rights reserved.</p>
+            <p data-lang="zh" style="display: none;">&copy; 2024 Ester Hong-Fen Lo. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Cookie 同意橫幅 -->
+    <div id="cookieBanner" class="cookie-banner" style="display: none;">
+        <div class="cookie-banner-content">
+            <div class="cookie-banner-text">
+                <h3 class="cookie-banner-title" data-lang="en">We use cookies</h3>
+                <h3 class="cookie-banner-title" data-lang="zh" style="display: none;">我們使用 cookies</h3>
+                <p class="cookie-banner-description" data-lang="en">
+                    We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.
+                </p>
+                <p class="cookie-banner-description" data-lang="zh" style="display: none;">
+                    我們使用 cookies 來改善您的瀏覽體驗、提供個人化內容並分析我們的流量。點擊「接受全部」即表示您同意我們使用 cookies。
+                </p>
+            </div>
+            <div class="cookie-banner-actions">
+                <button class="cookie-btn cookie-btn-secondary" id="cookieDecline">
+                    <span data-lang="en">Decline</span>
+                    <span data-lang="zh" style="display: none;">拒絕</span>
+                </button>
+                <button class="cookie-btn cookie-btn-primary" id="cookieAccept">
+                    <span data-lang="en">Accept All</span>
+                    <span data-lang="zh" style="display: none;">接受全部</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</body>
+</html>

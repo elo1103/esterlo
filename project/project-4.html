@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cycle-Craft - Ester Lo</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Analytics - 條件載入 -->
+    <script>
+        // Cookie 同意管理
+        window.cookieConsent = {
+            hasConsent: function() {
+                return localStorage.getItem('cookieConsent') === 'accepted';
+            },
+            hasDecision: function() {
+                return localStorage.getItem('cookieConsent') !== null;
+            },
+            setConsent: function(accepted) {
+                localStorage.setItem('cookieConsent', accepted ? 'accepted' : 'declined');
+                if (accepted) {
+                    this.loadGA4();
+                }
+            },
+            loadGA4: function() {
+                if (window.gtag) return; // 避免重複載入
+                
+                // 載入 GA4 腳本
+                const script = document.createElement('script');
+                script.async = true;
+                script.src = 'https://www.googletagmanager.com/gtag/js?id=G-VB5KXFH98R';
+                document.head.appendChild(script);
+                
+                // 初始化 GA4
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                window.gtag = gtag;
+                gtag('js', new Date());
+                gtag('config', 'G-VB5KXFH98R', {
+                    anonymize_ip: true,
+                    cookie_flags: 'SameSite=None;Secure'
+                });
+            }
+        };
+        
+        // 如果已經有同意記錄，立即載入 GA4
+        if (window.cookieConsent.hasConsent()) {
+            window.cookieConsent.loadGA4();
+        }
+    </script>
+</head>
+<body>
+    <!-- 導航欄 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="../index.html">
+                    <span class="logo-full">Ester Lo - Creative Technologist</span>
+                    <span class="logo-mobile">Ester Lo</span>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="../index.html#home" class="nav-link">
+                        <span data-lang="en">Home</span>
+                        <span data-lang="zh" style="display: none;">首頁</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.html#about" class="nav-link">
+                        <span data-lang="en">About</span>
+                        <span data-lang="zh" style="display: none;">關於</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.html#portfolio" class="nav-link">
+                        <span data-lang="en">Work</span>
+                        <span data-lang="zh" style="display: none;">作品</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../blog.html" class="nav-link">
+                        <span data-lang="en">Blog</span>
+                        <span data-lang="zh" style="display: none;">文章</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.html#contact" class="nav-link">
+                        <span data-lang="en">Contact</span>
+                        <span data-lang="zh" style="display: none;">聯絡</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="nav-right">
+                <div class="language-switcher">
+                    <button class="language-btn active" data-lang="en">EN</button>
+                    <span class="language-separator">|</span>
+                    <button class="language-btn" data-lang="zh">中文</button>
+                </div>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Project Content -->
+    <section class="article-content">
+        <div class="container">
+            <!-- Back to Projects -->
+            <div class="article-nav">
+                <a href="../projects.html" class="back-to-blog">
+                    <i class="fas fa-arrow-left"></i>
+                    <span data-lang="en">Back to Projects</span>
+                    <span data-lang="zh" style="display: none;">返回專案</span>
+                </a>
+            </div>
+
+            <!-- Project Header -->
+            <header class="article-header">
+                <h1 class="article-title" data-lang="en">Cycle-Craft</h1>
+                <h1 class="article-title" data-lang="zh" style="display: none;">循環築</h1>
+            </header>
+
+            <!-- Project Body -->
+            <div class="article-body">
+                <div class="article-image-container">
+                    <img src="../asset/projects/cycle-craft-main.jpg" alt="Cycle-Craft" class="article-image clickable-image" style="height: 500px; width: 100%; object-fit: cover;" onclick="openImageModal(this.src, this.alt)">
+                </div>
+                
+                <div data-lang="en">
+                    <p>Cycle-craft draws inspiration from the widespread issue of plastic waste in modern society, prompting a rethinking of people's mistrust of recycled and ocean plastic materials. Based on this reflection, I carefully selected tested and certified eco-friendly materials and incorporated them into an innovative design language, resulting in this series of works.</p>
+                    
+                    <p>Through precise 3D printing technology, Cycle-craft successfully challenges the boundaries of geometry, color, and texture, making it not just an exploration of material usage but a redefinition of design limits. This series creates a proper design and manufacturing cycle ecosystem by combining technology with innovative materials.</p>
+                    
+                    <p><strong>Design and Fabrication:</strong> Ester Hong-Fen Lo, Ali Seyedahmadian, AiBuild, Eventscape<br>
+                    <strong>Sponsor:</strong> Eventscape<br>
+                    <strong>Location:</strong> New York<br>
+                    <strong>Year:</strong> 2023</p>
+                </div>
+                
+                <div data-lang="zh" style="display: none;">
+                    <p>循環築的靈感來自於當今社會對塑膠資源的浪費現象，這使我們開始反思人們對回收材料與海洋塑料的不信任。在這一思考的基礎上，我精選了經過測試和認證的環保材料，並將其融入創新的設計語彙中，進而創作出這一系列作品。</p>
+                    
+                    <p>通過精密的３Ｄ列印技術，循環築成功地挑戰了幾何形狀、顏色和質感的多層次變化，這不僅僅是材料應用上的探索，更是設計邊界的重新定義。透過科技與創新材料的結合，構建出了一個真正意義上的設計與製造循環生態。</p>
+                    
+                    <p><strong>設計與數位製造：</strong> 羅洪芬、Ali Seyedahmadian、AiBuild、Eventscape<br>
+                    <strong>贊助商：</strong> Eventscape<br>
+                    <strong>地點：</strong> 美國 紐約<br>
+                    <strong>年份：</strong> 2023</p>
+                </div>
+
+                <!-- Additional Project Images -->
+                <div class="article-image-container">
+                    <img src="../asset/projects/cycle-craft-1.jpg" alt="Cycle Craft Detail 1" class="article-image clickable-image" style="height: 500px; width: 100%; object-fit: cover;" onclick="openImageModal(this.src, this.alt)">
+                </div>
+                
+                <div class="article-image-container">
+                    <img src="../asset/projects/cycle-craft-2.jpg" alt="Cycle Craft Detail 2" class="article-image clickable-image" style="height: 500px; width: 100%; object-fit: cover;" onclick="openImageModal(this.src, this.alt)">
+                </div>
+
+                <!-- Image Grid Section -->
+                <div class="image-grid-section">
+                    <div class="image-grid">
+                        <div class="grid-item">
+                            <img src="../asset/projects/cycle-craft-3.jpg" alt="Cycle Craft Grid 1" class="clickable-image" onclick="openImageModal(this.src, this.alt)">
+                        </div>
+                        <div class="grid-item">
+                            <img src="../asset/projects/cycle-craft-4.jpg" alt="Cycle Craft Grid 2" class="clickable-image" onclick="openImageModal(this.src, this.alt)">
+                        </div>
+                        <div class="grid-item">
+                            <img src="../asset/projects/cycle-craft-5.jpg" alt="Cycle Craft Grid 3" class="clickable-image" onclick="openImageModal(this.src, this.alt)">
+                        </div>
+                        <div class="grid-item">
+                            <img src="../asset/projects/cycle-craft-6.jpg" alt="Cycle Craft Grid 4" class="clickable-image" onclick="openImageModal(this.src, this.alt)">
+                        </div>
+                        <div class="grid-item">
+                            <img src="../asset/projects/cycle-craft-7.jpg" alt="Cycle Craft Grid 5" class="clickable-image" onclick="openImageModal(this.src, this.alt)">
+                        </div>
+                        <div class="grid-item">
+                            <img src="../asset/projects/cycle-craft-8.png" alt="Cycle Craft Grid 6" class="clickable-image" onclick="openImageModal(this.src, this.alt)">
+                        </div>
+                        <div class="grid-item">
+                            <img src="../asset/projects/cycle-craft-9.jpg" alt="Cycle Craft Grid 7" class="clickable-image" onclick="openImageModal(this.src, this.alt)">
+                        </div>
+                        <div class="grid-item">
+                            <img src="../asset/projects/cycle-craft-10.jpg" alt="Cycle Craft Grid 8" class="clickable-image" onclick="openImageModal(this.src, this.alt)">
+                        </div>
+                        <div class="grid-item">
+                            <img src="../asset/projects/cycle-craft-11.jpg" alt="Cycle Craft Grid 9" class="clickable-image" onclick="openImageModal(this.src, this.alt)">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Project Footer -->
+            <footer class="article-footer">
+                <div class="article-tags">
+                    <a href="../projects.html" class="tag">
+                        <span data-lang="en">AI & Automation</span>
+                        <span data-lang="zh" style="display: none;">AI 與自動化</span>
+                    </a>
+                    <a href="../projects.html" class="tag">
+                        <span data-lang="en">Advanced Manufacturing</span>
+                        <span data-lang="zh" style="display: none;">先進製造</span>
+                    </a>
+                    <a href="../projects.html" class="tag">
+                        <span data-lang="en">Computational Design</span>
+                        <span data-lang="zh" style="display: none;">參數化設計</span>
+                    </a>
+                    <a href="../projects.html" class="tag">
+                        <span data-lang="en">My Notes</span>
+                        <span data-lang="zh" style="display: none;">我的筆記</span>
+                    </a>
+                </div>
+                <div class="article-actions">
+                    <div class="like-section">
+                        <button class="like-btn" id="likeBtn" data-project="project-4">
+                            <i class="far fa-heart"></i>
+                            <span class="like-count">0</span>
+                        </button>
+                    </div>
+                    <div class="article-share">
+                        <span data-lang="en">Share this project:</span>
+                        <span data-lang="zh" style="display: none;">分享此專案：</span>
+                        <a href="#" class="share-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="share-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="share-link"><i class="fas fa-link"></i></a>
+                    </div>
+                </div>
+            </footer>
+
+            <!-- Comments Section -->
+            <section class="comments-section">
+                <div class="comments-header">
+                    <h3 data-lang="en">Leave a Comment</h3>
+                    <h3 data-lang="zh" style="display: none;">留言</h3>
+                    <p data-lang="en">Share your thoughts about this project</p>
+                    <p data-lang="zh" style="display: none;">分享您對此專案的想法</p>
+                </div>
+                
+                <form class="comment-form" id="commentForm">
+                    <div class="form-group">
+                        <label for="commenterName" data-lang="en">Name *</label>
+                        <label for="commenterName" data-lang="zh" style="display: none;">姓名 *</label>
+                        <input type="text" id="commenterName" name="name" autocomplete="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="commenterEmail" data-lang="en">Email *</label>
+                        <label for="commenterEmail" data-lang="zh" style="display: none;">電子郵件 *</label>
+                        <input type="email" id="commenterEmail" name="email" autocomplete="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="commentMessage" data-lang="en">Comment *</label>
+                        <label for="commentMessage" data-lang="zh" style="display: none;">留言 *</label>
+                        <textarea id="commentMessage" name="message" rows="5" autocomplete="off" required placeholder="Share your thoughts about this project..." data-placeholder-en="Share your thoughts about this project..." data-placeholder-zh="分享您對此專案的想法..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="comment-submit-btn">
+                        <span class="btn-text" data-lang="en">Post Comment</span>
+                        <span class="btn-text" data-lang="zh" style="display: none;">發布留言</span>
+                        <span class="btn-loading" style="display: none;">
+                            <i class="fas fa-spinner fa-spin"></i> 
+                            <span data-lang="en">Sending...</span>
+                            <span data-lang="zh" style="display: none;">發送中...</span>
+                        </span>
+                    </button>
+                </form>
+                
+                <div class="comment-notice">
+                    <i class="fas fa-info-circle"></i>
+                    <span data-lang="en">Your comment will be sent directly to the author. Thank you for your feedback!</span>
+                    <span data-lang="zh" style="display: none;">您的留言將直接發送給作者。感謝您的反饋！</span>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p data-lang="en">&copy; 2024 Ester Hong-Fen Lo. All rights reserved.</p>
+            <p data-lang="zh" style="display: none;">&copy; 2024 Ester Hong-Fen Lo. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Cookie 同意橫幅 -->
+    <div id="cookieBanner" class="cookie-banner" style="display: none;">
+        <div class="cookie-banner-content">
+            <div class="cookie-banner-text">
+                <h3 class="cookie-banner-title" data-lang="en">We use cookies</h3>
+                <h3 class="cookie-banner-title" data-lang="zh" style="display: none;">我們使用 cookies</h3>
+                <p class="cookie-banner-description" data-lang="en">
+                    We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.
+                </p>
+                <p class="cookie-banner-description" data-lang="zh" style="display: none;">
+                    我們使用 cookies 來改善您的瀏覽體驗、提供個人化內容並分析我們的流量。點擊「接受全部」即表示您同意我們使用 cookies。
+                </p>
+            </div>
+            <div class="cookie-banner-actions">
+                <button class="cookie-btn cookie-btn-secondary" id="cookieDecline">
+                    <span data-lang="en">Decline</span>
+                    <span data-lang="zh" style="display: none;">拒絕</span>
+                </button>
+                <button class="cookie-btn cookie-btn-primary" id="cookieAccept">
+                    <span data-lang="en">Accept All</span>
+                    <span data-lang="zh" style="display: none;">接受全部</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="image-modal" onclick="closeImageModal()">
+        <div class="image-modal-content" onclick="event.stopPropagation()">
+            <span class="image-modal-close" onclick="closeImageModal()">&times;</span>
+            <button class="image-modal-nav image-modal-prev" onclick="event.stopPropagation(); showPreviousImage()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="image-modal-nav image-modal-next" onclick="event.stopPropagation(); showNextImage()">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <img id="modalImage" src="" alt="" class="modal-image">
+            <div class="image-modal-caption" id="modalCaption"></div>
+        </div>
+    </div>
+
+    <script src="../script.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</body>
+</html>
