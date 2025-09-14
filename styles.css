@@ -1770,8 +1770,8 @@ body {
     border-radius: var(--radius-lg) var(--radius-lg) 0 0;
 }
 
-/* Article-2 專用圖片樣式 */
-.blog-post-img.article-2-img {
+/* 特定文章圖片樣式 */
+.blog-post-img.factory-automation-img {
     width: 110%;
     height: 110%;
     transform: translateY(-5%);

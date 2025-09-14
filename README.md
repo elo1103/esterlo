@@ -28,8 +28,12 @@ ELO_web/
 │   └── industrial-revolution.jpg
 ├── blog/
 │   └── articles/
-│       ├── article-1.html        # "Notes on My Journey Across Design, Manufacturing, and AI"
-│       └── article-2.html        # "When Three People's Work for Two Months Shrinks into Two Weeks"
+│       ├── Notes-on-My-Journey-Across-Design-Manufacturing-and-AI.html
+│       ├── When-Three-People-Work-for-Two-Months-Shrinks-into-Two-Weeks.html
+│       ├── Why-Are-Small-and-Medium-Sized-Businesses-Always-Stuck-with-Repetitive-Work.html
+│       ├── Efficiency-Often-Begins-in-the-Smallest-Most-Repetitive-Tasks.html
+│       ├── Sapiens.html
+│       └── Design-Materials-Technology.html
 └── README.md                     # Documentation
 ```
 
