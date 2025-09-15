@@ -2909,3 +2909,11 @@ body {
         font-size: 12px;
     }
 }
+
+/* 文章內文圖片統一樣式 */
+.article-body img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1rem auto;
+}

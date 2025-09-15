@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{TITLE_EN}} - Ester Lo</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VB5KXFH98R"></script>
+  <script>
+    window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date()); gtag('config','G-VB5KXFH98R');
+  </script>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <a href="../../index.html">
+          <span class="logo-full">Ester Lo - Creative Technologist</span>
+          <span class="logo-mobile">Ester Lo</span>
+        </a>
+      </div>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="../../index.html" class="nav-link"><span data-lang="en">Home</span><span data-lang="zh" style="display:none;">首頁</span></a></li>
+        <li class="nav-item"><a href="../../index.html#about" class="nav-link"><span data-lang="en">About</span><span data-lang="zh" style="display:none;">關於</span></a></li>
+        <li class="nav-item"><a href="../../index.html#portfolio" class="nav-link"><span data-lang="en">Work</span><span data-lang="zh" style="display:none;">作品</span></a></li>
+        <li class="nav-item"><a href="../../blog.html" class="nav-link"><span data-lang="en">Blog</span><span data-lang="zh" style="display:none;">文章</span></a></li>
+        <li class="nav-item"><a href="../../index.html#contact" class="nav-link"><span data-lang="en">Contact</span><span data-lang="zh" style="display:none;">聯絡</span></a></li>
+      </ul>
+      <div class="nav-right">
+        <div class="language-switcher">
+          <button class="language-btn active" data-lang="en">EN</button>
+          <span class="language-separator">|</span>
+          <button class="language-btn" data-lang="zh">中文</button>
+        </div>
+        <div class="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Article -->
+  <section class="article-content">
+    <div class="container">
+      <div class="article-nav">
+        <a href="../../blog.html" class="back-to-blog">
+          <i class="fas fa-arrow-left"></i>
+          <span data-lang="en">Back to Blog</span>
+          <span data-lang="zh" style="display:none;">返回文章</span>
+        </a>
+      </div>
+
+      <header class="article-header">
+        <div class="article-meta">
+          <a href="../../blog.html?category={{CATEGORY_ID}}" class="article-category">
+            <span data-lang="en">{{CATEGORY_EN}}</span>
+            <span data-lang="zh" style="display:none;">{{CATEGORY_ZH}}</span>
+          </a>
+          <span class="article-date">{{DATE}}</span>
+        </div>
+        <h1 class="article-title" data-lang="en">{{TITLE_EN}}</h1>
+        <h1 class="article-title" data-lang="zh" style="display:none;">{{TITLE_ZH}}</h1>
+        <p class="article-excerpt" data-lang="en">{{EXCERPT_EN}}</p>
+        <p class="article-excerpt" data-lang="zh" style="display:none;">{{EXCERPT_ZH}}</p>
+      </header>
+
+      <div class="article-body">
+        <div class="article-image-container" {{HERO_BLOCK_VIS}}>
+          <img src="{{HERO_SRC}}" alt="{{HERO_ALT}}" class="article-image">
+        </div>
+
+        <div data-lang="en">
+          {{BODY_EN}}
+        </div>
+        <div data-lang="zh" style="display:none;">
+          {{BODY_ZH}}
+        </div>
+      </div>
+
+      <footer class="article-footer">
+        <div class="article-tags">{{TAGS_HTML}}</div>
+        <div class="article-actions">
+          <div class="like-section">
+            <button class="like-btn" id="likeBtn" data-article="{{LIKE_ID}}">
+              <i class="far fa-heart"></i><span class="like-count">0</span>
+            </button>
+          </div>
+          <div class="article-share">
+            <span data-lang="en">Share this article:</span>
+            <span data-lang="zh" style="display:none;">分享這篇文章：</span>
+            <a href="#" class="share-link"><i class="fab fa-linkedin"></i></a>
+            <a href="#" class="share-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="share-link"><i class="fas fa-link"></i></a>
+          </div>
+        </div>
+      </footer>
+
+      <section class="comments-section">
+        <div class="comments-header">
+          <h3 data-lang="en">Leave a Comment</h3>
+          <h3 data-lang="zh" style="display:none;">留言</h3>
+          <p data-lang="en">Share your thoughts and join the discussion</p>
+          <p data-lang="zh" style="display:none;">分享您的想法並參與討論</p>
+        </div>
+        <form class="comment-form" id="commentForm">
+          <div class="form-group">
+            <label for="commenterName" data-lang="en">Name *</label>
+            <label for="commenterName" data-lang="zh" style="display:none;">姓名 *</label>
+            <input type="text" id="commenterName" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="commenterEmail" data-lang="en">Email *</label>
+            <label for="commenterEmail" data-lang="zh" style="display:none;">電子郵件 *</label>
+            <input type="email" id="commenterEmail" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="commentMessage" data-lang="en">Comment *</label>
+            <label for="commentMessage" data-lang="zh" style="display:none;">留言 *</label>
+            <textarea id="commentMessage" name="message" rows="5" required
+              placeholder="Share your thoughts about this article..."
+              data-placeholder-en="Share your thoughts about this article..."
+              data-placeholder-zh="分享您對這篇文章的想法..."></textarea>
+          </div>
+          <button type="submit" class="comment-submit-btn">
+            <span class="btn-text" data-lang="en">Post Comment</span>
+            <span class="btn-text" data-lang="zh" style="display:none;">發布留言</span>
+            <span class="btn-loading" style="display:none;">
+              <i class="fas fa-spinner fa-spin"></i>
+              <span data-lang="en">Sending...</span>
+              <span data-lang="zh" style="display:none;">發送中...</span>
+            </span>
+          </button>
+        </form>
+        <div class="comment-notice">
+          <i class="fas fa-info-circle"></i>
+          <span data-lang="en">Your comment will be sent directly to the author. Thank you for your feedback!</span>
+          <span data-lang="zh" style="display:none;">您的留言將直接發送給作者。感謝您的反饋！</span>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container"><p>&copy; 2024 Ester Hong-Fen Lo. All rights reserved.</p></div>
+  </footer>
+
+  <script src="../../script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</body>
+</html>

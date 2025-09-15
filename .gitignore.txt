@@ -1,0 +1,5 @@
+# keep LinkedIn drafts private
+dist/
+*.draft.txt
+
+node_modules/

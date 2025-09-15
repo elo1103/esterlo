@@ -1,0 +1,26 @@
+{
+  "name": "elo_web",
+  "version": "1.0.0",
+  "description": "This is a modern, responsive personal portfolio website for Ester Lo, a Creative Technologist specializing in AI automation and advanced manufacturing. The website features an Apple-inspired design with a clean, minimalist aesthetic and includes a comprehensive blog system.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elo1103/esterlo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elo1103/esterlo/issues"
+  },
+  "homepage": "https://github.com/elo1103/esterlo#readme",
+  "dependencies": {
+    "fs-extra": "^11.3.1",
+    "gray-matter": "^4.0.3",
+    "handlebars": "^4.7.8",
+    "marked": "^16.3.0"
+  }
+}
