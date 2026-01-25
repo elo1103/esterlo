@@ -675,7 +675,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     
     // 載入時立即設置語言選擇 - 防止閃爍
-    const savedLang = localStorage.getItem('selectedLanguage') || 'en';
+    // 優先檢查 URL 參數，然後使用 localStorage，最後使用預設值
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlLang = urlParams.get('lang');
+    let savedLang;
+    
+    if (urlLang && (urlLang === 'en' || urlLang === 'zh')) {
+        // URL 參數中有有效的語言設定，優先使用並保存到 localStorage
+        savedLang = urlLang;
+        localStorage.setItem('selectedLanguage', urlLang);
+    } else {
+        // 沒有 URL 參數，使用 localStorage 或預設值
+        savedLang = localStorage.getItem('selectedLanguage') || 'en';
+    }
     
     // 立即設置語言按鈕狀態
     const languageBtns = document.querySelectorAll('.language-btn');
