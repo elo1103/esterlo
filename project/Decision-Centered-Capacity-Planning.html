@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decision-Centered Capacity Planning System - Ester Lo</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Analytics - 條件載入 -->
+    <script>
+        // Cookie 同意管理
+        window.cookieConsent = {
+            hasConsent: function() {
+                return localStorage.getItem('cookieConsent') === 'accepted';
+            },
+            hasDecision: function() {
+                return localStorage.getItem('cookieConsent') !== null;
+            },
+            setConsent: function(accepted) {
+                localStorage.setItem('cookieConsent', accepted ? 'accepted' : 'declined');
+                if (accepted) {
+                    this.loadGA4();
+                }
+            },
+            loadGA4: function() {
+                if (window.gtag) return; // 避免重複載入
+                
+                const script = document.createElement('script');
+                script.async = true;
+                script.src = 'https://www.googletagmanager.com/gtag/js?id=G-VB5KXFH98R';
+                document.head.appendChild(script);
+                
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                window.gtag = gtag;
+                gtag('js', new Date());
+                gtag('config', 'G-VB5KXFH98R', {
+                    anonymize_ip: true,
+                    cookie_flags: 'SameSite=None;Secure'
+                });
+            }
+        };
+        
+        if (window.cookieConsent.hasConsent()) {
+            window.cookieConsent.loadGA4();
+        }
+    </script>
+</head>
+<body>
+    <!-- 導航欄 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="../index.html">
+                    <span class="logo-full">Ester Lo - Creative Technologist</span>
+                    <span class="logo-mobile">Ester Lo</span>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="../index.html#home" class="nav-link">
+                        <span data-lang="en">Home</span>
+                        <span data-lang="zh" style="display: none;">首頁</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.html#about" class="nav-link">
+                        <span data-lang="en">About</span>
+                        <span data-lang="zh" style="display: none;">關於</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.html#portfolio" class="nav-link">
+                        <span data-lang="en">Work</span>
+                        <span data-lang="zh" style="display: none;">作品</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../blog.html" class="nav-link">
+                        <span data-lang="en">Blog</span>
+                        <span data-lang="zh" style="display: none;">文章</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.html#contact" class="nav-link">
+                        <span data-lang="en">Contact</span>
+                        <span data-lang="zh" style="display: none;">聯絡</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="nav-right">
+                <div class="language-switcher">
+                    <button class="language-btn active" data-lang="en">EN</button>
+                    <span class="language-separator">|</span>
+                    <button class="language-btn" data-lang="zh">中文</button>
+                </div>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Project Content -->
+    <section class="article-content">
+        <div class="container">
+            <!-- Back to Projects -->
+            <div class="article-nav">
+                <a href="../automation.html" class="back-to-blog">
+                    <i class="fas fa-arrow-left"></i>
+                    <span data-lang="en">Back to AI & Automation Projects</span>
+                    <span data-lang="zh" style="display: none;">返回 AI 與自動化專案</span>
+                </a>
+            </div>
+
+            <!-- Project Header -->
+            <header class="article-header">
+                <h1 class="article-title" data-lang="en">Decision-Centered Capacity Planning System</h1>
+                <h1 class="article-title" data-lang="zh" style="display: none;">以決策為核心的產能規劃系統</h1>
+                <p class="article-subtitle" data-lang="en">Reframing Capacity as a Decision Risk Problem</p>
+                <p class="article-subtitle" data-lang="zh" style="display: none;">將產能問題重新定義為「決策風險」問題</p>
+            </header>
+
+            <!-- Project Body -->
+            <div class="article-body">
+                <!-- Hero image: Chinese -->
+                <div class="article-image-container" data-lang="zh" style="display: none;">
+                    <img src="../asset/automation/main-flowchart-1-ch.jpg" alt="以決策為核心的產能規劃系統" class="article-image clickable-image" style="width: 100%; height: auto; object-fit: contain;" onclick="openImageModal(this.src, this.alt)">
+                </div>
+                <!-- Hero image: English -->
+                <div class="article-image-container" data-lang="en">
+                    <img src="../asset/automation/main-flowchart-1-en.jpg" alt="Decision-Centered Capacity Planning System" class="article-image clickable-image" style="width: 100%; height: auto; object-fit: contain;" onclick="openImageModal(this.src, this.alt)">
+                </div>
+
+                <!-- Chinese content -->
+                <div data-lang="zh" style="display: none;">
+                    <p>在多次與管理層的週會中，我注意到一個現象。</p>
+                    <p>當排程出現衝突時，所有人的目光都會轉向同一位高階主管。</p>
+                    <p>他會快速掃過幾個數字，沉默幾秒，然後說：</p>
+                    <p>「這個先做，那個延後。」</p>
+                    <p>決策通常很快，也通常是對的。但沒有人能清楚解釋背後的邏輯。</p>
+                    <p>那一刻我意識到，產能規劃表面上看起來是效率問題，實際上是一種結構性的依賴風險。</p>
+                    <p>關鍵生產決策高度集中在少數人的經驗與直覺之中。</p>
+                    <p>這帶來三個長期風險：</p>
+                    <ul>
+                        <li>決策難以複製</li>
+                        <li>決策取捨缺乏可視化依據</li>
+                        <li>組織難以累積與傳承決策知識</li>
+                    </ul>
+                    <p>真正的核心問題並不是排程速度。</p>
+                    <p>而是決策透明度與可傳承性。</p>
+
+                    <h2>第一階段 — 在架構之前，先進行行為探索</h2>
+                    <p>一開始，我也曾想直接設計一套完整的排程引擎。</p>
+                    <p>但在第一次實際討論導入方式時，我發現一個更根本的問題：</p>
+                    <p>如果我還不知道管理層真正信任哪些數字，再完整的架構，也只是另一個報表。</p>
+                    <p>因此，我刻意暫緩系統重寫，改為先利用現有的第三方 SaaS 專案管理工具，將公司既有流程暫時搬移進去。</p>
+                    <p>目的不是數位轉型，而是觀察。</p>
+                    <p>我試圖理解：</p>
+                    <ul>
+                        <li>哪些指標真正影響高層決策</li>
+                        <li>使用者信任哪些資訊，而忽略哪些</li>
+                        <li>組織對結構化約束的抗拒點在哪裡</li>
+                        <li>他們過去嘗試過哪些方法，為何沒有持續</li>
+                    </ul>
+                    <p>在這個階段，我優先考慮的是學習與驗證，而不是打造一個看起來完整的系統。</p>
+                    <p>我希望系統能嵌入既有工作流程，而不是強迫行為改變。</p>
+
+                    <h2>第二階段 — 將隱性的決策邏輯外顯化</h2>
+                    <p>當行為模式逐漸清晰後，我開始將營運資料轉換為可討論的決策依據。</p>
+                    <p>包括：</p>
+                    <ul>
+                        <li>預估工時與實際工時差異</li>
+                        <li>分段負載失衡情況</li>
+                        <li>超出產能的工作量訊號</li>
+                        <li>管理層如何解讀這些整理後的數據</li>
+                    </ul>
+                    <p>有一次，當某個專案被質疑為何延後時，我們第一次不是用直覺回答，而是打開負載分布視圖，討論具體數據。</p>
+                    <p>那是一個微小的改變。</p>
+                    <p>但從那次之後，討論開始圍繞數據，而不是個人記憶。</p>
+                    <p>原本存在於少數人腦中的判斷依據，開始變得可回顧、可比較、可討論。</p>
+                    <p>系統逐漸從單純的報表工具，轉變為支撐管理層每週討論的決策基礎數據。</p>
+                </div>
+
+                <!-- Image: beforeVSafter (Chinese) -->
+                <div class="article-image-container" data-lang="zh" style="display: none;">
+                    <img src="../asset/automation/beforeVSafter-1-ch.jpg" alt="Before vs After 決策視圖" class="article-image clickable-image" style="height: 500px; width: 100%; object-fit: cover;" onclick="openImageModal(this.src, this.alt)">
+                </div>
+
+                <!-- English content (first part, before Phase 2 image) -->
+                <div data-lang="en">
+                    <p>During several weekly leadership meetings, I noticed a pattern.</p>
+                    <p>When scheduling conflicts appeared, everyone would turn to the same senior manager.</p>
+                    <p>He would quickly scan a few numbers, pause for a few seconds, and say:</p>
+                    <p>“Do this first. Delay that one.”</p>
+                    <p>The decisions were usually fast, and usually correct. But no one could clearly explain the reasoning behind them.</p>
+                    <p>That was the moment I realized something important.</p>
+                    <p>Capacity planning may look like an efficiency problem on the surface. In reality, it is a structural dependency risk.</p>
+                    <p>Critical production decisions were concentrated in the experience and intuition of a small number of individuals.</p>
+                    <p>This creates three long-term risks:</p>
+                    <ul>
+                        <li>Decisions are difficult to replicate</li>
+                        <li>Trade-offs lack visible justification</li>
+                        <li>The organization cannot accumulate or transfer decision knowledge</li>
+                    </ul>
+                    <p>The real issue is not scheduling speed.</p>
+                    <p>It is decision transparency and continuity.</p>
+
+                    <h2>Phase 1 — Behavior Discovery Before Architecture</h2>
+                    <p>At first, I considered building a full scheduling engine immediately.</p>
+                    <p>However, during early discussions about system adoption, I realized a more fundamental issue:</p>
+                    <p>If I did not yet understand which numbers leadership truly trusted, even a well-designed system would become just another report.</p>
+                    <p>So I intentionally paused the system rewrite. Instead, I used an existing third-party SaaS project management tool and temporarily migrated part of the company’s workflow into it.</p>
+                    <p>The goal was not digital transformation. The goal was observation.</p>
+                    <p>I wanted to understand:</p>
+                    <ul>
+                        <li>Which metrics actually influenced leadership decisions</li>
+                        <li>What information users trusted — and what they ignored</li>
+                        <li>Where resistance to structured constraints appeared</li>
+                        <li>What had been tried before, and why it did not sustain</li>
+                    </ul>
+                    <p>During this phase, I prioritized learning and validation over building a complete architecture.</p>
+                    <p>The system needed to embed into existing workflows, not force behavior change.</p>
+
+                    <h2>Phase 2 — Externalizing Implicit Decision Logic</h2>
+                    <p>As behavior patterns became clearer, I began converting operational data into visible decision references.</p>
+                    <p>This included:</p>
+                    <ul>
+                        <li>Estimated vs. actual labor hours</li>
+                        <li>Segment-level workload imbalance</li>
+                        <li>Capacity overflow signals</li>
+                        <li>How management interpreted structured data</li>
+                    </ul>
+                    <p>There was one meeting when a project delay was questioned. For the first time, instead of answering from memory, we opened a workload distribution view and discussed the actual numbers.</p>
+                    <p>It was a small shift.</p>
+                    <p>But from that point on, discussions began to center around shared data rather than personal recollection.</p>
+                    <p>Reasoning that previously existed only in a few individuals’ minds became reviewable, comparable, and discussable.</p>
+                    <p>The system gradually evolved from a reporting tool into a decision-support foundation for weekly leadership meetings.</p>
+                </div>
+
+                <!-- Image: beforeVSafter (English) -->
+                <div class="article-image-container" data-lang="en">
+                    <img src="../asset/automation/beforeVSafter-1-en.jpg" alt="Before vs After Decision View" class="article-image clickable-image" style="height: 500px; width: 100%; object-fit: cover;" onclick="openImageModal(this.src, this.alt)">
+                </div>
+
+                <!-- Chinese content: Phase 3 + Design Philosophy + CTA -->
+                <div data-lang="zh" style="display: none;">
+                    <h2>第三階段 — 在約束被驗證後，才進入客製化介面開發</h2>
+                    <p>只有在多輪實際使用後，確認工作流程瓶頸與資訊盲點確實存在，我才開始開發客製的自動化系統。這確保系統架構是基於已驗證的行為，而不是假設性的需求。</p>
+                    <p>設計不再是「功能列表」，而是回應真實決策摩擦。</p>
+
+                    <h2>設計哲學</h2>
+                    <p>這並不是一個排程工具。</p>
+                    <p>它被設計為：在固定產能限制下，提升決策品質的結構化環境。</p>
+                    <p>系統的價值，不在於自動化多少操作，而在於讓權衡變得可見。</p>
+                    <p>AI 協助加速了開發與迭代，但真正決定長期價值的，是決策架構的清晰度，以及約束設計的成熟度。</p>
+                    <p>如果你正在思考如何讓組織決策更穩定，我很樂於交流想法。</p>
+                </div>
+
+                <!-- English content: Phase 3 + Design Philosophy + CTA -->
+                <div data-lang="en">
+                    <h2>Phase 3 — Custom Interface After Constraint Validation</h2>
+                    <p>Only after multiple rounds of real usage — and after confirming actual workflow bottlenecks and information blind spots — did I begin developing a custom automation system.</p>
+                    <p>This ensured the architecture was built on validated behavior, not hypothetical requirements.</p>
+                    <p>Design was no longer a list of features. It became a response to real decision friction.</p>
+
+                    <h2>Design Philosophy</h2>
+                    <p>This is not a scheduling tool.</p>
+                    <p>It is designed as a structured environment that improves decision quality under fixed capacity constraints.</p>
+                    <p>The value of the system is not in how many operations it automates, but in making trade-offs visible.</p>
+                    <p>AI helped accelerate prototyping and iteration. However, long-term value comes from clarity in decision architecture and maturity in constraint design.</p>
+                    <p>If you are thinking about how to make organizational decision-making more stable and transparent, I would be glad to exchange ideas.</p>
+                </div>
+            </div>
+
+            <!-- Project Footer -->
+            <footer class="article-footer">
+                <div class="article-tags">
+                    <a href="../automation.html" class="tag">
+                        <span data-lang="en">AI & Automation</span>
+                        <span data-lang="zh" style="display: none;">AI 與自動化</span>
+                    </a>
+                    <a href="../automation.html" class="tag">
+                        <span data-lang="en">Capacity Planning</span>
+                        <span data-lang="zh" style="display: none;">產能規劃</span>
+                    </a>
+                    <a href="../automation.html" class="tag">
+                        <span data-lang="en">Decision Support</span>
+                        <span data-lang="zh" style="display: none;">決策支援</span>
+                    </a>
+                    <a href="../automation.html" class="tag">
+                        <span data-lang="en">My Notes</span>
+                        <span data-lang="zh" style="display: none;">我的筆記</span>
+                    </a>
+                </div>
+                <div class="article-actions">
+                    <div class="like-section">
+                        <button class="like-btn" id="likeBtn" data-project="capacity-planning">
+                            <i class="far fa-heart"></i>
+                            <span class="like-count">0</span>
+                        </button>
+                    </div>
+                    <div class="article-share">
+                        <span data-lang="en">Share this project:</span>
+                        <span data-lang="zh" style="display: none;">分享此專案：</span>
+                        <a href="#" class="share-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="share-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="share-link"><i class="fas fa-link"></i></a>
+                    </div>
+                </div>
+            </footer>
+
+            <!-- Comments Section -->
+            <section class="comments-section">
+                <div class="comments-header">
+                    <h3 data-lang="en">Leave a Comment</h3>
+                    <h3 data-lang="zh" style="display: none;">留言</h3>
+                    <p data-lang="en">Share your thoughts about this project</p>
+                    <p data-lang="zh" style="display: none;">分享您對此專案的想法</p>
+                </div>
+                
+                <form class="comment-form" id="commentForm">
+                    <div class="form-group">
+                        <label for="commenterName" data-lang="en">Name *</label>
+                        <label for="commenterName" data-lang="zh" style="display: none;">姓名 *</label>
+                        <input type="text" id="commenterName" name="name" autocomplete="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="commenterEmail" data-lang="en">Email *</label>
+                        <label for="commenterEmail" data-lang="zh" style="display: none;">電子郵件 *</label>
+                        <input type="email" id="commenterEmail" name="email" autocomplete="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="commentMessage" data-lang="en">Comment *</label>
+                        <label for="commentMessage" data-lang="zh" style="display: none;">留言 *</label>
+                        <textarea id="commentMessage" name="message" rows="5" autocomplete="off" required placeholder="Share your thoughts about this project..." data-placeholder-en="Share your thoughts about this project..." data-placeholder-zh="分享您對此專案的想法..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="comment-submit-btn">
+                        <span class="btn-text" data-lang="en">Post Comment</span>
+                        <span class="btn-text" data-lang="zh" style="display: none;">發布留言</span>
+                        <span class="btn-loading" style="display: none;">
+                            <i class="fas fa-spinner fa-spin"></i> 
+                            <span data-lang="en">Sending...</span>
+                            <span data-lang="zh" style="display: none;">發送中...</span>
+                        </span>
+                    </button>
+                </form>
+                
+                <div class="comment-notice">
+                    <i class="fas fa-info-circle"></i>
+                    <span data-lang="en">Your comment will be sent directly to the author. Thank you for your feedback!</span>
+                    <span data-lang="zh" style="display: none;">您的留言將直接發送給作者。感謝您的反饋！</span>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p data-lang="en">&copy; 2024 Ester Hong-Fen Lo. All rights reserved.</p>
+            <p data-lang="zh" style="display: none;">&copy; 2024 Ester Hong-Fen Lo. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Cookie 同意橫幅 -->
+    <div id="cookieBanner" class="cookie-banner" style="display: none;">
+        <div class="cookie-banner-content">
+            <div class="cookie-banner-text">
+                <h3 class="cookie-banner-title" data-lang="en">We use cookies</h3>
+                <h3 class="cookie-banner-title" data-lang="zh" style="display: none;">我們使用 cookies</h3>
+                <p class="cookie-banner-description" data-lang="en">
+                    We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.
+                </p>
+                <p class="cookie-banner-description" data-lang="zh" style="display: none;">
+                    我們使用 cookies 來改善您的瀏覽體驗、提供個人化內容並分析我們的流量。點擊「接受全部」即表示您同意我們使用 cookies。
+                </p>
+            </div>
+            <div class="cookie-banner-actions">
+                <button class="cookie-btn cookie-btn-secondary" id="cookieDecline">
+                    <span data-lang="en">Decline</span>
+                    <span data-lang="zh" style="display: none;">拒絕</span>
+                </button>
+                <button class="cookie-btn cookie-btn-primary" id="cookieAccept">
+                    <span data-lang="en">Accept All</span>
+                    <span data-lang="zh" style="display: none;">接受全部</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="image-modal" onclick="closeImageModal()">
+        <div class="image-modal-content" onclick="event.stopPropagation()">
+            <span class="image-modal-close" onclick="closeImageModal()">&times;</span>
+            <button class="image-modal-nav image-modal-prev" onclick="event.stopPropagation(); showPreviousImage()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="image-modal-nav image-modal-next" onclick="event.stopPropagation(); showNextImage()">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <img id="modalImage" src="" alt="" class="modal-image">
+            <div class="image-modal-caption" id="modalCaption"></div>
+        </div>
+    </div>
+
+    <script src="../script.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</body>
+</html>

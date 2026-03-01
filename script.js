@@ -7,15 +7,25 @@ function openImageModal(src, alt) {
     const modalImg = document.getElementById('modalImage');
     const modalCaption = document.getElementById('modalCaption');
     
-    // 收集所有可點擊的圖片
+    // 只收集「目前可見」的圖片（依語系顯示的頁面只會納入該語系圖片）
+    function isVisible(el) {
+        let node = el;
+        while (node) {
+            const style = window.getComputedStyle(node);
+            if (style.display === 'none' || style.visibility === 'hidden') return false;
+            node = node.parentElement;
+        }
+        return true;
+    }
     const clickableImages = document.querySelectorAll('.clickable-image');
-    imageList = Array.from(clickableImages).map(img => ({
+    imageList = Array.from(clickableImages).filter(isVisible).map(img => ({
         src: img.src,
         alt: img.alt
     }));
     
     // 找到當前圖片的索引
     currentImageIndex = imageList.findIndex(img => img.src === src);
+    if (currentImageIndex === -1) currentImageIndex = 0;
     
     modal.style.display = 'block';
     modalImg.src = src;
