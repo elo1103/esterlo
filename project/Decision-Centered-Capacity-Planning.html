@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Decision-Centered Capacity Planning System - Ester Lo</title>
+    <title>Decision-Centered Capacity Planning - Ester Lo</title>
     <link rel="stylesheet" href="../styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -27,11 +27,13 @@
             loadGA4: function() {
                 if (window.gtag) return; // 避免重複載入
                 
+                // 載入 GA4 腳本
                 const script = document.createElement('script');
                 script.async = true;
                 script.src = 'https://www.googletagmanager.com/gtag/js?id=G-VB5KXFH98R';
                 document.head.appendChild(script);
                 
+                // 初始化 GA4
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 window.gtag = gtag;
@@ -43,6 +45,7 @@
             }
         };
         
+        // 如果已經有同意記錄，立即載入 GA4
         if (window.cookieConsent.hasConsent()) {
             window.cookieConsent.loadGA4();
         }
@@ -119,159 +122,146 @@
 
             <!-- Project Header -->
             <header class="article-header">
-                <h1 class="article-title" data-lang="en">Decision-Centered Capacity Planning System</h1>
+                <h1 class="article-title" data-lang="en">Decision-Centered Capacity Planning</h1>
                 <h1 class="article-title" data-lang="zh" style="display: none;">以決策為核心的產能規劃系統</h1>
-                <p class="article-excerpt" data-lang="en">Reframing Capacity as a Decision Risk Problem</p>
-                <p class="article-excerpt" data-lang="zh" style="display: none;">將產能問題重新定義為「決策風險」問題</p>
+                <p class="article-excerpt" data-lang="en">Transforming Capacity Planning into a Decision Support System</p>
+                <p class="article-excerpt" data-lang="zh" style="display: none;">將產能規劃轉化為決策支援系統</p>
             </header>
 
             <!-- Project Body -->
             <div class="article-body">
-                <!-- Hero image: Chinese -->
-                <div class="article-image-container" data-lang="zh" style="display: none;">
-                    <img src="../asset/automation/main-flowchart-1-ch.jpg" alt="以決策為核心的產能規劃系統" class="article-image clickable-image" style="width: 100%; height: auto; object-fit: contain;" onclick="openImageModal(this.src, this.alt)">
-                </div>
-                <!-- Hero image: English -->
                 <div class="article-image-container" data-lang="en">
-                    <img src="../asset/automation/main-flowchart-1-en.jpg" alt="Decision-Centered Capacity Planning System" class="article-image clickable-image" style="width: 100%; height: auto; object-fit: contain;" onclick="openImageModal(this.src, this.alt)">
+                    <img src="../asset/automation/Dashboard-en.jpg" alt="Decision-Centered Capacity Planning Dashboard" class="article-image clickable-image" style="width: 100%; height: auto; object-fit: contain;" onclick="openImageModal(this.src, this.alt)">
                 </div>
-
-                <!-- Chinese content -->
-                <div data-lang="zh" style="display: none;">
-                    <p>在多次與管理層的週會中，我注意到一個現象。</p>
-                    <p>當排程出現衝突時，所有人的目光都會轉向同一位高階主管。</p>
-                    <p>他會快速掃過幾個數字，沉默幾秒，然後說：</p>
-                    <p>「這個先做，那個延後。」</p>
-                    <p>決策通常很快，也通常是對的。但沒有人能清楚解釋背後的邏輯。</p>
-                    <p>那一刻我意識到，產能規劃表面上看起來是效率問題，實際上是一種結構性的依賴風險。</p>
-                    <p>關鍵生產決策高度集中在少數人的經驗與直覺之中。</p>
-                    <p>這帶來三個長期風險：</p>
-                    <ul>
-                        <li>決策難以複製</li>
-                        <li>決策取捨缺乏可視化依據</li>
-                        <li>組織難以累積與傳承決策知識</li>
-                    </ul>
-                    <p>真正的核心問題並不是排程速度。</p>
-                    <p>而是決策透明度與可傳承性。</p>
-
-                    <h2>第一階段 — 在架構之前，先進行行為探索</h2>
-                    <p>一開始，我也曾想直接設計一套完整的排程引擎。</p>
-                    <p>但在第一次實際討論導入方式時，我發現一個更根本的問題：</p>
-                    <p>如果我還不知道管理層真正信任哪些數字，再完整的架構，也只是另一個報表。</p>
-                    <p>因此，我刻意暫緩系統重寫，改為先利用現有的第三方 SaaS 專案管理工具，將公司既有流程暫時搬移進去。</p>
-                    <p>目的不是數位轉型，而是觀察。</p>
-                    <p>我試圖理解：</p>
-                    <ul>
-                        <li>哪些指標真正影響高層決策</li>
-                        <li>使用者信任哪些資訊，而忽略哪些</li>
-                        <li>組織對結構化約束的抗拒點在哪裡</li>
-                        <li>他們過去嘗試過哪些方法，為何沒有持續</li>
-                    </ul>
-                    <p>在這個階段，我優先考慮的是學習與驗證，而不是打造一個看起來完整的系統。</p>
-                    <p>我希望系統能嵌入既有工作流程，而不是強迫行為改變。</p>
-
-                    <h2>第二階段 — 將隱性的決策邏輯外顯化</h2>
-                    <p>當行為模式逐漸清晰後，我開始將營運資料轉換為可討論的決策依據。</p>
-                    <p>包括：</p>
-                    <ul>
-                        <li>預估工時與實際工時差異</li>
-                        <li>分段負載失衡情況</li>
-                        <li>超出產能的工作量訊號</li>
-                        <li>管理層如何解讀這些整理後的數據</li>
-                    </ul>
-                    <p>有一次，當某個專案被質疑為何延後時，我們第一次不是用直覺回答，而是打開負載分布視圖，討論具體數據。</p>
-                    <p>那是一個微小的改變。</p>
-                    <p>但從那次之後，討論開始圍繞數據，而不是個人記憶。</p>
-                    <p>原本存在於少數人腦中的判斷依據，開始變得可回顧、可比較、可討論。</p>
-                    <p>系統逐漸從單純的報表工具，轉變為支撐管理層每週討論的決策基礎數據。</p>
-                </div>
-
-                <!-- Image: beforeVSafter (Chinese) -->
                 <div class="article-image-container" data-lang="zh" style="display: none;">
-                    <img src="../asset/automation/beforeVSafter-1-ch.jpg" alt="Before vs After 決策視圖" class="article-image clickable-image" style="height: 500px; width: 100%; object-fit: cover;" onclick="openImageModal(this.src, this.alt)">
+                    <img src="../asset/automation/Dashboard-zh.jpg" alt="以決策為核心的產能規劃系統儀表板" class="article-image clickable-image" style="width: 100%; height: auto; object-fit: contain;" onclick="openImageModal(this.src, this.alt)">
                 </div>
 
-                <!-- English content (first part, before Phase 2 image) -->
                 <div data-lang="en">
-                    <p>During several weekly leadership meetings, I noticed a pattern.</p>
-                    <p>When scheduling conflicts appeared, everyone would turn to the same senior manager.</p>
-                    <p>He would quickly scan a few numbers, pause for a few seconds, and say:</p>
-                    <p>“Do this first. Delay that one.”</p>
-                    <p>The decisions were usually fast, and usually correct. But no one could clearly explain the reasoning behind them.</p>
-                    <p>That was the moment I realized something important.</p>
-                    <p>Capacity planning may look like an efficiency problem on the surface. In reality, it is a structural dependency risk.</p>
-                    <p>Critical production decisions were concentrated in the experience and intuition of a small number of individuals.</p>
-                    <p>This creates three long-term risks:</p>
+                    <h2>Challenge</h2>
+                    <p>Production planning meetings repeatedly depended on a small number of experienced managers.</p>
+                    <p>When schedule conflicts occurred, decisions were often fast and effective, but the reasoning behind them remained invisible to the rest of the organization.</p>
+                    <p>This created three long-term risks:</p>
                     <ul>
-                        <li>Decisions are difficult to replicate</li>
-                        <li>Trade-offs lack visible justification</li>
-                        <li>The organization cannot accumulate or transfer decision knowledge</li>
+                        <li>Decision-making was difficult to replicate</li>
+                        <li>Trade-offs lacked transparency</li>
+                        <li>Organizational knowledge could not be systematically retained</li>
                     </ul>
-                    <p>The real issue is not scheduling speed.</p>
-                    <p>It is decision transparency and continuity.</p>
 
-                    <h2>Phase 1 — Behavior Discovery Before Architecture</h2>
-                    <p>At first, I considered building a full scheduling engine immediately.</p>
-                    <p>However, during early discussions about system adoption, I realized a more fundamental issue:</p>
-                    <p>If I did not yet understand which numbers leadership truly trusted, even a well-designed system would become just another report.</p>
-                    <p>So I intentionally paused the system rewrite. Instead, I used an existing third-party SaaS project management tool and temporarily migrated part of the company’s workflow into it.</p>
-                    <p>The goal was not digital transformation. The goal was observation.</p>
-                    <p>I wanted to understand:</p>
+                    <h2>Approach</h2>
+                    <p>Rather than immediately building a custom scheduling platform, I first focused on understanding how decisions were actually made.</p>
+                    <p>Key questions included:</p>
                     <ul>
-                        <li>Which metrics actually influenced leadership decisions</li>
-                        <li>What information users trusted — and what they ignored</li>
-                        <li>Where resistance to structured constraints appeared</li>
-                        <li>What had been tried before, and why it did not sustain</li>
+                        <li>Which metrics did management truly trust?</li>
+                        <li>Which information influenced decisions?</li>
+                        <li>Where did existing workflows break down?</li>
+                        <li>Why had previous attempts failed?</li>
                     </ul>
-                    <p>During this phase, I prioritized learning and validation over building a complete architecture.</p>
-                    <p>The system needed to embed into existing workflows, not force behavior change.</p>
+                    <p>This observation phase helped identify the gap between operational data and management decision-making.</p>
 
-                    <h2>Phase 2 — Externalizing Implicit Decision Logic</h2>
-                    <p>As behavior patterns became clearer, I began converting operational data into visible decision references.</p>
-                    <p>This included:</p>
+                    <h2>Solution</h2>
+                    <p>A decision-centered capacity planning system was developed to make operational constraints visible.</p>
+                    <p>The system consolidated:</p>
                     <ul>
-                        <li>Estimated vs. actual labor hours</li>
-                        <li>Segment-level workload imbalance</li>
-                        <li>Capacity overflow signals</li>
-                        <li>How management interpreted structured data</li>
+                        <li>Estimated vs actual labor hours</li>
+                        <li>Department workload distribution</li>
+                        <li>Capacity utilization</li>
+                        <li>Project risk indicators</li>
                     </ul>
-                    <p>There was one meeting when a project delay was questioned. For the first time, instead of answering from memory, we opened a workload distribution view and discussed the actual numbers.</p>
-                    <p>It was a small shift.</p>
-                    <p>But from that point on, discussions began to center around shared data rather than personal recollection.</p>
-                    <p>Reasoning that previously existed only in a few individuals’ minds became reviewable, comparable, and discussable.</p>
-                    <p>The system gradually evolved from a reporting tool into a decision-support foundation for weekly leadership meetings.</p>
+                    <p>The goal was not to automate decisions, but to make trade-offs visible and discussable.</p>
+
+                    <h2>Concept Demonstration</h2>
                 </div>
 
-                <!-- Image: beforeVSafter (English) -->
-                <div class="article-image-container" data-lang="en">
-                    <img src="../asset/automation/beforeVSafter-1-en.jpg" alt="Before vs After Decision View" class="article-image clickable-image" style="height: 500px; width: 100%; object-fit: cover;" onclick="openImageModal(this.src, this.alt)">
-                </div>
-
-                <!-- Chinese content: Phase 3 + Design Philosophy + CTA -->
                 <div data-lang="zh" style="display: none;">
-                    <h2>第三階段 — 在約束被驗證後，才進入客製化介面開發</h2>
-                    <p>只有在多輪實際使用後，確認工作流程瓶頸與資訊盲點確實存在，我才開始開發客製的自動化系統。這確保系統架構是基於已驗證的行為，而不是假設性的需求。</p>
-                    <p>設計不再是「功能列表」，而是回應真實決策摩擦。</p>
+                    <h2>挑戰</h2>
+                    <p>生產規劃會議長期依賴少數資深管理者的經驗進行決策。</p>
+                    <p>當排程衝突發生時，他們往往能快速且有效地做出判斷，但決策背後的邏輯卻難以被組織其他成員理解或掌握。</p>
+                    <p>這種模式帶來三項長期風險：</p>
+                    <ul>
+                        <li>決策難以複製與傳承</li>
+                        <li>各項取捨缺乏透明度</li>
+                        <li>組織知識無法被系統化保留</li>
+                    </ul>
 
-                    <h2>設計哲學</h2>
-                    <p>這並不是一個排程工具。</p>
-                    <p>它被設計為：在固定產能限制下，提升決策品質的結構化環境。</p>
-                    <p>系統的價值，不在於自動化多少操作，而在於讓權衡變得可見。</p>
-                    <p>AI 協助加速了開發與迭代，但真正決定長期價值的，是決策架構的清晰度，以及約束設計的成熟度。</p>
+                    <h2>方法</h2>
+                    <p>與其一開始就開發新的排程平台，我選擇先理解管理團隊實際的決策方式。</p>
+                    <p>研究重點包括：</p>
+                    <ul>
+                        <li>管理層真正信任哪些指標？</li>
+                        <li>哪些資訊會影響決策判斷？</li>
+                        <li>現有流程的瓶頸在哪裡？</li>
+                        <li>過去的改善嘗試為何未能成功？</li>
+                    </ul>
+                    <p>透過觀察與訪談，我逐漸看見營運數據與管理決策之間存在的落差。</p>
+
+                    <h2>解決方案</h2>
+                    <p>我開發了一套以決策支援為核心的產能規劃系統，讓關鍵營運限制與風險變得可視化。</p>
+                    <p>系統整合了：</p>
+                    <ul>
+                        <li>預估工時與實際工時比較</li>
+                        <li>各部門工作負載分布</li>
+                        <li>產能利用率分析</li>
+                        <li>專案風險指標</li>
+                    </ul>
+                    <p>目標並非取代管理者做決策，而是讓不同選項之間的取捨能夠被看見、討論與評估。</p>
+
+                    <h2>概念展示</h2>
                 </div>
 
-                <!-- English content: Phase 3 + Design Philosophy + CTA -->
-                <div data-lang="en">
-                    <h2>Phase 3 — Custom Interface After Constraint Validation</h2>
-                    <p>Only after multiple rounds of real usage — and after confirming actual workflow bottlenecks and information blind spots — did I begin developing a custom automation system.</p>
-                    <p>This ensured the architecture was built on validated behavior, not hypothetical requirements.</p>
-                    <p>Design was no longer a list of features. It became a response to real decision friction.</p>
+                <div class="article-image-container" data-lang="en">
+                    <img src="../asset/automation/Dashboard-en.jpg" alt="Capacity Planning Dashboard" class="article-image clickable-image" style="width: 100%; height: auto; object-fit: contain;" onclick="openImageModal(this.src, this.alt)">
+                </div>
+                <div class="article-image-container" data-lang="zh" style="display: none;">
+                    <img src="../asset/automation/Dashboard-zh.jpg" alt="產能規劃儀表板" class="article-image clickable-image" style="width: 100%; height: auto; object-fit: contain;" onclick="openImageModal(this.src, this.alt)">
+                </div>
 
-                    <h2>Design Philosophy</h2>
-                    <p>This is not a scheduling tool.</p>
-                    <p>It is designed as a structured environment that improves decision quality under fixed capacity constraints.</p>
-                    <p>The value of the system is not in how many operations it automates, but in making trade-offs visible.</p>
-                    <p>AI helped accelerate prototyping and iteration. However, long-term value comes from clarity in decision architecture and maturity in constraint design.</p>
+                <div class="article-image-container" data-lang="en">
+                    <img src="../asset/automation/RiskAnalysis-en.jpg" alt="Project Risk Analysis" class="article-image clickable-image" style="width: 100%; height: auto; object-fit: contain;" onclick="openImageModal(this.src, this.alt)">
+                </div>
+                <div class="article-image-container" data-lang="zh" style="display: none;">
+                    <img src="../asset/automation/RiskAnalysis-zh.jpg" alt="專案風險分析" class="article-image clickable-image" style="width: 100%; height: auto; object-fit: contain;" onclick="openImageModal(this.src, this.alt)">
+                </div>
+
+                <div class="article-image-container" data-lang="en">
+                    <img src="../asset/automation/DecisionSupport-en.jpg" alt="Decision Support View" class="article-image clickable-image" style="width: 100%; height: auto; object-fit: contain;" onclick="openImageModal(this.src, this.alt)">
+                </div>
+                <div class="article-image-container" data-lang="zh" style="display: none;">
+                    <img src="../asset/automation/DecisionSupport-zh.jpg" alt="決策支援視圖" class="article-image clickable-image" style="width: 100%; height: auto; object-fit: contain;" onclick="openImageModal(this.src, this.alt)">
+                </div>
+
+                <div data-lang="en">
+                    <h2>Outcome</h2>
+                    <p>Discussions gradually shifted from personal memory and intuition toward shared operational data.</p>
+                    <p>What was previously embedded in individual experience became:</p>
+                    <ul>
+                        <li>Visible</li>
+                        <li>Reviewable</li>
+                        <li>Transferable</li>
+                    </ul>
+                    <p>The system evolved from a reporting tool into a foundation for weekly management discussions.</p>
+
+                    <h2>Key Insight</h2>
+                    <p>The real challenge was not scheduling.</p>
+                    <p>It was decision transparency.</p>
+                    <p>When decision logic becomes visible, organizations become more resilient and less dependent on individual expertise.</p>
+                </div>
+
+                <div data-lang="zh" style="display: none;">
+                    <h2>成果</h2>
+                    <p>管理會議的討論逐漸從個人記憶與經驗判斷，轉向共同的營運數據。</p>
+                    <p>原本隱藏於個人經驗中的知識，開始變得：</p>
+                    <ul>
+                        <li>可視化</li>
+                        <li>可檢視</li>
+                        <li>可傳承</li>
+                    </ul>
+                    <p>這套系統也逐漸從單純的報表工具，演變為每週管理決策的重要基礎。</p>
+
+                    <h2>關鍵洞察</h2>
+                    <p>真正的挑戰並不是排程本身。</p>
+                    <p>而是決策透明度。</p>
+                    <p>當決策邏輯能夠被看見，組織便能降低對個人經驗的依賴，建立更具韌性的決策能力。</p>
                 </div>
             </div>
 
@@ -291,13 +281,13 @@
                         <span data-lang="zh" style="display: none;">決策支援</span>
                     </a>
                     <a href="../automation.html" class="tag">
-                        <span data-lang="en">My Notes</span>
-                        <span data-lang="zh" style="display: none;">我的筆記</span>
+                        <span data-lang="en">Business Intelligence</span>
+                        <span data-lang="zh" style="display: none;">商業智慧</span>
                     </a>
                 </div>
                 <div class="article-actions">
                     <div class="like-section">
-                        <button class="like-btn" id="likeBtn" data-project="capacity-planning">
+                        <button class="like-btn" id="likeBtn" data-project="decision-centered-capacity-planning">
                             <i class="far fa-heart"></i>
                             <span class="like-count">0</span>
                         </button>
