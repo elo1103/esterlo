@@ -4,6 +4,7 @@ function navigateToProject(url) {
     const separator = url.includes('?') ? '&' : '?';
     window.location.href = url + separator + 'lang=' + lang;
 }
+window.navigateToProject = navigateToProject;
 
 // Image Modal Functions
 let currentImageIndex = 0;
