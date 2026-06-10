@@ -1,4 +1,3 @@
-幫我在 @project/ 資料夾裡面，生成一篇新 project 文章，格式和這篇文章 @Company-Knowledge-Base-Chatbot.html 一樣
 
 ---
 

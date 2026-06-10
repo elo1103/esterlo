@@ -1,6 +1,6 @@
-# New Article
+# New Portfolio Project
 
-Create a new website article.
+Create a new website portfolio project.
 
 Before making changes:
 
@@ -8,10 +8,10 @@ Before making changes:
 2. Read the provided source note.
 3. Inspect:
 
-   * blog.html
-   * articles/
-   * asset/
-4. Use the existing article structure as reference.
+   * automation.html
+   * project/
+   * asset/automation
+4. Use the existing portfolio project structure as reference.
 
 ---
 
@@ -32,13 +32,13 @@ If information is missing, report missing info before finishing. It user doesn't
 
 ---
 
-## Article Creation
+## Portfolio Project Creation
 
-Create a new article inside:
+Create a new portfolio project inside:
 
-articles/
+project/
 
-Follow the layout and styling used by existing articles.
+Follow the layout and styling used by existing portfolio projects.
 
 Maintain:
 
@@ -68,7 +68,7 @@ Avoid literal translation.
 
 Hero image:
 
-* Use the specified image from asset/
+* Use the specified image from asset/automation/
 
 Inline images:
 
@@ -91,11 +91,11 @@ Include category tags at the bottom of the article.
 
 ---
 
-## Blog Page Update
+## Portfolio Page Update
 
 Update:
 
-blog.html
+automation.html
 
 Create a new preview card. Reference to existing preview card style. Do not redesign.
 
