@@ -479,18 +479,17 @@ body {
 /* 合作方式區域 */
 .working-with-me {
     padding: var(--spacing-4xl) 0;
-    background: var(--background-primary);
-}
-
-.working-with-me .section-title {
-    text-align: center;
-    margin-bottom: var(--spacing-2xl);
+    background: var(--background-secondary);
 }
 
 .working-with-me-content {
     max-width: 680px;
     margin: 0 auto;
     text-align: center;
+}
+
+.working-with-me-content .section-title {
+    margin-bottom: var(--spacing-2xl);
 }
 
 .working-with-me-text {
