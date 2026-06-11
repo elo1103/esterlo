@@ -181,6 +181,37 @@ Show why the project mattered.
 
 ---
 
+## Portfolio Content Requirements for SMB Audience
+
+Each portfolio article should include:
+
+**1. Concrete scenario**
+
+Include a specific, relatable example early in the article.
+Name the industry (manufacturing, millwork, construction).
+Name approximate company size if possible.
+The reader should recognize their own situation within the first few paragraphs.
+
+**2. Numbers in Results**
+
+Results should include at least one specific metric or estimate.
+Examples: time saved per person per day, hours to complete a task before vs. after, number of people previously holding critical knowledge.
+Approximations are acceptable. Vague outcomes are not.
+
+**3. Owner's perspective, not consultant's**
+
+Write from the owner's point of view.
+Avoid terms like "operational constraints", "decision transparency", "stakeholder alignment".
+Use language owners actually use: "I didn't know where the project was stuck", "when that person left, we lost everything", "I was spending half my day chasing people".
+
+**4. Technology Stack (when relevant)**
+
+When the project involves tools, include a Technology Stack section.
+Emphasize low-code options first — Microsoft or Google Workspace tools are accessible and affordable for SMBs.
+Mention custom development only as a later-stage option.
+
+---
+
 ## Technical Constraints
 
 Current stack:

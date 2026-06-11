@@ -28,7 +28,24 @@ The user may provide:
 * Categories
 * Post date
 
-If information is missing, report missing info before finishing. It user doesn't want to provide those info, infer reasonable defaults when possible.
+If information is missing, report missing info before finishing. If user doesn't want to provide those info, infer reasonable defaults when possible.
+
+---
+
+## Content Quality Check
+
+Before writing the article, verify the provided content includes:
+
+* A concrete scenario — a specific company type, size, or situation the reader can recognize
+* Numbers or estimates in the Results section — time saved, hours reduced, people affected
+* Language written from the owner's perspective, not a consultant's
+
+If any of these are missing, ask the user before proceeding:
+
+* "Can you share a specific example or scenario for the Challenge section?"
+* "Do you have any numbers or estimates for the Results section?"
+
+Do not invent numbers. Flag missing information and ask.
 
 ---
 

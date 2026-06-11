@@ -476,6 +476,36 @@ body {
     letter-spacing: 0.2px;
 }
 
+/* 合作方式區域 */
+.working-with-me {
+    padding: var(--spacing-4xl) 0;
+    background: var(--background-primary);
+}
+
+.working-with-me .section-title {
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+}
+
+.working-with-me-content {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.working-with-me-text {
+    font-family: var(--font-text);
+    font-size: 21px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-xl);
+    line-height: 1.5;
+}
+
+.working-with-me-content .btn {
+    margin-top: var(--spacing-xl);
+}
+
 /* 聯絡我區域 */
 .contact {
     padding: var(--spacing-4xl) 0;

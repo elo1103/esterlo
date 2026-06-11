@@ -1,4 +1,4 @@
-# Ester Lo - Creative Technologist Portfolio
+﻿# Ester Lo Portfolio
 
 This is a modern, responsive personal portfolio website for Ester Lo, a Creative Technologist specializing in AI automation and advanced manufacturing. The website features an Apple-inspired design with a clean, minimalist aesthetic and includes a comprehensive blog system.
 
@@ -16,25 +16,25 @@ This is a modern, responsive personal portfolio website for Ester Lo, a Creative
 
 ```
 ELO_web/
-├── index.html                    # Main portfolio page
-├── blog.html                     # Blog listing page
-├── styles.css                    # Main stylesheet
-├── script.js                     # JavaScript functionality
-├── asset/                        # Images and media files
-│   ├── ai-automation.png
-│   ├── concrete-printing.jpg
-│   ├── factory-automation-1.JPG
-│   ├── factory-automation-2.JPG
-│   └── industrial-revolution.jpg
-├── blog/
-│   └── articles/
-│       ├── Notes-on-My-Journey-Across-Design-Manufacturing-and-AI.html
-│       ├── When-Three-People-Work-for-Two-Months-Shrinks-into-Two-Weeks.html
-│       ├── Why-Are-Small-and-Medium-Sized-Businesses-Always-Stuck-with-Repetitive-Work.html
-│       ├── Efficiency-Often-Begins-in-the-Smallest-Most-Repetitive-Tasks.html
-│       ├── Sapiens.html
-│       └── Design-Materials-Technology.html
-└── README.md                     # Documentation
+â”œâ”€â”€ index.html                    # Main portfolio page
+â”œâ”€â”€ blog.html                     # Blog listing page
+â”œâ”€â”€ styles.css                    # Main stylesheet
+â”œâ”€â”€ script.js                     # JavaScript functionality
+â”œâ”€â”€ asset/                        # Images and media files
+â”‚   â”œâ”€â”€ ai-automation.png
+â”‚   â”œâ”€â”€ concrete-printing.jpg
+â”‚   â”œâ”€â”€ factory-automation-1.JPG
+â”‚   â”œâ”€â”€ factory-automation-2.JPG
+â”‚   â””â”€â”€ industrial-revolution.jpg
+â”œâ”€â”€ blog/
+â”‚   â””â”€â”€ articles/
+â”‚       â”œâ”€â”€ Notes-on-My-Journey-Across-Design-Manufacturing-and-AI.html
+â”‚       â”œâ”€â”€ When-Three-People-Work-for-Two-Months-Shrinks-into-Two-Weeks.html
+â”‚       â”œâ”€â”€ Why-Are-Small-and-Medium-Sized-Businesses-Always-Stuck-with-Repetitive-Work.html
+â”‚       â”œâ”€â”€ Efficiency-Often-Begins-in-the-Smallest-Most-Repetitive-Tasks.html
+â”‚       â”œâ”€â”€ Sapiens.html
+â”‚       â””â”€â”€ Design-Materials-Technology.html
+â””â”€â”€ README.md                     # Documentation
 ```
 
 ## Quick Start
@@ -161,6 +161,6 @@ This project is licensed under the MIT License. You are free to use, modify, and
 
 ---
 
-**Portfolio Website for Ester Lo - Creative Technologist**
+**Portfolio Website for Ester Lo**
 
 Specializing in AI automation, advanced manufacturing, and computational design.
