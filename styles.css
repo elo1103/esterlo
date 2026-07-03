@@ -476,6 +476,35 @@ body {
     letter-spacing: 0.2px;
 }
 
+/* 合作方式區域 */
+.working-with-me {
+    padding: var(--spacing-4xl) 0;
+    background: var(--background-secondary);
+}
+
+.working-with-me-content {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.working-with-me-content .section-title {
+    margin-bottom: var(--spacing-2xl);
+}
+
+.working-with-me-text {
+    font-family: var(--font-text);
+    font-size: 21px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-xl);
+    line-height: 1.5;
+}
+
+.working-with-me-content .btn {
+    margin-top: var(--spacing-xl);
+}
+
 /* 聯絡我區域 */
 .contact {
     padding: var(--spacing-4xl) 0;
@@ -1319,6 +1348,13 @@ body {
     text-align: center;
 }
 
+.article-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-top: var(--spacing-sm);
+    font-weight: 400;
+}
+
 .article-meta {
     display: flex;
     justify-content: center;
@@ -1999,6 +2035,7 @@ body {
 }
 
 .project-item {
+    display: block;
     background: var(--background-primary);
     border-radius: var(--radius-lg);
     overflow: hidden;
@@ -2006,6 +2043,8 @@ body {
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     cursor: pointer;
     animation: fadeInUp 0.6s ease forwards;
+    text-decoration: none;
+    color: inherit;
 }
 
 .project-item:hover {
@@ -2557,26 +2596,36 @@ body {
     position: relative;
     margin: auto;
     padding: 0;
-    width: 90%;
-    height: 90%;
-    max-width: 1200px;
-    max-height: 90vh;
+    width: 96%;
+    height: 96%;
+    max-width: none;
+    max-height: 96vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     animation: zoomIn 0.3s ease;
+    overflow: auto;
 }
 
 .modal-image {
-    max-width: 100%;
-    max-height: 80vh;
+    position: relative;
+    z-index: 1;
+    max-width: 96vw;
+    max-height: 92vh;
     width: auto;
     height: auto;
     object-fit: contain;
     border-radius: 0;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-    cursor: pointer;
+    cursor: zoom-in;
+    transition: max-width 0.2s ease, max-height 0.2s ease;
+}
+
+.modal-image.modal-image-zoomed {
+    max-width: none;
+    max-height: none;
+    cursor: zoom-out;
 }
 
 .image-modal-caption {
@@ -2584,62 +2633,66 @@ body {
 }
 
 .image-modal-close {
-    position: absolute;
+    position: fixed;
     top: 20px;
-    right: 30px;
-    color: white;
-    font-size: 40px;
+    right: 24px;
+    color: #fff;
+    font-size: 32px;
     font-weight: bold;
+    line-height: 1;
     cursor: pointer;
-    z-index: 10001;
+    z-index: 10002;
     transition: all 0.3s ease;
-    width: 50px;
-    height: 50px;
+    width: 48px;
+    height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
     backdrop-filter: blur(10px);
 }
 
 .image-modal-close:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: scale(1.1);
+    background: rgba(0, 0, 0, 0.88);
+    transform: scale(1.08);
 }
 
 .image-modal-nav {
-    position: absolute;
+    position: fixed;
     top: 50%;
     transform: translateY(-50%);
-    color: white;
-    font-size: 24px;
+    color: #fff;
+    font-size: 18px;
     cursor: pointer;
-    z-index: 10001;
+    z-index: 10002;
     transition: all 0.3s ease;
-    width: 60px;
-    height: 60px;
+    width: 44px;
+    height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
     backdrop-filter: blur(10px);
-    border: none;
     outline: none;
 }
 
 .image-modal-prev {
-    left: 30px;
+    left: 20px;
 }
 
 .image-modal-next {
-    right: 30px;
+    right: 20px;
 }
 
 .image-modal-nav:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-50%) scale(1.1);
+    background: rgba(0, 0, 0, 0.88);
+    transform: translateY(-50%) scale(1.08);
 }
 
 
@@ -2713,7 +2766,8 @@ body {
     }
     
     .modal-image {
-        max-height: 70vh;
+        max-width: 94vw;
+        max-height: 88vh;
     }
     
     .image-modal-close {
@@ -2725,17 +2779,17 @@ body {
     }
     
     .image-modal-nav {
-        width: 50px;
-        height: 50px;
-        font-size: 20px;
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
     }
     
     .image-modal-prev {
-        left: 15px;
+        left: 10px;
     }
     
     .image-modal-next {
-        right: 15px;
+        right: 10px;
     }
     
     .image-modal-caption {
@@ -2751,7 +2805,8 @@ body {
     }
     
     .modal-image {
-        max-height: 60vh;
+        max-width: 92vw;
+        max-height: 85vh;
     }
     
     .image-modal-close {
@@ -2763,17 +2818,17 @@ body {
     }
     
     .image-modal-nav {
-        width: 45px;
-        height: 45px;
-        font-size: 18px;
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
     }
     
     .image-modal-prev {
-        left: 10px;
+        left: 8px;
     }
     
     .image-modal-next {
-        right: 10px;
+        right: 8px;
     }
 }
 

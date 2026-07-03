@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cross-Department Workflow System - Ester Lo</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Google Analytics - 條件載入 -->
+    <script>
+        // Cookie 同意管理
+        window.cookieConsent = {
+            hasConsent: function() {
+                return localStorage.getItem('cookieConsent') === 'accepted';
+            },
+            hasDecision: function() {
+                return localStorage.getItem('cookieConsent') !== null;
+            },
+            setConsent: function(accepted) {
+                localStorage.setItem('cookieConsent', accepted ? 'accepted' : 'declined');
+                if (accepted) {
+                    this.loadGA4();
+                }
+            },
+            loadGA4: function() {
+                if (window.gtag) return; // 避免重複載入
+
+                // 載入 GA4 腳本
+                const script = document.createElement('script');
+                script.async = true;
+                script.src = 'https://www.googletagmanager.com/gtag/js?id=G-VB5KXFH98R';
+                document.head.appendChild(script);
+
+                // 初始化 GA4
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                window.gtag = gtag;
+                gtag('js', new Date());
+                gtag('config', 'G-VB5KXFH98R', {
+                    anonymize_ip: true,
+                    cookie_flags: 'SameSite=None;Secure'
+                });
+            }
+        };
+
+        // 如果已經有同意記錄，立即載入 GA4
+        if (window.cookieConsent.hasConsent()) {
+            window.cookieConsent.loadGA4();
+        }
+    </script>
+</head>
+<body>
+    <!-- 導航欄 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="../index.html">
+                    <span class="logo-full">Ester Lo</span>
+                    <span class="logo-mobile">Ester Lo</span>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="../index.html#home" class="nav-link">
+                        <span data-lang="en">Home</span>
+                        <span data-lang="zh" style="display: none;">首頁</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.html#about" class="nav-link">
+                        <span data-lang="en">About</span>
+                        <span data-lang="zh" style="display: none;">關於</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.html#portfolio" class="nav-link">
+                        <span data-lang="en">Work</span>
+                        <span data-lang="zh" style="display: none;">作品</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../blog.html" class="nav-link">
+                        <span data-lang="en">Blog</span>
+                        <span data-lang="zh" style="display: none;">文章</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.html#contact" class="nav-link">
+                        <span data-lang="en">Contact</span>
+                        <span data-lang="zh" style="display: none;">聯絡</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="nav-right">
+                <div class="language-switcher">
+                    <button class="language-btn active" data-lang="en">EN</button>
+                    <span class="language-separator">|</span>
+                    <button class="language-btn" data-lang="zh">中文</button>
+                </div>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Project Content -->
+    <section class="article-content">
+        <div class="container">
+            <!-- Back to Projects -->
+            <div class="article-nav">
+                <a href="../automation.html" class="back-to-blog">
+                    <i class="fas fa-arrow-left"></i>
+                    <span data-lang="en">Back to AI &amp; Automation Projects</span>
+                    <span data-lang="zh" style="display: none;">返回 AI 與自動化專案</span>
+                </a>
+            </div>
+
+            <!-- Project Header -->
+            <header class="article-header">
+                <h1 class="article-title" data-lang="en">Designing Visible Cross-Department Workflows</h1>
+                <h1 class="article-title" data-lang="zh" style="display: none;">設計結構化的跨部門工作流程</h1>
+                <p class="article-excerpt" data-lang="en">Reducing communication friction through automation and visibility</p>
+                <p class="article-excerpt" data-lang="zh" style="display: none;">將跨部門溝通從個人追蹤，轉變為可視化工作流程</p>
+            </header>
+
+            <!-- Project Body -->
+            <div class="article-body">
+                <div class="article-image-container" data-lang="en">
+                    <img src="../asset/automation/WorkFlowOverview-en.jpg" alt="Cross-Department Workflow System Overview" class="article-image clickable-image" style="width: 100%; height: auto; object-fit: contain;" onclick="openImageModal(this.src, this.alt)">
+                </div>
+                <div class="article-image-container" data-lang="zh" style="display: none;">
+                    <img src="../asset/automation/WorkFlowOverview-zh.jpg" alt="跨部門工作流程系統概覽" class="article-image clickable-image" style="width: 100%; height: auto; object-fit: contain;" onclick="openImageModal(this.src, this.alt)">
+                </div>
+
+                <div data-lang="en">
+                    <h2>Challenge</h2>
+                    <p>In most organizations, cross-department collaboration is treated as a communication problem. But in practice, it is often a visibility problem.</p>
+                    <p>The typical pattern looks like this: Department A completes a task and needs to hand off to Department B. Department B finishes and needs to notify Department A &mdash; or wait for the next team to pick up. These handoffs usually travel through phone calls, meetings, email, and messaging apps like Teams, Slack, or LINE.</p>
+                    <p>Each individual notification takes only seconds. But as organizations grow, a significant portion of employee time gets absorbed by:</p>
+                    <ul>
+                        <li>Figuring out who owns the next step</li>
+                        <li>Checking whether a task has been completed</li>
+                        <li>Asking for status updates</li>
+                        <li>Searching through message history</li>
+                    </ul>
+                    <p>Productive time gradually gets replaced by coordination overhead.</p>
+                    <p>Worse, when something stalls, it becomes difficult for anyone &mdash; especially management &mdash; to quickly answer:</p>
+                    <ul>
+                        <li>Where is this task stuck?</li>
+                        <li>Who currently owns it?</li>
+                        <li>Who needs to pick it up next?</li>
+                        <li>How long has it been delayed?</li>
+                        <li>Has anyone already followed up?</li>
+                    </ul>
+                    <p>The process exists. But the state of the process is invisible.</p>
+                    <p>A typical example: a custom millwork company with fifteen employees and three departments &mdash; estimating, production, and installation. When a project is approved, the estimator notifies production by phone or message. Production completes fabrication and contacts the installation team on LINE. The installation team confirms by replying &mdash; or sometimes doesn't.</p>
+                    <p>When a project falls behind, the owner calls each department head individually to reconstruct what happened. By the time the full picture is clear, the delay has already rippled into the next project.</p>
+                    <p>No one is negligent. The process simply has no memory.</p>
+
+                    <h2>Approach</h2>
+                    <p>I didn't start by automating anything.</p>
+                    <p>I've found that most cross-department friction doesn't come from a lack of tools &mdash; it comes from a lack of clarity about the process itself.</p>
+                    <p>So I started by observing: how tasks actually moved between departments, which notifications were truly necessary, which steps were frequently missed, which situations required management to intervene, and which communication tools employees actually used day to day.</p>
+                    <p>What I was trying to understand wasn't the messages themselves &mdash; it was what those messages represented in terms of work state.</p>
+                    <p>From those observations, I began mapping the processes that had been buried inside emails, phone calls, and meetings into structured, visible workflows.</p>
+
+                    <h2>Solution</h2>
+                    <p>I designed a cross-department workflow system centered on process transparency.</p>
+                    <p>The system consolidates information that was previously scattered across different communication channels, using automation to handle:</p>
+                    <ul>
+                        <li>Task creation and responsibility assignment</li>
+                        <li>Automatic notifications when handoffs occur</li>
+                        <li>Real-time status updates</li>
+                        <li>Completion confirmation</li>
+                        <li>Historical record keeping</li>
+                    </ul>
+                    <p>When a task changes state, the system automatically notifies the next responsible party. Every participant can see, in real time, the current progress, pending items, responsible department, and task history.</p>
+                    <p>Management can monitor overall workflow status through a dashboard &mdash; without relying on individual employees to report up.</p>
+
+                    <h2>Technology Stack</h2>
+                    <p>The good news is: there is no need to reinvent the wheel.</p>
+                    <p>Both Microsoft and Google Workspace already offer mature low-code tools that integrate with your organization's existing data &mdash; no separate infrastructure required.</p>
+                    <p>In a Microsoft environment, a practical starting point includes SharePoint, Power Automate, Power Apps, and Power BI. In a Google Workspace environment, I would pair n8n with Google Sheets as a foundation.</p>
+                    <p>These tools provide a fast, low-risk path to getting started. Rather than building from scratch, you can deploy a working prototype, validate it with real users, and discover what your organization actually needs &mdash; before making any larger technical commitments.</p>
+                    <p>If over time you encounter requirements that low-code tools cannot address effectively, that is the right moment to consider investing in custom application development.</p>
+                </div>
+
+                <div data-lang="zh" style="display: none;">
+                    <h2>挑戰</h2>
+                    <p>在大多數企業中，跨部門合作看似是溝通問題，實際上卻經常是資訊透明度問題。</p>
+                    <p>一個常見情境是：部門 A 完成某項工作後，需要通知部門 B 執行下一步。當部門 B 完成後，又需要回頭通知部門 A 任務已完成，或等待下一個部門接手。這些流程通常透過電話、會議、Email，以及 Teams、Slack 或 LINE 訊息進行傳遞。</p>
+                    <p>雖然每一次通知本身只需要幾秒鐘，但當組織規模逐漸增加時，大量員工的時間開始消耗在：</p>
+                    <ul>
+                        <li>確認誰負責下一步</li>
+                        <li>追蹤任務是否完成</li>
+                        <li>重複詢問工作狀態</li>
+                        <li>搜尋歷史溝通紀錄</li>
+                    </ul>
+                    <p>真正有價值的工作時間，逐漸被大量的狀態確認與資訊傳遞所取代。</p>
+                    <p>更重要的是，當任務延誤時，組織往往很難快速判斷：</p>
+                    <ul>
+                        <li>任務卡在哪個部門？</li>
+                        <li>誰是目前負責人？</li>
+                        <li>下一步需要誰接手？</li>
+                        <li>延誤多久？</li>
+                        <li>是否已經有人跟進？</li>
+                    </ul>
+                    <p>流程存在，但流程的狀態卻是不可見的。</p>
+                    <p>一個常見的例子：一間十五人規模的客製化木工公司，分為估價、生產與安裝三個部門。當專案確認後，估價人員透過電話或訊息通知生產部門。生產完成後，師傅在 LINE 上聯絡安裝組，安裝組回覆確認——有時候也沒有回。</p>
+                    <p>當專案開始延誤，老闆只能逐一打電話給各部門主管，拼湊出事情的全貌。等到問題釐清，延誤往往已經影響到下一個排程的專案。</p>
+                    <p>沒有人失職。只是這個流程本身，沒有記憶。</p>
+
+                    <h2>方法</h2>
+                    <p>一開始，我並沒有急著自動化流程。</p>
+                    <p>因為我發現，許多跨部門問題並非來自缺乏工具，而是缺乏對流程本身的理解。</p>
+                    <p>因此，我先花時間觀察：任務如何在不同部門之間流動、哪些通知是真正必要的、哪些步驟經常被遺漏、哪些工作需要主管介入追蹤，以及員工實際使用哪些溝通工具。</p>
+                    <p>我試圖理解的不是訊息本身，而是訊息背後所代表的工作狀態。</p>
+                    <p>透過這些觀察，我開始將原本隱藏在 Email、電話與會議中的流程，重新轉換為結構化工作流程。</p>
+
+                    <h2>解決方案</h2>
+                    <p>我設計了一套以流程透明度為核心的跨部門工作流程系統。</p>
+                    <p>系統將原本分散在不同溝通管道中的資訊集中管理，並透過自動化機制完成：</p>
+                    <ul>
+                        <li>任務建立與負責人指派</li>
+                        <li>交接時的自動通知</li>
+                        <li>即時狀態更新</li>
+                        <li>完成確認</li>
+                        <li>歷史紀錄保存</li>
+                    </ul>
+                    <p>當任務狀態改變時，系統會自動通知下一位負責人。每個參與者都能即時了解任務目前進度、待處理事項、負責部門與歷史紀錄。</p>
+                    <p>管理層則能透過儀表板快速掌握整體流程狀況，而不需要依賴個別員工回報。</p>
+
+                    <h2>技術架構</h2>
+                    <p>好消息是，不需要從零開始。</p>
+                    <p>Microsoft 與 Google Workspace 都已提供成熟的低代碼工具，並能直接與組織現有的資料整合，無需建立獨立的技術基礎設施。</p>
+                    <p>在 Microsoft 環境中，實用的起點包括 SharePoint、Power Automate、Power Apps 與 Power BI；在 Google Workspace 環境中，則可以 n8n 搭配 Google 試算表作為基礎。</p>
+                    <p>這些工具提供了一條快速且低風險的起步路徑。相較於從頭開發，您可以先部署可運作的原型，與真實使用者驗證，確認組織真正的需求，再決定是否投入更大規模的技術建置。</p>
+                    <p>若隨著使用深入，遇到低代碼工具難以有效達成的特定需求，那才是評估開發客製化應用程式的適當時機。</p>
+                </div>
+
+                <div class="article-image-container" data-lang="en">
+                    <img src="../asset/automation/ActiveWorkflow-en.jpg" alt="Active Workflow" class="article-image clickable-image" style="width: 100%; height: auto; object-fit: contain;" onclick="openImageModal(this.src, this.alt)">
+                </div>
+                <div class="article-image-container" data-lang="zh" style="display: none;">
+                    <img src="../asset/automation/ActiveWorkflow-zh.jpg" alt="進行中的工作流程" class="article-image clickable-image" style="width: 100%; height: auto; object-fit: contain;" onclick="openImageModal(this.src, this.alt)">
+                </div>
+
+                <div class="article-image-container" data-lang="en">
+                    <img src="../asset/automation/Notification-en.jpg" alt="Workflow Notifications" class="article-image clickable-image" style="width: 100%; height: auto; object-fit: contain;" onclick="openImageModal(this.src, this.alt)">
+                </div>
+                <div class="article-image-container" data-lang="zh" style="display: none;">
+                    <img src="../asset/automation/Notification-zh.jpg" alt="工作流程通知" class="article-image clickable-image" style="width: 100%; height: auto; object-fit: contain;" onclick="openImageModal(this.src, this.alt)">
+                </div>
+
+                <div class="article-image-container" data-lang="en">
+                    <img src="../asset/automation/History-en.jpg" alt="Workflow History" class="article-image clickable-image" style="width: 100%; height: auto; object-fit: contain;" onclick="openImageModal(this.src, this.alt)">
+                </div>
+                <div class="article-image-container" data-lang="zh" style="display: none;">
+                    <img src="../asset/automation/History-zh.jpg" alt="工作流程歷史紀錄" class="article-image clickable-image" style="width: 100%; height: auto; object-fit: contain;" onclick="openImageModal(this.src, this.alt)">
+                </div>
+
+                <div data-lang="en">
+                    <h2>Results</h2>
+                    <p>Cross-department collaboration shifted from passive tracking to active, visible management.</p>
+                    <p>Work status that was previously scattered across emails and messages became:</p>
+                    <ul>
+                        <li>Visible &mdash; every participant could see current state at a glance</li>
+                        <li>Trackable &mdash; task history was preserved automatically</li>
+                        <li>Auditable &mdash; management could review progress without interrupting the team</li>
+                        <li>Improvable &mdash; bottlenecks became identifiable and addressable</li>
+                    </ul>
+                    <p>In practice, teams that previously spent 30 to 60 minutes per person each day on status checks and follow-up messages found that time largely eliminated. More importantly, when delays did occur, management could identify the point of failure within minutes &mdash; rather than reconstructing events after the fact through phone calls.</p>
+                    <p>For a small business owner, this shift matters beyond efficiency. It means less time spent as a human relay &mdash; and more time spent on work that actually requires judgment.</p>
+
+                    <h2>Key Insight</h2>
+                    <p>Most organizations believe they need faster communication tools.</p>
+                    <p>But in this case, the real problem wasn't communication speed. It was the absence of process visibility.</p>
+                    <p>When every participant knows where things currently stand, who owns the next step, and what is delayed &mdash; organizations can dramatically reduce coordination costs and redirect time toward higher-value work.</p>
+                    <p>The most effective process design doesn't make people send more messages.</p>
+                    <p>It makes messages unnecessary.</p>
+                </div>
+
+                <div data-lang="zh" style="display: none;">
+                    <h2>成果</h2>
+                    <p>跨部門合作開始從被動追蹤，轉變為主動可視化管理。</p>
+                    <p>原本散落於 Email 與訊息中的工作狀態，開始變得：</p>
+                    <ul>
+                        <li>可視化 &mdash; 每位參與者都能立即掌握目前狀態</li>
+                        <li>可追蹤 &mdash; 任務歷程自動保存</li>
+                        <li>可稽核 &mdash; 管理層可直接查閱，無需打擾團隊</li>
+                        <li>可改善 &mdash; 流程瓶頸變得清晰可見，得以被具體處理</li>
+                    </ul>
+                    <p>實際上，過去每人每天花在確認進度、追蹤訊息的時間，大約在 30 至 60 分鐘之間，導入系統後這部分的時間幾乎消失。更重要的是，當延誤發生時，管理層能在幾分鐘內定位問題所在，而不是事後透過電話一一重建事件經過。</p>
+                    <p>對中小企業的老闆來說，這個改變的意義不只是效率。而是少花時間當人肉轉播站，多花時間在真正需要判斷的事情上。</p>
+
+                    <h2>關鍵洞察</h2>
+                    <p>大部分組織認為自己需要的是更快的溝通工具。</p>
+                    <p>但在這個案例中，真正的問題並不是溝通速度，而是工作狀態缺乏透明度。</p>
+                    <p>當每個人都能清楚知道目前進行到哪裡、下一步由誰負責、哪些事項被延誤——組織便能大幅降低協調成本，並將更多時間投入真正有價值的工作。</p>
+                    <p>真正有效的流程設計，不是讓員工傳送更多訊息。</p>
+                    <p>而是讓訊息不再需要被重複傳送。</p>
+                </div>
+            </div>
+
+            <!-- Project Footer -->
+            <footer class="article-footer">
+                <div class="article-tags">
+                    <a href="../automation.html" class="tag">
+                        <span data-lang="en">AI &amp; Automation</span>
+                        <span data-lang="zh" style="display: none;">AI 與自動化</span>
+                    </a>
+                    <a href="../automation.html" class="tag">
+                        <span data-lang="en">Workflow Automation</span>
+                        <span data-lang="zh" style="display: none;">工作流程自動化</span>
+                    </a>
+                    <a href="../automation.html" class="tag">
+                        <span data-lang="en">Process Design</span>
+                        <span data-lang="zh" style="display: none;">流程設計</span>
+                    </a>
+                    <a href="../automation.html" class="tag">
+                        <span data-lang="en">Cross-Department</span>
+                        <span data-lang="zh" style="display: none;">跨部門協作</span>
+                    </a>
+                </div>
+                <div class="article-actions">
+                    <div class="like-section">
+                        <button class="like-btn" id="likeBtn" data-project="cross-department-workflow-system">
+                            <i class="far fa-heart"></i>
+                            <span class="like-count">0</span>
+                        </button>
+                    </div>
+                    <div class="article-share">
+                        <span data-lang="en">Share this project:</span>
+                        <span data-lang="zh" style="display: none;">分享此專案：</span>
+                        <a href="#" class="share-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="share-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="share-link"><i class="fas fa-link"></i></a>
+                    </div>
+                </div>
+            </footer>
+
+            <!-- Comments Section -->
+            <section class="comments-section">
+                <div class="comments-header">
+                    <h3 data-lang="en">Leave a Comment</h3>
+                    <h3 data-lang="zh" style="display: none;">留言</h3>
+                    <p data-lang="en">Share your thoughts about this project</p>
+                    <p data-lang="zh" style="display: none;">分享您對此專案的想法</p>
+                </div>
+
+                <form class="comment-form" id="commentForm">
+                    <div class="form-group">
+                        <label for="commenterName" data-lang="en">Name *</label>
+                        <label for="commenterName" data-lang="zh" style="display: none;">姓名 *</label>
+                        <input type="text" id="commenterName" name="name" autocomplete="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="commenterEmail" data-lang="en">Email *</label>
+                        <label for="commenterEmail" data-lang="zh" style="display: none;">電子郵件 *</label>
+                        <input type="email" id="commenterEmail" name="email" autocomplete="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="commentMessage" data-lang="en">Comment *</label>
+                        <label for="commentMessage" data-lang="zh" style="display: none;">留言 *</label>
+                        <textarea id="commentMessage" name="message" rows="5" autocomplete="off" required placeholder="Share your thoughts about this project..." data-placeholder-en="Share your thoughts about this project..." data-placeholder-zh="分享您對此專案的想法..."></textarea>
+                    </div>
+
+                    <button type="submit" class="comment-submit-btn">
+                        <span class="btn-text" data-lang="en">Post Comment</span>
+                        <span class="btn-text" data-lang="zh" style="display: none;">發布留言</span>
+                        <span class="btn-loading" style="display: none;">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <span data-lang="en">Sending...</span>
+                            <span data-lang="zh" style="display: none;">發送中...</span>
+                        </span>
+                    </button>
+                </form>
+
+                <div class="comment-notice">
+                    <i class="fas fa-info-circle"></i>
+                    <span data-lang="en">Your comment will be sent directly to the author. Thank you for your feedback!</span>
+                    <span data-lang="zh" style="display: none;">您的留言將直接發送給作者。感謝您的回饋！</span>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p data-lang="en">&copy; 2024 Ester Hong-Fen Lo. All rights reserved.</p>
+            <p data-lang="zh" style="display: none;">&copy; 2024 Ester Hong-Fen Lo. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Cookie 同意橫幅 -->
+    <div id="cookieBanner" class="cookie-banner" style="display: none;">
+        <div class="cookie-banner-content">
+            <div class="cookie-banner-text">
+                <h3 class="cookie-banner-title" data-lang="en">We use cookies</h3>
+                <h3 class="cookie-banner-title" data-lang="zh" style="display: none;">我們使用 cookies</h3>
+                <p class="cookie-banner-description" data-lang="en">
+                    We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.
+                </p>
+                <p class="cookie-banner-description" data-lang="zh" style="display: none;">
+                    我們使用 cookies 來改善您的瀏覽體驗、提供個人化內容並分析我們的流量。點擊「接受全部」即表示您同意我們使用 cookies。
+                </p>
+            </div>
+            <div class="cookie-banner-actions">
+                <button class="cookie-btn cookie-btn-secondary" id="cookieDecline">
+                    <span data-lang="en">Decline</span>
+                    <span data-lang="zh" style="display: none;">拒絕</span>
+                </button>
+                <button class="cookie-btn cookie-btn-primary" id="cookieAccept">
+                    <span data-lang="en">Accept All</span>
+                    <span data-lang="zh" style="display: none;">接受全部</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="image-modal" onclick="closeImageModal()">
+        <div class="image-modal-content" onclick="event.stopPropagation()">
+            <span class="image-modal-close" onclick="closeImageModal()">&times;</span>
+            <button class="image-modal-nav image-modal-prev" onclick="event.stopPropagation(); showPreviousImage()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="image-modal-nav image-modal-next" onclick="event.stopPropagation(); showNextImage()">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <img id="modalImage" src="" alt="" class="modal-image">
+            <div class="image-modal-caption" id="modalCaption"></div>
+        </div>
+    </div>
+
+    <script src="../script.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</body>
+</html>

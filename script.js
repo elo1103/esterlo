@@ -1,22 +1,56 @@
+// Project navigation with language persistence
+function navigateToProject(url) {
+    const lang = localStorage.getItem('selectedLanguage') || 'en';
+    const separator = url.includes('?') ? '&' : '?';
+    window.location.href = url + separator + 'lang=' + lang;
+}
+window.navigateToProject = navigateToProject;
+
 // Image Modal Functions
 let currentImageIndex = 0;
 let imageList = [];
+
+function resetModalImageZoom() {
+    const modalImg = document.getElementById('modalImage');
+    if (modalImg) {
+        modalImg.classList.remove('modal-image-zoomed');
+    }
+}
+
+function toggleModalImageZoom(event) {
+    event.stopPropagation();
+    const modalImg = document.getElementById('modalImage');
+    if (modalImg) {
+        modalImg.classList.toggle('modal-image-zoomed');
+    }
+}
 
 function openImageModal(src, alt) {
     const modal = document.getElementById('imageModal');
     const modalImg = document.getElementById('modalImage');
     const modalCaption = document.getElementById('modalCaption');
     
-    // 收集所有可點擊的圖片
+    // 只收集「目前可見」的圖片（依語系顯示的頁面只會納入該語系圖片）
+    function isVisible(el) {
+        let node = el;
+        while (node) {
+            const style = window.getComputedStyle(node);
+            if (style.display === 'none' || style.visibility === 'hidden') return false;
+            node = node.parentElement;
+        }
+        return true;
+    }
     const clickableImages = document.querySelectorAll('.clickable-image');
-    imageList = Array.from(clickableImages).map(img => ({
+    imageList = Array.from(clickableImages).filter(isVisible).map(img => ({
         src: img.src,
         alt: img.alt
     }));
     
     // 找到當前圖片的索引
     currentImageIndex = imageList.findIndex(img => img.src === src);
+    if (currentImageIndex === -1) currentImageIndex = 0;
     
+    resetModalImageZoom();
     modal.style.display = 'block';
     modalImg.src = src;
     modalCaption.textContent = alt;
@@ -31,6 +65,7 @@ function openImageModal(src, alt) {
 function closeImageModal() {
     const modal = document.getElementById('imageModal');
     modal.style.display = 'none';
+    resetModalImageZoom();
     
     // 恢復背景滾動
     document.body.style.overflow = 'auto';
@@ -53,6 +88,7 @@ function updateModalImage() {
     const modalCaption = document.getElementById('modalCaption');
     
     if (imageList[currentImageIndex]) {
+        resetModalImageZoom();
         modalImg.src = imageList[currentImageIndex].src;
         modalCaption.textContent = imageList[currentImageIndex].alt;
     }
@@ -67,6 +103,11 @@ function updateNavigationButtons() {
         prevBtn.disabled = false;
         nextBtn.disabled = false;
     }
+}
+
+const modalImageEl = document.getElementById('modalImage');
+if (modalImageEl) {
+    modalImageEl.addEventListener('click', toggleModalImageZoom);
 }
 
 // 按 ESC 鍵關閉模態框，左右箭頭鍵切換圖片
