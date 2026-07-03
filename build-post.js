@@ -171,9 +171,20 @@ async function main() {
   const tplPath = path.join(root, 'blog', 'article-template.html');
   const tpl = await fs.readFile(tplPath, 'utf8');
 
+  // SEO fields
+  const siteOrigin = 'https://www.esterlo.com';
+  const canonicalUrl = `${siteOrigin}/blog/articles/${baseName}.html`;
+  const escAttr = (s) => String(s).replace(/&(?!#?\w+;)/g, '&amp;').replace(/"/g, '&quot;');
+  const ogImage = heroSrc
+    ? siteOrigin + encodeURI('/' + path.posix.normalize(path.posix.join('blog/articles', heroSrc.replace(/\\/g, '/'))))
+    : `${siteOrigin}/asset/ai-automation.png`;
+
   // Apply template
   const html = apply(tpl, {
     TITLE_EN: data.title_en,
+    META_DESCRIPTION: escAttr(data.summary_en || data.title_en),
+    CANONICAL_URL: canonicalUrl,
+    OG_IMAGE: ogImage,
     TITLE_ZH: data.title_zh,
     DATE: data.date,
     CATEGORY_ID: normId(data.category_en || data.category_id),
