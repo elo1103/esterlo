@@ -331,48 +331,38 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 按讚功能
-    const likeBtn = document.getElementById('likeBtn');
-    if (likeBtn) {
-        const articleId = likeBtn.getAttribute('data-article');
-        const likeCount = likeBtn.querySelector('.like-count');
-        const likeIcon = likeBtn.querySelector('i');
-        
-        // 從 localStorage 載入按讚狀態
-        const likedArticles = JSON.parse(localStorage.getItem('likedArticles') || '{}');
-        const likeCounts = JSON.parse(localStorage.getItem('likeCounts') || '{}');
-        
-        // 初始化按讚狀態
-        if (likedArticles[articleId]) {
-            likeBtn.classList.add('liked');
-            likeIcon.className = 'fas fa-heart';
-        }
-        
-        // 初始化按讚數量
-        likeCount.textContent = likeCounts[articleId] || 0;
-        
-        // 按讚按鈕點擊事件
-        likeBtn.addEventListener('click', function() {
-            if (likedArticles[articleId]) {
-                // 取消按讚
-                likedArticles[articleId] = false;
-                likeCounts[articleId] = Math.max(0, (likeCounts[articleId] || 0) - 1);
-                likeBtn.classList.remove('liked');
-                likeIcon.className = 'far fa-heart';
-            } else {
-                // 按讚
-                likedArticles[articleId] = true;
-                likeCounts[articleId] = (likeCounts[articleId] || 0) + 1;
-                likeBtn.classList.add('liked');
-                likeIcon.className = 'fas fa-heart';
+    // 分享按鈕
+    const shareLinks = document.querySelectorAll('.article-share .share-link');
+    if (shareLinks.length > 0) {
+        const canonical = document.querySelector('link[rel="canonical"]');
+        const pageUrl = canonical ? canonical.href : window.location.href;
+        const pageTitle = document.title;
+
+        shareLinks.forEach(link => {
+            const icon = link.querySelector('i');
+            if (!icon) return;
+
+            if (icon.classList.contains('fa-linkedin')) {
+                link.href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(pageUrl);
+                link.target = '_blank';
+                link.rel = 'noopener';
+                link.setAttribute('aria-label', 'Share on LinkedIn');
+            } else if (icon.classList.contains('fa-twitter')) {
+                link.href = 'https://twitter.com/intent/tweet?url=' + encodeURIComponent(pageUrl) + '&text=' + encodeURIComponent(pageTitle);
+                link.target = '_blank';
+                link.rel = 'noopener';
+                link.setAttribute('aria-label', 'Share on X');
+            } else if (icon.classList.contains('fa-link')) {
+                link.setAttribute('aria-label', 'Copy link');
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    navigator.clipboard.writeText(pageUrl).then(() => {
+                        showNotification('Link copied!', 'success');
+                    }).catch(() => {
+                        showNotification('Could not copy link', 'error');
+                    });
+                });
             }
-            
-            // 更新顯示
-            likeCount.textContent = likeCounts[articleId];
-            
-            // 儲存到 localStorage
-            localStorage.setItem('likedArticles', JSON.stringify(likedArticles));
-            localStorage.setItem('likeCounts', JSON.stringify(likeCounts));
         });
     }
 
