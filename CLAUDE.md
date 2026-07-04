@@ -249,3 +249,96 @@ Claude must not:
 * Delete content without explicit instruction
 
 All changes should be reviewed by the repository owner.
+
+---
+
+# Technical Reference
+
+Read this section before editing any file. It documents how the site actually works, so you do not need to rediscover it.
+
+## Repo Map
+
+| Path | Purpose |
+|---|---|
+| `index.html` | Homepage |
+| `about.html` | About page |
+| `blog.html` | Blog index — article preview cards live here |
+| `automation.html` | AI automation portfolio index — project preview cards |
+| `digifab.html` | Digital fabrication portfolio index — project preview cards |
+| `blog/articles/*.html` | Blog articles (self-contained bilingual HTML) |
+| `project/*.html` | Portfolio project pages (linked from automation.html / digifab.html) |
+| `asset/` | All images (`asset/automation/`, `asset/digifab/` subfolders) |
+| `styles.css` | Single global stylesheet — all pages share it |
+| `script.js` | Single global JS — language toggle, navigation, interactions |
+| `sitemap.xml` | Hand-maintained page list for Google. Must be updated when pages are added/removed |
+| `robots.txt`, `CNAME`, `favicon.svg`, `404.html` | SEO / hosting infrastructure — rarely touched |
+| `build-post.js` + `blog/article-template.html` + `content/posts/*.md` | Optional Markdown→HTML article generator |
+| `optimize-images.js` | Image compression script (uses sharp) |
+| `blog-draft/`, `prompt/` | Working notes. Not linked pages, but they ARE public in the repo |
+| `dist/` | Generated LinkedIn drafts. Git-ignored — must stay private, never commit |
+
+## Bilingual Mechanism
+
+Every page contains both languages in one file. Content is wrapped in
+`data-lang="en"` and `data-lang="zh"` blocks; `script.js` toggles visibility.
+Any new content must provide both blocks, following the pattern of existing pages.
+The English version should read naturally, not as a literal translation (see Writing Style above).
+
+## Creating an Article — Two Ways
+
+**Way 1 — Hand-written HTML (how most existing articles were made):**
+Copy the structure of a recently added file in `blog/articles/` and follow the
+"Checklist for Any New Page" below. Use the `/new-article` command.
+
+**Way 2 — Generator:**
+
+```
+npm install          # once, if node_modules is missing
+node build-post.js content/posts/<file>.md [--force]
+```
+
+Reads Markdown with YAML front matter, applies `blog/article-template.html`,
+writes `blog/articles/<name>.html`. Front matter fields:
+
+* Required: `title_en`, `date`, `category_id`, `category_en`, `summary_en`
+* Optional: `title_zh`, `category_zh`, `summary_zh`, `output_filename`,
+  `hero_src`, `hero_alt`, `tags_en`, `tags_zh`, `linkedin_variants`
+* Language blocks in the body: `<!--lang:en-->` … `<!--lang:zh-->` …
+* Images referenced as `./images/...` resolve to `blog/articles/<name>/images/` first,
+  then fall back to `asset/<basename>`. Missing images abort the build.
+
+The generator does NOT update `blog.html` or `sitemap.xml` — do those by hand.
+
+## Checklist for Any New Page (article or project)
+
+1. Create the HTML page — bilingual blocks, navigation, and footer intact.
+2. Add a preview card to the correct index page: `blog.html`, `automation.html`, or `digifab.html`. Copy an existing card; keep chronological order.
+3. **Add the page URL to `sitemap.xml`** — it is maintained by hand and forgetting this is the most common mistake.
+4. Set `<title>`, meta description, canonical URL, and og tags in the page head (copy the pattern from a recent article).
+5. Verify every image path exists. GitHub Pages is case-sensitive: `photo.JPG` ≠ `photo.jpg`.
+6. Open the page in a browser locally; check layout and the EN/ZH toggle both work.
+
+## Deployment (GitHub Pages)
+
+* The site serves the root of the `main` branch at `https://www.esterlo.com` (via `CNAME`).
+* Every push to `main` auto-deploys. Takes 1–3 minutes.
+* Verify: repo → Actions tab → newest "pages build and deployment" run is green, then hard-refresh the site (Ctrl+F5).
+
+**Troubleshooting a stale/failed deploy** (learned 2026-07-03):
+
+* The workflow has two key steps: `build` (packages the site) and `deploy` (publishes it).
+* `build` failed → a file in the repo is the problem. Avoid filenames starting with `_` and stray `{{ }}` in published files (the legacy Pages pipeline runs Jekyll).
+* `deploy` failed with "Deployment failed, try again later" → GitHub-side transient error; the code is fine. Fix: Actions → failed run → "Re-run jobs", or `gh api -X POST repos/<owner>/<repo>/pages/builds` to trigger a fresh build.
+* The live site keeps serving the last successful deploy until a new one succeeds — "site looks old" usually means the latest deploy failed, not that the push failed.
+
+## SEO Status
+
+* Google Search Console: domain property `esterlo.com` verified via Cloudflare DNS on 2026-07-03. Do not remove the Google TXT record in Cloudflare.
+* `sitemap.xml` submitted. Google re-reads it automatically; no manual action needed when publishing new content. Optionally use URL Inspection → Request Indexing to speed up important new pages.
+
+## Conventions and Pitfalls
+
+* Article filenames: kebab/Title-case matching existing files, e.g. `Why-I-Dont-Start-with-AI.html`.
+* Put images in `asset/` (or its subfolders); compress large ones with `optimize-images.js`.
+* `node_modules/` is git-ignored. If `build-post.js` fails with a missing module, run `npm install`.
+* Development machine is Windows; always write forward-slash paths inside site files.

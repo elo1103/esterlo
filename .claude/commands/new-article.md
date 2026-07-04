@@ -4,12 +4,12 @@ Create a new website article.
 
 Before making changes:
 
-1. Read CLAUDE.md.
+1. Read CLAUDE.md — especially the "Technical Reference" section and its "Checklist for Any New Page".
 2. Read the provided source note.
 3. Inspect:
 
    * blog.html
-   * articles/
+   * blog/articles/ (pick the most recently added article as the structural reference)
    * asset/
 4. Use the existing article structure as reference.
 
@@ -36,9 +36,16 @@ If information is missing, report missing info before finishing. It user doesn't
 
 Create a new article inside:
 
-articles/
+blog/articles/
 
 Follow the layout and styling used by existing articles.
+
+Include in the page head (copy the pattern from a recent article):
+
+* `<title>`
+* Meta description
+* Canonical URL (`https://www.esterlo.com/blog/articles/<name>.html`)
+* Open Graph tags
 
 Maintain:
 
@@ -111,6 +118,18 @@ Place the article in chronological order.
 
 ---
 
+## Sitemap Update
+
+Add the new article URL to sitemap.xml:
+
+```
+<url><loc>https://www.esterlo.com/blog/articles/<name>.html</loc></url>
+```
+
+This file is maintained by hand. Forgetting it is the most common mistake.
+
+---
+
 ## Date
 
 Use the provided publication date.
@@ -124,10 +143,11 @@ Match existing website formatting.
 Before finishing:
 
 * Verify article path
-* Verify image paths
+* Verify image paths (case-sensitive: photo.JPG ≠ photo.jpg on GitHub Pages)
 * Verify blog card link
 * Verify category tags
-* Verify bilingual sections
+* Verify bilingual sections (data-lang="en" and data-lang="zh" blocks both present)
+* Verify sitemap.xml contains the new URL
 
 ---
 

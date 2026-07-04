@@ -4,7 +4,7 @@ Create a new website portfolio project.
 
 Before making changes:
 
-1. Read CLAUDE.md.
+1. Read CLAUDE.md — especially the "Technical Reference" section, "Checklist for Any New Page", and "Portfolio Content Requirements for SMB Audience".
 2. Read the provided source note.
 3. Inspect:
 
@@ -128,6 +128,18 @@ Place the article in chronological order.
 
 ---
 
+## Sitemap Update
+
+Add the new project URL to sitemap.xml:
+
+```
+<url><loc>https://www.esterlo.com/project/<name>.html</loc></url>
+```
+
+This file is maintained by hand. Forgetting it is the most common mistake.
+
+---
+
 ## Date
 
 Use the provided publication date.
@@ -141,10 +153,11 @@ Match existing website formatting.
 Before finishing:
 
 * Verify article path
-* Verify image paths
-* Verify blog card link
+* Verify image paths (case-sensitive: photo.JPG ≠ photo.jpg on GitHub Pages)
+* Verify portfolio card link on automation.html
 * Verify category tags
-* Verify bilingual sections
+* Verify bilingual sections (data-lang="en" and data-lang="zh" blocks both present)
+* Verify sitemap.xml contains the new URL
 
 ---
 
