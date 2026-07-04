@@ -275,6 +275,7 @@ Read this section before editing any file. It documents how the site actually wo
 | `build-post.js` + `blog/article-template.html` + `content/posts/*.md` | Optional Markdown→HTML article generator |
 | `optimize-images.js` | Image compression script (uses sharp) |
 | `blog-draft/`, `prompt/` | Working notes. Not linked pages, but they ARE public in the repo |
+| `blog-draft/heptabase-topic-candidates.md` | Curated article topic backlog (mapped to Series A–E, with source card paths) — check here first when picking the next article topic |
 | `dist/` | Generated LinkedIn drafts. Git-ignored — must stay private, never commit |
 
 ## Bilingual Mechanism
