@@ -1,6 +1,6 @@
 # Blog 題材候選清單（來自 Heptabase 匯出）
 
-> 來源：`../../heptabase-migration/`（暫存 repo，解散後路徑失效——動筆前把要用的卡片內容先搬進草稿）。
+> 來源：`../../heptabase-migration/`（完整封存備份，長期保留——動筆時直接回去讀原始卡片即可）。
 > 用途：只列題材與來源，不直接產文；寫作照 CLAUDE.md 風格原則（冷靜、深度、挑戰→觀察→分析→系統設計→成果→反思），發文走 build-post.js 流程。
 > **紅線**：任何與現任雇主工作內容相關的素材（來源 repo 的 `work-emi/`）一律不得作為公開文章素材（內部規則見 automatter-lab-os/biz/legal-notes.md）。
 > 建立日期：2026-07-04
