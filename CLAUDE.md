@@ -278,6 +278,10 @@ Read this section before editing any file. It documents how the site actually wo
 | `blog-draft/heptabase-topic-candidates.md` | Curated article topic backlog (mapped to Series A–E, with source card paths) — check here first when picking the next article topic |
 | `dist/` | Generated LinkedIn drafts. Git-ignored — must stay private, never commit |
 
+## Source Archive — gpt-migration (sibling repo, read-only)
+
+Some drafts in `blog-draft/` were distilled from `../gpt-migration/` (permanent archive of 2,330 ChatGPT conversations, 2023–2026). When a draft cites `n=XXX`, look up line n of that repo's `classification/digests.jsonl` to locate the original conversation; the full extraction recipe is in that repo's `CLAUDE.md`. **Privacy red line: this website is public — the 46 conversations listed in that repo's `classification/privacy_flagged_list.md` must never be quoted, summarized, or referenced in any published content.**
+
 ## Bilingual Mechanism
 
 Every page contains both languages in one file. Content is wrapped in
