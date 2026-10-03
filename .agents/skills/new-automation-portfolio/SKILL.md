@@ -1,9 +1,9 @@
 ---
 name: new-automation-portfolio
-description: Create a bilingual automation portfolio project for ELO_web and update automation.html using the existing layout. Use when adding a portfolio case study.
+description: Create a bilingual automation portfolio project for esterlo and update automation.html using the existing layout. Use when adding a portfolio case study.
 ---
 
-All file paths below are relative to the ELO_web repository root.
+All file paths below are relative to the esterlo repository root.
 
 # New Portfolio Project
 

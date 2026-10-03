@@ -1,9 +1,9 @@
 ---
 name: new-article
-description: Create a bilingual article for ELO_web and update its blog card using the existing site layout. Use when adding a website article.
+description: Create a bilingual article for esterlo and update its blog card using the existing site layout. Use when adding a website article.
 ---
 
-All file paths below are relative to the ELO_web repository root.
+All file paths below are relative to the esterlo repository root.
 
 # New Article
 

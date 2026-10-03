@@ -15,7 +15,7 @@ This is a modern, responsive personal portfolio website for Ester Lo, a Creative
 ## File Structure
 
 ```
-ELO_web/
+esterlo/
 â”œâ”€â”€ index.html                    # Main portfolio page
 â”œâ”€â”€ blog.html                     # Blog listing page
 â”œâ”€â”€ styles.css                    # Main stylesheet
@@ -41,8 +41,8 @@ ELO_web/
 
 1. **Clone Repository**
    ```bash
-   git clone https://github.com/yourusername/ELO_web.git
-   cd ELO_web
+   git clone https://github.com/elo1103/esterlo.git
+   cd esterlo
    ```
 
 2. **Open Website**
@@ -56,7 +56,7 @@ ELO_web/
 3. **Deploy to GitHub Pages**
    - Push to GitHub repository
    - Enable GitHub Pages in repository settings
-   - Website will be live at `https://yourusername.github.io/ELO_web`
+   - Website will be live at `https://www.esterlo.com/`
 
 ## Website Features
 
@@ -126,7 +126,7 @@ The website is optimized for the following devices:
 1. Push code to GitHub repository
 2. Go to repository Settings > Pages
 3. Select source branch (usually `main`)
-4. Website will be live at `https://yourusername.github.io/ELO_web`
+4. Website will be live at `https://www.esterlo.com/`
 
 ### Alternative Platforms
 - **Netlify** - Drag and drop deployment
